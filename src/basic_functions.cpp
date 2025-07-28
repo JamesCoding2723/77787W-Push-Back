@@ -116,28 +116,12 @@ void moveForSec(float spd, bool dir, float secs) {
     }
 }
 
-bool clamptoggle = false;
+bool blockertoggle = false;
 
-void clampmech() {
+void blockermech() {
     //bool clamptoggle = false;
-    clamptoggle = !clamptoggle;
-    clamp.set_value(clamptoggle);
-}
-
-bool doinkertoggle = false;
-
-void doinkermech() {
-    //bool doinkertoggle = false;
-    doinkertoggle = !doinkertoggle;
-    doinker.set_value(doinkertoggle);
-}
-
-
-bool raisetoggle = false; 
-
-void raisemech() {
-    raisetoggle = !raisetoggle; 
-    intakep.set_value(raisetoggle);
+    blockertoggle = !blockertoggle;
+    blocker.set_value(blockertoggle);
 }
 
 

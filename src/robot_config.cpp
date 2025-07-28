@@ -17,11 +17,7 @@
 pros::Motor backintakem(21, pros::E_MOTOR_GEAR_BLUE, 1);
 pros::Motor intakem (17, pros::E_MOTOR_GEAR_BLUE, 1);
 
-pros::ADIDigitalOut clamp('A', false); 	
-
-pros::ADIDigitalOut doinker('B', false); 
-
-pros::ADIDigitalOut intakep('C', false);
+pros::ADIDigitalOut blocker('A', false); 	
                     
 pros::Controller master (pros::E_CONTROLLER_MASTER);
 
