@@ -37,18 +37,3 @@ void blockermech();
 void moveforward(float, bool, float);
 
 void wait(float);
-
-extern double start_heading;
-
-extern double x;
-
-extern double y;
-
-double tracking();
-
-float InchToEncoderunit(float);
-
-void pidMoveold(float, float, float);
-
-void pidTurn(float, float, float);
-

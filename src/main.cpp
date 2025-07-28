@@ -1,5 +1,4 @@
 #include "lemlib/chassis/chassis.hpp"
-#include "lemlib/chassis/trackingWheel.hpp"
 #include "pros/adi.hpp"
 #include "pros/llemu.hpp"
 #include "pros/misc.h"
@@ -11,7 +10,9 @@
 #include <cmath>
 #include "robot_config.cpp"
 #include "basic_functions.h"
+#include "PID.h"
 #include "main.h"
+#include "odom.h"
 
 #pragma region
 
@@ -76,46 +77,6 @@ void initialize() {
 
 void disabled() {
 
-
-/*while (true) {
-
-            master.clear();
-
-    if (master.get_digital_new_press(pros::E_CONTROLLER_DIGITAL_X)){
-        autonselector = 1;
-        master.clear();
-        master.print(0, 0, "RED_SAWP:");
-    }
-    if (master.get_digital_new_press(pros::E_CONTROLLER_DIGITAL_A)){
-        autonselector = 2;
-         master.clear();
-        master.print(0, 0, "RED_RUSH");
-    }
-    if (master.get_digital_new_press(pros::E_CONTROLLER_DIGITAL_B)){
-        autonselector = 3;
-         master.clear();
-        master.print(0, 0, "RED_RING");
-    }
-
-    if (master.get_digital_new_press(pros::E_CONTROLLER_DIGITAL_UP)){
-        autonselector = 4;
-        master.print(0, 0, "BLUE_SAWP");
-    }
-    if (master.get_digital_new_press(pros::E_CONTROLLER_DIGITAL_RIGHT)){
-        autonselector = 5;
-        master.print(0, 0, "BLUE_RUSH");
-    }
-    if (master.get_digital_new_press(pros::E_CONTROLLER_DIGITAL_DOWN)){
-        autonselector = 6;
-        master.print(0, 0, "BLUE_RING");
-    }
-    
-    if (master.get_digital_new_press(pros::E_CONTROLLER_DIGITAL_L1)){
-        autonselector = 7;
-        master.print(0, 0, "SKILL");
-    }
-    pros::delay(100);
-    }*/
 }
 
 
@@ -139,18 +100,6 @@ void autonomous() {
 
     pros::c::screen_print(pros::E_TEXT_MEDIUM, 2, "encoder unit");
     
-
-    //SOLO AWP BLUE
-    /*chassis.setPose(0,0,222);
-    moveForSec(40, true, 0.46);
-    wallie.move(13000);
-    pros::c::delay(800);
-    wallie.move(-12000);
-    moveForSec(40, false, 1.1);
-    wallie.brake();
-    pidTurn(-45, 2, 200);
-    pidMoveold(-14, 2);
-    moveForSec(30, false, 0.4);*/
  
     pidMoveold(11, 1, 200);
     pidTurn(-20, 1, 200);
