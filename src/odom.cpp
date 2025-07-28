@@ -31,6 +31,7 @@ double tracking(){
         return x;
         return y;
 
-        vex::this_thread::sleep_for(10);
+
+        pros::delay(10);
     }
 }
