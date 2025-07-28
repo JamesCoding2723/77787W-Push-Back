@@ -37,7 +37,8 @@ void initialize() {
 
     //pros::c::screen_print(pros::E_TEXT_MEDIUM, 4, "encoder unit: %d", front_left_motor.get_encoder_units());
     pros::Task Intake(bkintake);
-    pros::Task Hook(ftintake);
+    pros::Task BKintake(ftintake);
+    pros::Task GPS(GPStracking);
     
     //pros::lcd::clear();
     //pros::lcd::print(5, "IUESHIUSEFIHUWER");

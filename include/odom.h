@@ -5,4 +5,6 @@ extern double x;
 
 extern double y;
 
-double tracking();
+double GPStracking();
+
+float GPSmove();

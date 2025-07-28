@@ -37,3 +37,7 @@ void blockermech();
 void moveforward(float, bool, float);
 
 void wait(float);
+
+float rad2deg(float);
+
+float deg2rad(float);

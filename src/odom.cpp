@@ -1,4 +1,5 @@
 #include <cmath>
+#include "pros/screen.h"
 #include "robot_config.cpp"
 #include "basic_functions.h"
 #include "PID.h"
@@ -9,7 +10,8 @@ constexpr double start_heading = 90;
 double x = 0;
 double y = 0;
 
-double tracking(){
+double GPStracking(){
+    int line_number = 1;
     vertical_encoder.set_position(0);   
 
     double prevdisX = 0;
@@ -31,7 +33,19 @@ double tracking(){
         return x;
         return y;
 
-
+        pros::c::screen_print(pros::E_TEXT_MEDIUM, line_number++, "Xerror: %f, %f", x, y);
         pros::delay(10);
     }
 }
+
+
+void GPSmove(float desx, float desy, int timeout) {
+    float movedis = std::sqrt((std::pow((desx - x), 2.0)) + (std::pow((desy - y), 2.0)));
+    float turndis = rad2deg(std::atan((desy-y) / (desx-x)));
+
+    
+    pidTurn(turndis, 1, 2000);
+    pidMoveold(movedis, 1, 200);
+}
+
+

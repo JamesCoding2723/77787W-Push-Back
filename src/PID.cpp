@@ -55,7 +55,7 @@ void pidMoveold(float target_inch, float tolerence_inch, float timeout){ // MOVE
     move(spd);
     repeat++;
     pros::c::delay(10);
-    pros::c::screen_print(pros::E_TEXT_MEDIUM, line_number++, "error: %f", vertical_encoder.get_position());
+    //pros::c::screen_print(pros::E_TEXT_MEDIUM, line_number++, "error: %f", vertical_encoder.get_position());
   }
 }
 
@@ -101,7 +101,7 @@ void pidTurn(float target, float rotate_tolocal, float timeout) { // ROTATE with
     if (std::abs(pidspd) < 23) pidspd = sign(pidspd) * 23;
 
     turn(pidspd);
-    pros::c::screen_print(pros::E_TEXT_MEDIUM, n++, "pid: %f, %f, %f", (P+D+I), imu.get_rotation(), error);
+    //pros::c::screen_print(pros::E_TEXT_MEDIUM, n++, "pid: %f, %f, %f", (P+D+I), imu.get_rotation(), error);
     repeat++;
 
     

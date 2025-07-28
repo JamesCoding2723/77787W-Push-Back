@@ -135,3 +135,10 @@ void wait(float time) {
     pros::c::delay(time);
 }
 
+float deg2rad(float _input) {
+    return M_PI/180 * _input;
+}
+
+float rad2deg(float _input) {
+    return _input * 180/M_PI;
+}
