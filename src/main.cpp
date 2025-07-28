@@ -193,46 +193,6 @@ back_right_motor.set_brake_mode(pros::E_MOTOR_BRAKE_HOLD);
   back_right_motor.brake();
 }
 
-/*void moveForMsec(float spd, bool dir, float msecs) {
-    int counter = msecs/20;
-    int n = 0;
-    std::vector<double> left, right;
-    double left_position, right_position, diff;
-    float left_spd, right_spd;
-    double ratio = 0.5;
-    left_spd = right_spd = spd;
-
-    if (dir == false) {
-        ratio = ratio * (-1);
-        left_spd = right_spd = spd * (-1);
-    }
-    
-    while ( (n++) < counter) {
-            middle_left_motor.set_zero_position(0);
-            back_left_motor.set_zero_position(0);
-            middle_right_motor.set_zero_position(0);
-            back_right_motor.set_zero_position(0);
-
-            moveleft(left_spd);
-            moveright(right_spd);
-            pros::delay(10); 
-            left = left_motor_group.get_positions();
-            right = right_motor_group.get_positions();
-            left_position = (left. at(1) + left.at(2))/2;
-            right_position = (right. at(1) + right.at(2))/2;
-            diff = fabs(left_position - right_position);
-            if (right_position > left_position) {
-                left_spd = left_spd + diff *1/3 * ratio;
-                right_spd = right_spd - diff *2/3 * ratio;
-            } else {
-                left_spd = left_spd - diff *1/3 * ratio;
-                right_spd = right_spd + diff *2/3 * ratio;
-            }   
-            if (n > 10)
-                pros::c::screen_print(pros::E_TEXT_MEDIUM, n-10, "n= %d left: %4f, right: %4f", n, left_spd, right_spd);   
-    }
-    //stop();
-}*/
 
 void moveDis(float spd, float dis) {
     if (fabs (spd) > 100) spd = sign(spd) * 100;
@@ -299,21 +259,28 @@ void wait(float time) {
     pros::c::delay(time);
 }
 
-/**
- * A callback function for LLEMU's center button.
- *
- * When this callback is fired, it will toggle line 2 of the LCD text between
- * "I was pressed!" and nothing.
- 
-void on_center_button() {
-	static bool pressed = false;
-	pressed = !pressed;
-	if (pressed) {
-		pros::lcd::set_text(2, "I was pressed!");
-	} else {
-		pros::lcd::clear_line(2);
-	}
-}*/
+constexpr double start_heading = 90;
+
+double x = 0;
+double y = 0;
+
+void tracking(){
+    vertical_encoder.set_position(0);   
+
+    double prevdis = 0;
+
+    while (true) {
+        double heading = std::fmod(360 - imu.get_heading() + start_heading, 360);
+
+        double dis_trav = vertical_encoder.get_position() * 0.0002399827721;
+        double deltapos = dis_trav - prevdis;
+
+        
+
+
+
+    }
+}
 
 float InchToEncoderunit(float distance){
     return ((distance * 360) / 10.21017) * (4/3); // gear ratio is 4:3
@@ -375,7 +342,7 @@ void pidTurn(float target, float rotate_tolocal, float timeout) { // ROTATE with
   float kp = 0.8;  // for new robot
   float kd = 0.4; // for new robot
   float ki = 0.02; // for new roobot
-  float spd_ratio = 1.3; //0.5
+  float spd_ratio = 2; //0.5
   float s_error = 0;
   int n = 0;
   int repeat = 0;
@@ -406,7 +373,7 @@ void pidTurn(float target, float rotate_tolocal, float timeout) { // ROTATE with
 
     float pidspd = (P+D+I);
 
-    if (std::abs(pidspd) < 19) pidspd = sign(pidspd) * 19;
+    if (std::abs(pidspd) < 23) pidspd = sign(pidspd) * 23;
 
     turn(pidspd);
     pros::c::screen_print(pros::E_TEXT_MEDIUM, n++, "pid: %f, %f, %f", (P+D+I), imu.get_rotation(), error);
@@ -560,27 +527,28 @@ void autonomous() {
     pidMoveold(-14, 2);
     moveForSec(30, false, 0.4);*/
  
-    //random
-    // pidMoveold(10, 0.5, 200);
-    // pidMoveold(-5, 0.5, 200);    
-    // pidMoveold(10, 0.5, 200);    
-    // pidMoveold(-15, 0.5, 200);
-
-
-    pidMoveold(26, 0.5, 200);
-    pidTurn(-18, 2, 200);
+    pidMoveold(11, 1, 200);
+    pidTurn(-20, 1, 200);
     setftintakespd(-100);
-    moveForSec(20, true, 1);
-    pidTurn(-10, 2, 200);
-    moveForSec(20, true, 0.5);
+    moveForSec(50, true, 0.4);
+    pidTurn(-45, 1, 200);
+    pidMoveold(14, 1, 200);
+    pidTurn(40, 1, 200);
+    moveForSec(30, true, 1.2);
+    pros::delay(600);
+    pidMoveold(-30, 1, 200);
+    setftintakespd(0);
     clamptoggle = !clamptoggle;
     clamp.set_value(clamptoggle);
+    pidTurn(-47, 1, 200);
+    pidMoveold(22, 1, 200);
+    pidTurn(-81, 1, 200);
+    moveForSec(30, false, 2);
+    setftintakespd(-100);
 
-    pidTurn(20, 2, 200);
-    moveForSec(30, true, 0.75);
 
-    pidTurn(-45, 2, 200);
-    pidMoveold(20, 0.5, 200);
+
+
 
 
 }
