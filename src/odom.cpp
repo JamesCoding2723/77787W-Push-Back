@@ -44,7 +44,7 @@ void GPSmove(float desx, float desy, int timeout) {
     float turndis = rad2deg(std::atan((desy-y) / (desx-x)));
 
     
-    pidTurn(turndis, 1, 2000);
+    pidTurnRel(turndis, 1, 2000);
     pidMoveold(movedis, 1, 200);
 }
 

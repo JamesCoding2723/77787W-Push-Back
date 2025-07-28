@@ -1,7 +1,5 @@
 #include <cmath>
 
-
-
 int sign (float);
 
 extern int ftintakespd();

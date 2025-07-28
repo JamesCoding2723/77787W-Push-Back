@@ -103,21 +103,21 @@ void autonomous() {
     
  
     pidMoveold(11, 1, 200);
-    pidTurn(-20, 1, 200);
+    pidTurnRel(-20, 1, 200);
     setftintakespd(-100);
     moveForSec(50, true, 0.4);
-    pidTurn(-45, 1, 200);
+    pidTurnRel(-45, 1, 200);
     pidMoveold(14, 1, 200);
-    pidTurn(40, 1, 200);
+    pidTurnRel(40, 1, 200);
     moveForSec(30, true, 1.2);
     pros::delay(600);
     pidMoveold(-30, 1, 200);
     setftintakespd(0);
     blockertoggle = !blockertoggle;
     blocker.set_value(blockertoggle);
-    pidTurn(-47, 1, 200);
+    pidTurnRel(-47, 1, 200);
     pidMoveold(22, 1, 200);
-    pidTurn(-81, 1, 200);
+    pidTurnRel(-81, 1, 200);
     moveForSec(30, false, 2);
     setftintakespd(-100);
 
