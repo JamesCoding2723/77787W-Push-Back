@@ -1,15 +1,4 @@
-#include "lemlib/chassis/chassis.hpp"
-#include "lemlib/chassis/trackingWheel.hpp"
-#include "pros/adi.hpp"
-#include "pros/llemu.hpp"
-#include "pros/misc.h"
-#include "pros/misc.hpp"
-#include "pros/motors.h"
-#include "pros/rtos.h"
-#include "pros/rtos.hpp"
-#include "pros/screen.h"
 #include <cmath>
-#include "main.h"
 
 
 
@@ -23,4 +12,43 @@ void ftintake();
 
 extern float backintakespd;
 
+void setbkintakespd(float);
+
+void bkintake();
+
+void moveleft(float);
+
+void moveright(float);
+
+void move(float);
+
+void turn(float);
+
+void stop();
+
+void moveDis(float, float);
+
+void moveForSec(float, bool, float);
+
+extern bool blockertoggle;
+
+void blockermech();
+
+void moveforward(float, bool, float);
+
+void wait(float);
+
+extern double start_heading;
+
+extern double x;
+
+extern double y;
+
+double tracking();
+
+float InchToEncoderunit(float);
+
+void pidMoveold(float, float, float);
+
+void pidTurn(float, float, float);
 

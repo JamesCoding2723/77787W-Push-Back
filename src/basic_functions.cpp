@@ -141,7 +141,7 @@ constexpr double start_heading = 90;
 double x = 0;
 double y = 0;
 
-void tracking(){
+double tracking(){
     vertical_encoder.set_position(0);   
 
     double prevdis = 0;
@@ -262,7 +262,4 @@ void pidTurn(float target, float rotate_tolocal, float timeout) { // ROTATE with
   }
 
 }
-
-int autonselector = 0;
-
  

@@ -10,12 +10,11 @@
 #include "pros/screen.h"
 #include <cmath>
 #include "robot_config.cpp"
-#include "basic_functions.cpp"
+#include "basic_functions.h"
 #include "main.h"
 
 #pragma region
 
-int autonselector = 0;
 
 void initialize() {
 
@@ -37,7 +36,7 @@ void initialize() {
 
     //pros::c::screen_print(pros::E_TEXT_MEDIUM, 4, "encoder unit: %d", front_left_motor.get_encoder_units());
     pros::Task Intake(bkintake);
-    pros::Task Hook(fntintake);
+    pros::Task Hook(ftintake);
     
     //pros::lcd::clear();
     //pros::lcd::print(5, "IUESHIUSEFIHUWER");
