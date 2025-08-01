@@ -21,7 +21,7 @@ using namespace pros;
 void initialize()
 {
 
-    pros::lcd::initialize(); // initialize brain screen
+    lcd::initialize(); // initialize brain screen
     chassis.calibrate();     // calibrate sensors
     vertical_encoder.reset();
     vertical_encoder.set_reversed(true);
@@ -43,7 +43,7 @@ void initialize()
     // pros::lcd::print(5, "IUESHIUSEFIHUWER");
 
     master.clear();
-    pros::delay(100);
+    delay(100);
     master.print(5, 5, "RED_SAWP");
 
 #if 0
@@ -96,24 +96,29 @@ void autonomous()
 
     c::screen_print(pros::E_TEXT_MEDIUM, 2, "encoder unit");
 
-    pidMoveold(11, 1, 200);
-    pidTurnRel(-20, 1, 200);
-    setftintakespd(-100);
-    moveForSec(50, true, 0.4);
-    pidTurnRel(-45, 1, 200);
-    pidMoveold(14, 1, 200);
-    pidTurnRel(40, 1, 200);
-    moveForSec(30, true, 1.2);
-    delay(600);
-    pidMoveold(-30, 1, 200);
-    setftintakespd(0);
-    blockertoggle = !blockertoggle;
-    blocker.set_value(blockertoggle);
-    pidTurnRel(-47, 1, 200);
-    pidMoveold(22, 1, 200);
-    pidTurnRel(-81, 1, 200);
-    moveForSec(30, false, 2);
-    setftintakespd(-100);
+    // pidMoveold(11, 1, 200);
+    // pidTurnRel(-20, 1, 200);
+    // setftintakespd(-100);
+    // moveForSec(50, true, 0.4);
+    // pidTurnRel(-45, 1, 200);
+    // pidMoveold(14, 1, 200);
+    // pidTurnRel(40, 1, 200);
+    // moveForSec(30, true, 1.2);
+    // delay(600);
+    // pidMoveold(-30, 1, 200);
+    // setftintakespd(0);
+    // blockertoggle = !blockertoggle;
+    // blocker.set_value(blockertoggle);
+    // pidTurnRel(-47, 1, 200);
+    // pidMoveold(22, 1, 200);
+    // pidTurnRel(-81, 1, 200);
+    // moveForSec(30, false, 2);
+    // setftintakespd(-100);
+
+    // test
+    GPSmove(10, 0);
+    GPSmove(0, 10);
+    // GPSmove(-10, 0);
 }
 
 /**

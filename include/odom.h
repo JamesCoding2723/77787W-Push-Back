@@ -5,6 +5,17 @@ extern double x;
 
 extern double y;
 
-double GPStracking();
+extern float lastForwardPos;
+extern float lastHeading;
+extern float lastPitch;
+extern float currForwardPos, currHeading;
 
-float GPSmove();
+void GPStracking();
+
+double getX();
+double getY();
+
+void setX(double);
+void setY(double);
+
+void GPSmove(float, float);
