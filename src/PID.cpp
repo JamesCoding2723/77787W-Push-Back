@@ -1,11 +1,8 @@
 #include "pros/rtos.h"
 #include "pros/screen.h"
 #include <cmath>
-#include "robot_config.cpp"
+#include "robot_config.h"
 #include "basic_functions.h"
-
-
-
 
 float InchToEncoderunit(float distance){
     return ((distance * 360) / 10.21017) * (4/3); // gear ratio is 4:3

@@ -5,6 +5,7 @@
 #include "pros/misc.hpp"
 #include "pros/motors.h"
 #include <cmath>
+#include "robot_config.h"
 
 //ROBOT CONFIG  //  PID CONFIG
 #pragma region

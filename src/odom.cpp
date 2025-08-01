@@ -1,6 +1,7 @@
 #include <cmath>
+#include <iostream>
 #include "pros/screen.h"
-#include "robot_config.cpp"
+#include "robot_config.h"
 #include "basic_functions.h"
 #include "PID.h"
 
@@ -34,6 +35,7 @@ double GPStracking(){
         return y;
 
         pros::c::screen_print(pros::E_TEXT_MEDIUM, line_number++, "Xerror: %f, %f", x, y);
+        std::cout << x << " " << y << std::endl;
         pros::delay(10);
     }
 }

@@ -4,7 +4,7 @@
 #include "pros/rtos.h"
 #include "pros/rtos.hpp"
 #include <cmath>
-#include "robot_config.cpp"
+#include "robot_config.h"
 
 
 
@@ -20,7 +20,7 @@ void setftintakespd(float spd) {
     ftintakespd = spd;
 }
 
-void fntintake() {
+void ftintake() {
     while(true){
         if (ftintakespd == 0) {
             intakem.brake();

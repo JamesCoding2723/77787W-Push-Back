@@ -8,7 +8,7 @@
 #include "pros/rtos.hpp"
 #include "pros/screen.h"
 #include <cmath>
-#include "robot_config.cpp"
+#include "robot_config.h"
 #include "basic_functions.h"
 #include "PID.h"
 #include "main.h"
