@@ -1,10 +1,10 @@
 #include <cmath>
 
-int sign (float);
+int sign(float);
 
 extern int ftintakespd();
 
-void  setftintakespd(float);
+void setftintakespd(float);
 
 void ftintake();
 
