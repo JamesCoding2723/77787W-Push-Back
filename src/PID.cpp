@@ -4,8 +4,6 @@
 #include "robot_config.h"
 #include "basic_functions.h"
 
-using namespace pros;
-
 float InchToEncoderunit(float distance)
 {
   return ((distance * 360) / 10.21017) * (4 / 3); // gear ratio is 4:3
@@ -59,7 +57,7 @@ void pidMoveold(float target_inch, float tolerence_inch, float timeout)
       spd = sign(spd) * 15;
     move(spd);
     repeat++;
-    c::delay(10);
+    pros::c::delay(10);
     // pros::c::screen_print(pros::E_TEXT_MEDIUM, line_number++, "error: %f", vertical_encoder.get_position());
   }
 }
@@ -116,7 +114,7 @@ void pidTurnRel(float target, float rotate_tolocal, float timeout)
     repeat++;
 
     lastError = error;
-    c::delay(10);
+    pros::c::delay(10);
   }
 }
 
@@ -178,6 +176,6 @@ void pidTurnAbs(float target, float rotate_tolocal, float timeout)
     repeat++;
 
     lastError = error;
-    c::delay(10);
+    pros::c::delay(10);
   }
 }

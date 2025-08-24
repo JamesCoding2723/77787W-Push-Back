@@ -8,20 +8,18 @@
 #include "pros/rtos.hpp"
 #include "pros/screen.h"
 #include <cmath>
-#include "robot_config.cpp"
+#include "robot_config.h"
 #include "basic_functions.h"
 #include "PID.h"
 #include "main.h"
 #include "odom.h"
-
-using namespace pros;
 
 #pragma region
 
 void initialize()
 {
 
-    lcd::initialize(); // initialize brain screen
+    pros::lcd::initialize(); // initialize brain screen
     chassis.calibrate();     // calibrate sensors
     vertical_encoder.reset();
     vertical_encoder.set_reversed(true);
@@ -35,26 +33,26 @@ void initialize()
     back_right_motor.set_encoder_units(pros::E_MOTOR_ENCODER_DEGREES);*/
 
     // pros::c::screen_print(pros::E_TEXT_MEDIUM, 4, "encoder unit: %d", front_left_motor.get_encoder_units());
-    Task Intake(bkintake);
-    Task BKintake(ftintake);
-    Task GPS(GPStracking);
+    pros::Task Intake(bkintake);
+    pros::Task BKintake(ftintake);
+    pros::Task GPS(GPStracking);
 
     // pros::lcd::clear();
     // pros::lcd::print(5, "IUESHIUSEFIHUWER");
 
     master.clear();
-    delay(100);
+    pros::delay(100);
     master.print(5, 5, "RED_SAWP");
 
 #if 0
-    Task screen_task([&]() {
+    pros::Task screen_task([&]() {
         while (true) {
             // print robot location to the brain screen
-            lcd::print(0, "X: %f", chassis.getPose().x); // x
-            lcd::print(1, "Y: %f", chassis.getPose().y); // y
-            lcd::print(2, "Theta: %f", chassis.getPose().theta); // heading
+            pros::lcd::print(0, "X: %f", chassis.getPose().x); // x
+            pros::lcd::print(1, "Y: %f", chassis.getPose().y); // y
+            pros::lcd::print(2, "Theta: %f", chassis.getPose().theta); // heading
             // delay to save resources
-            delay(20);
+            pros::delay(20);
         }
     });
 #endif
@@ -94,31 +92,26 @@ void autonomous()
 
     // pros::c::screen_print(pros::E_TEXT_MEDIUM, 2, "encoder unit: %d", vertical_encoder.get_position());
 
-    c::screen_print(pros::E_TEXT_MEDIUM, 2, "encoder unit");
+    pros::c::screen_print(pros::E_TEXT_MEDIUM, 2, "encoder unit");
 
-    // pidMoveold(11, 1, 200);
-    // pidTurnRel(-20, 1, 200);
-    // setftintakespd(-100);
-    // moveForSec(50, true, 0.4);
-    // pidTurnRel(-45, 1, 200);
-    // pidMoveold(14, 1, 200);
-    // pidTurnRel(40, 1, 200);
-    // moveForSec(30, true, 1.2);
-    // delay(600);
-    // pidMoveold(-30, 1, 200);
-    // setftintakespd(0);
-    // blockertoggle = !blockertoggle;
-    // blocker.set_value(blockertoggle);
-    // pidTurnRel(-47, 1, 200);
-    // pidMoveold(22, 1, 200);
-    // pidTurnRel(-81, 1, 200);
-    // moveForSec(30, false, 2);
-    // setftintakespd(-100);
-
-    // test
-    GPSmove(10, 0);
-    GPSmove(0, 10);
-    // GPSmove(-10, 0);
+    pidMoveold(11, 1, 200);
+    pidTurnRel(-20, 1, 200);
+    setftintakespd(-100);
+    moveForSec(50, true, 0.4);
+    pidTurnRel(-45, 1, 200);
+    pidMoveold(14, 1, 200);
+    pidTurnRel(40, 1, 200);
+    moveForSec(30, true, 1.2);
+    pros::delay(600);
+    pidMoveold(-30, 1, 200);
+    setftintakespd(0);
+    blockertoggle = !blockertoggle;
+    blocker.set_value(blockertoggle);
+    pidTurnRel(-47, 1, 200);
+    pidMoveold(22, 1, 200);
+    pidTurnRel(-81, 1, 200);
+    moveForSec(30, false, 2);
+    setftintakespd(-100);
 }
 
 /**
@@ -141,24 +134,24 @@ void opcontrol()
     bool doinkertoggle = false;
     bool clampsignal = false;
 
-    front_left_motor.set_brake_mode(E_MOTOR_BRAKE_COAST);
-    middle_left_motor.set_brake_mode(E_MOTOR_BRAKE_COAST);
-    back_left_motor.set_brake_mode(E_MOTOR_BRAKE_COAST);
-    front_right_motor.set_brake_mode(E_MOTOR_BRAKE_COAST);
-    middle_right_motor.set_brake_mode(E_MOTOR_BRAKE_COAST);
-    back_right_motor.set_brake_mode(E_MOTOR_BRAKE_COAST);
+    front_left_motor.set_brake_mode(pros::E_MOTOR_BRAKE_COAST);
+    middle_left_motor.set_brake_mode(pros::E_MOTOR_BRAKE_COAST);
+    back_left_motor.set_brake_mode(pros::E_MOTOR_BRAKE_COAST);
+    front_right_motor.set_brake_mode(pros::E_MOTOR_BRAKE_COAST);
+    middle_right_motor.set_brake_mode(pros::E_MOTOR_BRAKE_COAST);
+    back_right_motor.set_brake_mode(pros::E_MOTOR_BRAKE_COAST);
 
     while (true)
     {
         // get left y and right x positions
-        int leftY = master.get_analog(E_CONTROLLER_ANALOG_LEFT_Y);
-        int rightX = master.get_analog(E_CONTROLLER_ANALOG_RIGHT_X);
+        int leftY = master.get_analog(pros::E_CONTROLLER_ANALOG_LEFT_Y);
+        int rightX = master.get_analog(pros::E_CONTROLLER_ANALOG_RIGHT_X);
 
         // move the robot
         chassis.arcade(leftY, rightX);
 
         // clamp
-        if (master.get_digital_new_press(E_CONTROLLER_DIGITAL_X))
+        if (master.get_digital_new_press(pros::E_CONTROLLER_DIGITAL_X))
         {
             blockertoggle = !blockertoggle;
             blocker.set_value(blockertoggle);
@@ -170,10 +163,10 @@ void opcontrol()
             wallie.brake();
         }*/
 
-        if (master.get_digital(E_CONTROLLER_DIGITAL_L1))
+        if (master.get_digital(pros::E_CONTROLLER_DIGITAL_L1))
             setbkintakespd(-0.55);
 
-        else if (master.get_digital(E_CONTROLLER_DIGITAL_L2))
+        else if (master.get_digital(pros::E_CONTROLLER_DIGITAL_L2))
             setbkintakespd(100);
 
         else
@@ -181,11 +174,11 @@ void opcontrol()
             setbkintakespd(0);
         }
 
-        if (master.get_digital(E_CONTROLLER_DIGITAL_R1))
+        if (master.get_digital(pros::E_CONTROLLER_DIGITAL_R1))
         {
             setftintakespd(-100);
         }
-        else if (master.get_digital(E_CONTROLLER_DIGITAL_R2))
+        else if (master.get_digital(pros::E_CONTROLLER_DIGITAL_R2))
         {
             setftintakespd(100);
         }
@@ -194,6 +187,6 @@ void opcontrol()
 
             setftintakespd(0);
         }
-        c::delay(25);
+        pros::c::delay(25);
     }
 }

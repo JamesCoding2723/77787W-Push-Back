@@ -7,31 +7,29 @@
 #include <cmath>
 #include "robot_config.h"
 
-using namespace pros;
-
 // ROBOT CONFIG  //  PID CONFIG
 #pragma region
 
-Motor backintakem(21, E_MOTOR_GEAR_BLUE, 1);
-Motor intakem(17, E_MOTOR_GEAR_BLUE, 1);
+pros::Motor backintakem(21, pros::E_MOTOR_GEAR_BLUE, 1);
+pros::Motor intakem(17, pros::E_MOTOR_GEAR_BLUE, 1);
 
-ADIDigitalOut blocker('A', false);
+pros::ADIDigitalOut blocker('A', false);
 
-Controller master(E_CONTROLLER_MASTER);
+pros::Controller master(pros::E_CONTROLLER_MASTER);
 
-Motor front_left_motor(11, E_MOTOR_GEAR_BLUE);   // front left motor -13
-Motor middle_left_motor(-12, E_MOTOR_GEAR_BLUE); // middle left motorv -12
-Motor back_left_motor(13, E_MOTOR_GEAR_BLUE);    // back left motor -11
-Motor front_right_motor(-14, E_MOTOR_GEAR_BLUE); // front right motor 15
-Motor middle_right_motor(15, E_MOTOR_GEAR_BLUE); // middle right motor 17
-Motor back_right_motor(-16, E_MOTOR_GEAR_BLUE);  // back right motor 16
+pros::Motor front_left_motor(3, pros::E_MOTOR_GEAR_BLUE);   // front left motor -13
+pros::Motor middle_left_motor(-2, pros::E_MOTOR_GEAR_BLUE); // middle left motorv -12
+pros::Motor back_left_motor(1, pros::E_MOTOR_GEAR_BLUE);    // back left motor -11
+pros::Motor front_right_motor(-8, pros::E_MOTOR_GEAR_BLUE); // front right motor 15
+pros::Motor middle_right_motor(9, pros::E_MOTOR_GEAR_BLUE); // middle right motor 17
+pros::Motor back_right_motor(-10, pros::E_MOTOR_GEAR_BLUE); // back right motor 16
 
-Rotation vertical_encoder(6);
+pros::Rotation vertical_encoder(6);
 
 // left group
-MotorGroup left_motor_group({front_left_motor, middle_left_motor, back_left_motor});
+pros::MotorGroup left_motor_group({front_left_motor, middle_left_motor, back_left_motor});
 // right group
-MotorGroup right_motor_group({front_right_motor, middle_right_motor, back_right_motor});
+pros::MotorGroup right_motor_group({front_right_motor, middle_right_motor, back_right_motor});
 
 lemlib::Drivetrain drivetrain(&left_motor_group,          // left group
                               &right_motor_group,         // right group
@@ -44,7 +42,7 @@ lemlib::Drivetrain drivetrain(&left_motor_group,          // left group
 // lemlib::TrackingWheel vertical_tracking_wheel(&vertical_encoder, lemlib::Omniwheel::NEW_2, 0);
 // lemlib::TrackingWheel horizontal_tracking_wheel(&horizontal_encoder, lemlib::Omniwheel::NEW_2, 0.75);
 
-Imu imu(9);
+pros::Imu imu(9);
 
 /*pros::Rotation horizontal_encoder(20);
 // vertical tracking wheel encoder
