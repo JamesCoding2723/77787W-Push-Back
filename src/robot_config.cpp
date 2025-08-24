@@ -17,12 +17,12 @@ pros::ADIDigitalOut blocker('A', false);
 
 pros::Controller master(pros::E_CONTROLLER_MASTER);
 
-pros::Motor front_left_motor(3, pros::E_MOTOR_GEAR_BLUE);   // front left motor -13
+pros::Motor front_left_motor(-3, pros::E_MOTOR_GEAR_BLUE);   // front left motor -13
 pros::Motor middle_left_motor(-2, pros::E_MOTOR_GEAR_BLUE); // middle left motorv -12
-pros::Motor back_left_motor(1, pros::E_MOTOR_GEAR_BLUE);    // back left motor -11
-pros::Motor front_right_motor(-8, pros::E_MOTOR_GEAR_BLUE); // front right motor 15
+pros::Motor back_left_motor(-1, pros::E_MOTOR_GEAR_BLUE);    // back left motor -11
+pros::Motor front_right_motor(8, pros::E_MOTOR_GEAR_BLUE); // front right motor 15
 pros::Motor middle_right_motor(9, pros::E_MOTOR_GEAR_BLUE); // middle right motor 17
-pros::Motor back_right_motor(-10, pros::E_MOTOR_GEAR_BLUE); // back right motor 16
+pros::Motor back_right_motor(10, pros::E_MOTOR_GEAR_BLUE); // back right motor 16
 
 pros::Rotation vertical_encoder(6);
 
