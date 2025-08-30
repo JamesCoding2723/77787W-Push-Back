@@ -16,43 +16,29 @@ int sign(float _input)
         return 0;
 }
 
-int ftintakespd = 0;
+int intakespd = 0;
 
-void setftintakespd(float spd)
+void setintakespd(float spd)
 {
-    ftintakespd = spd;
+    intakespd = spd;
 }
 
-void ftintake()
+void intake()
 {
     while (true)
     {
-        if (ftintakespd == 0)
+        if (intakespd == 0)
         {
-            intakem.brake();
+            rightintakem.brake();
+            leftintakem1.brake();
+            leftintakem2.brake();
         }
         else
         {
-            intakem.move((int)130 * ftintakespd);
+            rightintakem.move((int)130 * intakespd);
+            leftintakem1.move((int)130 * intakespd);
+            leftintakem2.move((int)130 * intakespd);
         }
-    }
-}
-
-float backintakespd = 0;
-
-void setbkintakespd(float spd)
-{
-    backintakespd = spd;
-}
-
-void bkintake()
-{
-    while (true)
-    {
-        if (backintakespd == 0)
-            backintakem.brake();
-        else
-            backintakem.move((int)130 * backintakespd);
     }
 }
 

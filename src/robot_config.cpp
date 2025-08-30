@@ -10,8 +10,9 @@
 // ROBOT CONFIG  //  PID CONFIG
 #pragma region
 
-pros::Motor backintakem(21, pros::E_MOTOR_GEAR_BLUE, 1);
-pros::Motor intakem(17, pros::E_MOTOR_GEAR_BLUE, 1);
+pros::Motor rightintakem(-21, pros::E_MOTOR_GEAR_GREEN);
+pros::Motor leftintakem1(5, pros::E_MOTOR_GEAR_GREEN);
+pros::Motor leftintakem2(4, pros::E_MOTOR_GEAR_BLUE);
 
 pros::ADIDigitalOut blocker('A', false);
 

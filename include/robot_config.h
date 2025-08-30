@@ -6,8 +6,9 @@
 #include "pros/motors.h"
 #include <cmath>
 
-extern pros::Motor backintakem;
-extern pros::Motor intakem;
+extern pros::Motor rightintakem;
+extern pros::Motor leftintakem1;
+extern pros::Motor leftintakem2;
 
 extern pros::ADIDigitalOut blocker;
 

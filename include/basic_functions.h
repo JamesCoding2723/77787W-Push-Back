@@ -2,17 +2,11 @@
 
 int sign(float);
 
-extern int ftintakespd();
+extern int intakespd();
 
-void setftintakespd(float);
+void setintakespd(float);
 
-void ftintake();
-
-extern float backintakespd;
-
-void setbkintakespd(float);
-
-void bkintake();
+void intake();
 
 void moveleft(float);
 

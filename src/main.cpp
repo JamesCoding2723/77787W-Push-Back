@@ -33,8 +33,7 @@ void initialize()
     back_right_motor.set_encoder_units(pros::E_MOTOR_ENCODER_DEGREES);*/
 
     // pros::c::screen_print(pros::E_TEXT_MEDIUM, 4, "encoder unit: %d", front_left_motor.get_encoder_units());
-    pros::Task Intake(bkintake);
-    pros::Task BKintake(ftintake);
+    pros::Task Intake(intake);
     pros::Task GPS(GPStracking);
 
     // pros::lcd::clear();
@@ -94,24 +93,7 @@ void autonomous()
 
     pros::c::screen_print(pros::E_TEXT_MEDIUM, 2, "encoder unit");
 
-    pidMoveold(11, 1, 200);
-    pidTurnRel(-20, 1, 200);
-    setftintakespd(-100);
-    moveForSec(50, true, 0.4);
-    pidTurnRel(-45, 1, 200);
-    pidMoveold(14, 1, 200);
-    pidTurnRel(40, 1, 200);
-    moveForSec(30, true, 1.2);
-    pros::delay(600);
-    pidMoveold(-30, 1, 200);
-    setftintakespd(0);
-    blockertoggle = !blockertoggle;
-    blocker.set_value(blockertoggle);
-    pidTurnRel(-47, 1, 200);
-    pidMoveold(22, 1, 200);
-    pidTurnRel(-81, 1, 200);
-    moveForSec(30, false, 2);
-    setftintakespd(-100);
+   
 }
 
 /**
@@ -163,29 +145,18 @@ void opcontrol()
             wallie.brake();
         }*/
 
-        if (master.get_digital(pros::E_CONTROLLER_DIGITAL_L1))
-            setbkintakespd(-0.55);
-
-        else if (master.get_digital(pros::E_CONTROLLER_DIGITAL_L2))
-            setbkintakespd(100);
-
-        else
-        {
-            setbkintakespd(0);
-        }
-
         if (master.get_digital(pros::E_CONTROLLER_DIGITAL_R1))
         {
-            setftintakespd(-100);
+            setintakespd(-100);
         }
         else if (master.get_digital(pros::E_CONTROLLER_DIGITAL_R2))
         {
-            setftintakespd(100);
+            setintakespd(100);
         }
         else
         {
 
-            setftintakespd(0);
+            setintakespd(0);
         }
         pros::c::delay(25);
     }
