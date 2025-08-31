@@ -9,6 +9,7 @@
 extern pros::Motor rightintakem;
 extern pros::Motor leftintakem1;
 extern pros::Motor leftintakem2;
+extern pros::Motor leftintakem3;
 
 extern pros::ADIDigitalOut blocker;
 

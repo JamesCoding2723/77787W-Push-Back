@@ -32,12 +32,14 @@ void intake()
             rightintakem.brake();
             leftintakem1.brake();
             leftintakem2.brake();
+            leftintakem3.brake();
         }
         else
         {
             rightintakem.move((int)130 * intakespd);
-            leftintakem1.move((int)130 * intakespd);
-            leftintakem2.move((int)130 * intakespd);
+            leftintakem1.move((int)-130 * intakespd);
+            leftintakem2.move((int)-130 * intakespd);
+            leftintakem3.move((int)130 * intakespd);
         }
     }
 }
