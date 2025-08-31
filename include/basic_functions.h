@@ -6,7 +6,11 @@ extern int intakespd();
 
 void setintakespd(float);
 
+void setscorerspd(float);
+
 void intake();
+
+void scorer();
 
 void moveleft(float);
 

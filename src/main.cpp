@@ -34,6 +34,7 @@ void initialize()
 
     // pros::c::screen_print(pros::E_TEXT_MEDIUM, 4, "encoder unit: %d", front_left_motor.get_encoder_units());
     pros::Task Intake(intake);
+    pros::Task Scorer(scorer);
     pros::Task GPS(GPStracking);
 
     // pros::lcd::clear();
@@ -155,8 +156,20 @@ void opcontrol()
         }
         else
         {
-
             setintakespd(0);
+        }
+
+        if (master.get_digital(pros::E_CONTROLLER_DIGITAL_L1))
+        {
+            setscorerspd(-100);
+        }
+        else if (master.get_digital(pros::E_CONTROLLER_DIGITAL_L2))
+        {
+            setscorerspd(100);
+        }
+        else
+        {
+            setscorerspd(0);
         }
         pros::c::delay(25);
     }

@@ -11,7 +11,7 @@
 #pragma region
 
 pros::Motor rightintakem(-21, pros::E_MOTOR_GEAR_GREEN);
-pros::Motor leftintakem1(5, pros::E_MOTOR_GEAR_GREEN);
+pros::Motor scorerm(5, pros::E_MOTOR_GEAR_GREEN);
 pros::Motor leftintakem2(4, pros::E_MOTOR_GEAR_BLUE);
 pros::Motor leftintakem3(6, pros::E_MOTOR_GEAR_BLUE);
 

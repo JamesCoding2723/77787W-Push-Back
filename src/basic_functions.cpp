@@ -17,10 +17,16 @@ int sign(float _input)
 }
 
 int intakespd = 0;
+int scorerspd = 0;
 
 void setintakespd(float spd)
 {
     intakespd = spd;
+}
+
+void setscorerspd(float spd) 
+{
+    scorerspd = spd;
 }
 
 void intake()
@@ -30,17 +36,26 @@ void intake()
         if (intakespd == 0)
         {
             rightintakem.brake();
-            leftintakem1.brake();
             leftintakem2.brake();
             leftintakem3.brake();
         }
         else
         {
             rightintakem.move((int)130 * intakespd);
-            leftintakem1.move((int)-130 * intakespd);
             leftintakem2.move((int)-130 * intakespd);
             leftintakem3.move((int)130 * intakespd);
         }
+    }
+}
+
+void scorer() {
+    if (scorerspd == 0)
+    {
+        scorerm.brake();
+    }
+    else
+    {
+        scorerm.move((int)-130 * scorerspd);
     }
 }
 
