@@ -43,17 +43,17 @@ void intake()
         }
         else if (intakerspd != 0)
         {
-            rightintakem.move((int)130 * intakerspd);
-            leftintakem1.move(int(130) * intakerspd);
-            leftintakem2.move((int)-130 * intakerspd);
-            leftintakem3.move((int)130 * intakerspd);
+            rightintakem.move((int)1.27 * intakerspd);
+            leftintakem1.move((int)1.27 * intakerspd);
+            leftintakem2.move((int)-1.27 * intakerspd);
+            leftintakem3.move((int)1.27 * intakerspd);
         }
         else
         {
-            rightintakem.move((int)130 * intakespd);
-            leftintakem1.move(int(130) * intakespd);
-            leftintakem2.move((int)-130 * intakespd);
-            leftintakem3.move((int)-130 * intakespd);
+            rightintakem.move((int)1.27 * intakespd);
+            leftintakem1.move((int)1.27 * intakespd);
+            leftintakem2.move((int)-1.27 * intakespd);
+            leftintakem3.move((int)-1.27 * intakespd);
         }
     }
 }
