@@ -11,11 +11,12 @@
 #pragma region
 
 pros::Motor rightintakem(-21, pros::E_MOTOR_GEAR_GREEN);
-pros::Motor scorerm(5, pros::E_MOTOR_GEAR_GREEN);
+pros::Motor leftintakem3(5, pros::E_MOTOR_GEAR_GREEN);
 pros::Motor leftintakem2(4, pros::E_MOTOR_GEAR_BLUE);
-pros::Motor leftintakem3(6, pros::E_MOTOR_GEAR_BLUE);
+pros::Motor leftintakem1(6, pros::E_MOTOR_GEAR_BLUE);
 
-pros::ADIDigitalOut blocker('A', false);
+pros::ADIDigitalOut jeminmech('A', false);
+pros::ADIDigitalOut jeminroof('B', false);
 
 pros::Controller master(pros::E_CONTROLLER_MASTER);
 

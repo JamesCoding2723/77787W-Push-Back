@@ -17,47 +17,63 @@ int sign(float _input)
 }
 
 int intakespd = 0;
-int scorerspd = 0;
+int intakerspd = 0;
 
 void setintakespd(float spd)
 {
     intakespd = spd;
 }
 
-void setscorerspd(float spd) 
+void setintakerspd(float spd) 
 {
-    scorerspd = spd;
+    intakerspd = spd;
 }
 
 void intake()
 {
     while (true)
     {
-        if (intakespd == 0)
+        if (intakespd == 0 && intakerspd == 0)
         {
             rightintakem.brake();
             leftintakem2.brake();
             leftintakem3.brake();
+            leftintakem1.brake();
+            
+        }
+        else if (intakerspd != 0)
+        {
+            rightintakem.move((int)130 * intakerspd);
+            leftintakem1.move(int(130) * intakerspd);
+            leftintakem2.move((int)-130 * intakerspd);
+            leftintakem3.move((int)130 * intakerspd);
         }
         else
         {
             rightintakem.move((int)130 * intakespd);
+            leftintakem1.move(int(130) * intakespd);
             leftintakem2.move((int)-130 * intakespd);
-            leftintakem3.move((int)130 * intakespd);
+            leftintakem3.move((int)-130 * intakespd);
         }
     }
 }
 
-void scorer() {
-    if (scorerspd == 0)
+/*void intaker() {
+    if (intakerspd == 0)
     {
-        scorerm.brake();
+        rightintakem.brake();
+        leftintakem2.brake();
+        leftintakem3.brake();
+        leftintakem1.brake();
     }
     else
     {
-        scorerm.move((int)-130 * scorerspd);
+        rightintakem.move((int)130 * intakespd);
+        leftintakem1.move(int(130) * intakespd);
+        leftintakem2.move((int)-130 * intakespd);
+        leftintakem3.move((int)-130 * intakespd);
     }
-}
+}*/
 
 void moveleft(float spd)
 {
@@ -144,13 +160,22 @@ void moveForSec(float spd, bool dir, float secs)
     }
 }
 
-bool blockertoggle = false;
+bool jeminmechtoggle = false;
 
-void blockermech()
+void jeminmecht()
 {
     // bool clamptoggle = false;
-    blockertoggle = !blockertoggle;
-    blocker.set_value(blockertoggle);
+    jeminmechtoggle = !jeminmechtoggle;
+    jeminmech.set_value(jeminmechtoggle);
+}
+
+bool jeminrooftoggle = false;
+
+void jeminrooft()
+{
+    // bool clamptoggle = false;
+    jeminrooftoggle = !jeminrooftoggle;
+    jeminroof.set_value(jeminrooftoggle);
 }
 
 void moveforward(float dis, bool dir, float tm)

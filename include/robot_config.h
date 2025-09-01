@@ -7,11 +7,12 @@
 #include <cmath>
 
 extern pros::Motor rightintakem;
-extern pros::Motor scorerm;
+extern pros::Motor leftintakem1;
 extern pros::Motor leftintakem2;
 extern pros::Motor leftintakem3;
 
-extern pros::ADIDigitalOut blocker;
+extern pros::ADIDigitalOut jeminmech;
+extern pros::ADIDigitalOut jeminroof;
 
 extern pros::Controller master;
 

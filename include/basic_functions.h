@@ -4,13 +4,15 @@ int sign(float);
 
 extern int intakespd();
 
+extern int intakerspd();
+
 void setintakespd(float);
 
-void setscorerspd(float);
+void setintakerspd(float);
 
 void intake();
 
-void scorer();
+void intaker();
 
 void moveleft(float);
 
@@ -26,9 +28,13 @@ void moveDis(float, float);
 
 void moveForSec(float, bool, float);
 
-extern bool blockertoggle;
+extern bool jeminmechtoggle;
 
-void blockermech();
+void jeminmecht();
+
+extern bool jeminrooftoggle;
+
+void jeminrooft();
 
 void moveforward(float, bool, float);
 

@@ -34,7 +34,7 @@ void initialize()
 
     // pros::c::screen_print(pros::E_TEXT_MEDIUM, 4, "encoder unit: %d", front_left_motor.get_encoder_units());
     pros::Task Intake(intake);
-    pros::Task Scorer(scorer);
+    //pros::Task IntakeR(intaker);
     pros::Task GPS(GPStracking);
 
     // pros::lcd::clear();
@@ -136,15 +136,14 @@ void opcontrol()
         // clamp
         if (master.get_digital_new_press(pros::E_CONTROLLER_DIGITAL_X))
         {
-            blockertoggle = !blockertoggle;
-            blocker.set_value(blockertoggle);
+            jeminmechtoggle = !jeminmechtoggle;
+            jeminmech.set_value(jeminmechtoggle);
         }
 
-        /*if(master.get_digital_new_press(pros::E_CONTROLLER_DIGITAL_UP)) {
-            wallie.move(13000);
-            pros::c::delay(145);
-            wallie.brake();
-        }*/
+        if(master.get_digital_new_press(pros::E_CONTROLLER_DIGITAL_A)) {
+            jeminrooftoggle = !jeminrooftoggle;
+            jeminroof.set_value(jeminrooftoggle);
+        }
 
         if (master.get_digital(pros::E_CONTROLLER_DIGITAL_R1))
         {
@@ -154,22 +153,18 @@ void opcontrol()
         {
             setintakespd(100);
         }
-        else
+        else if (master.get_digital(pros::E_CONTROLLER_DIGITAL_L1))
         {
-            setintakespd(0);
-        }
-
-        if (master.get_digital(pros::E_CONTROLLER_DIGITAL_L1))
-        {
-            setscorerspd(-100);
+            setintakerspd(-100);
         }
         else if (master.get_digital(pros::E_CONTROLLER_DIGITAL_L2))
         {
-            setscorerspd(100);
+            setintakerspd(100);
         }
-        else
+        else 
         {
-            setscorerspd(0);
+            setintakespd(0);
+            setintakerspd(0);
         }
         pros::c::delay(25);
     }
