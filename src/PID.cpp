@@ -57,7 +57,7 @@ void pidMoveold(float target_inch, float tolerence_inch, float timeout, float ma
     spd = (P + D + I) * speed_ratio;
     if (std::abs(spd) < 15)
       spd = sign(spd) * 15;
-    move(std::clamp(spd, 0.0f, max));
+    move(std::clamp(spd, -max, max));
     repeat++;
     pros::c::delay(10);
     // pros::c::screen_print(pros::E_TEXT_MEDIUM, line_number++, "error: %f", vertical_encoder.get_position());
