@@ -92,6 +92,11 @@ void autonomous()
 
     // pros::c::screen_print(pros::E_TEXT_MEDIUM, 2, "encoder unit: %d", vertical_encoder.get_position());
 
+    setintakespd(-100);
+    pidMoveold(15, 0.5, 200, 50);
+    pidTurnRel(-35, 2, 200);
+    pidMoveold(15, 0.5, 200, 10);
+
     pros::c::screen_print(pros::E_TEXT_MEDIUM, 2, "encoder unit");
 
    

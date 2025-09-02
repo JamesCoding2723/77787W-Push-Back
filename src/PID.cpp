@@ -1,6 +1,8 @@
 #include "pros/rtos.h"
 #include "pros/screen.h"
 #include <cmath>
+#include <iostream>
+#include <algorithm>
 #include "robot_config.h"
 #include "basic_functions.h"
 
@@ -9,7 +11,7 @@ float InchToEncoderunit(float distance)
   return ((distance * 360) / 10.21017) * (4 / 3); // gear ratio is 4:3
 }
 
-void pidMoveold(float target_inch, float tolerence_inch, float timeout)
+void pidMoveold(float target_inch, float tolerence_inch, float timeout, float max)
 { // MOVE MOVE MOVE
 
   // float target = target_inch
@@ -55,7 +57,7 @@ void pidMoveold(float target_inch, float tolerence_inch, float timeout)
     spd = (P + D + I) * speed_ratio;
     if (std::abs(spd) < 15)
       spd = sign(spd) * 15;
-    move(spd);
+    move(std::clamp(spd, 0.0f, max));
     repeat++;
     pros::c::delay(10);
     // pros::c::screen_print(pros::E_TEXT_MEDIUM, line_number++, "error: %f", vertical_encoder.get_position());
@@ -110,7 +112,8 @@ void pidTurnRel(float target, float rotate_tolocal, float timeout)
       pidspd = sign(pidspd) * 23;
 
     turn(pidspd);
-    // pros::c::screen_print(pros::E_TEXT_MEDIUM, n++, "pid: %f, %f, %f", (P+D+I), imu.get_rotation(), error);
+    std::cout << pidspd << std::endl;
+    pros::c::screen_print(pros::E_TEXT_MEDIUM, n++, "pid: %f, %f, %f", (P+D+I), imu.get_rotation(), error);
     repeat++;
 
     lastError = error;

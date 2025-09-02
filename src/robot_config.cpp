@@ -27,7 +27,7 @@ pros::Motor front_right_motor(8, pros::E_MOTOR_GEAR_BLUE); // front right motor 
 pros::Motor middle_right_motor(9, pros::E_MOTOR_GEAR_BLUE); // middle right motor 17
 pros::Motor back_right_motor(10, pros::E_MOTOR_GEAR_BLUE); // back right motor 16
 
-pros::Rotation vertical_encoder(6);
+pros::Rotation vertical_encoder(11);
 
 // left group
 pros::MotorGroup left_motor_group({front_left_motor, middle_left_motor, back_left_motor});
@@ -45,7 +45,7 @@ lemlib::Drivetrain drivetrain(&left_motor_group,          // left group
 // lemlib::TrackingWheel vertical_tracking_wheel(&vertical_encoder, lemlib::Omniwheel::NEW_2, 0);
 // lemlib::TrackingWheel horizontal_tracking_wheel(&horizontal_encoder, lemlib::Omniwheel::NEW_2, 0.75);
 
-pros::Imu imu(9);
+pros::Imu imu(20);
 
 /*pros::Rotation horizontal_encoder(20);
 // vertical tracking wheel encoder

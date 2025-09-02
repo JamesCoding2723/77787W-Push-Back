@@ -101,7 +101,7 @@ void turn(float spd)
 {
     if (fabs(spd) > 100)
         spd = sign(spd) * 100;
-    moveright(-spd);
+    moveright(-spd); 
     moveleft(spd);
 }
 
