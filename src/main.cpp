@@ -93,14 +93,20 @@ void autonomous()
     // pros::c::screen_print(pros::E_TEXT_MEDIUM, 2, "encoder unit: %d", vertical_encoder.get_position());
 
     setintakespd(-100);
-    pidMoveold(14.75, 0.5, 200, 50);
-    pidTurnRel(-30, 2, 200);
-    pidMoveold(12, 0.5, 200, 10); // go into the 3 blocks
+    pidMoveold(14, 0.5, 200, 50);
+    pidTurnRel(-35, 2, 200);
+    pidMoveold(14, 0.5, 200, 10); // go into the 3 blocks
     setintakespd(0);
 
-    pidTurnRel(-90, 2, 50);
-    moveForSec(50, false, 1.25);
+    pidTurnRel(-105, 2, 50);
+    moveForSec(30, false, 0.9); // go to middle goal
     setintakerspd(-100);
+    pros::delay(2000);
+    setintakerspd(0);
+
+    pidMoveold(45, 0.5, 200, 60);
+    setintakespd(-100);
+    pidTurnRel(-60, 2, 50);
 
     pros::c::screen_print(pros::E_TEXT_MEDIUM, 2, "encoder unit");
 
