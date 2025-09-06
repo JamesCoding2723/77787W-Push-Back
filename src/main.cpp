@@ -85,34 +85,41 @@ void autonomous()
     //LEFT 7BALL CODE
     /*setintakespd(-100);
     pidMoveold(14, 0.5, 200, 50);
-    pidTurnRel(-35, 2, 200);
+    pidTurnRel(-37, 2, 200);
     pidMoveold(12.5, 0.5, 200, 15); // go into the 3 blocks
     setintakespd(0);
     setintakerspd(0);
     //pros::delay(2000);
 
-    pidTurnRel(-92, 1, 50);
+    pidTurnRel(-90, 1, 50);
     jeminrooft();
-    moveForSec(30, false, 1.15); // go to middle goal
+    moveForSec(30, false, 1.3); // go to middle goal
     setintakerspd(-100); //scoring
     pros::delay(2000);
     setintakerspd(0);
 
     setintakerspd(20);
-    pidMoveold(51, 0.5, 200, 60); //going to mtach load
+    pidTurnRel(3, 0.5, 50);
+    pidMoveold(46.5, 0.5, 200, 60); //going to mtach load
     setintakerspd(0);
-    pidTurnRel(-45, 2, 50);
+    pidTurnRel(-43, 1, 50);
+    //moveForSec(30, false, 0.3);
+    pros::delay(500);
     jeminmecht();
     jeminrooft();
-    pros::delay(500);
+    pros::delay(600);
     setintakespd(-100);
     moveForSec(80, true, 0.6); //collecting match load
-    moveForSec(30, false, 0.2);
-    moveForSec(30, true, 0.3);
-    pros::delay(1000);
+    pros::delay(200);
+    moveForSec(50, true, 0.2);
+    pros::delay(200);
+    moveForSec(50, true, 0.2);
+    pros::delay(800);
 
     setintakespd(0);
-    moveForSec(60, false, 1.7);
+    moveForSec(60, false, 0.3);
+    pidTurnRel(-1.2, 0.5, 100);
+    moveForSec(60, false, 1.4);
     jeminrooft();
     setintakespd(-100);*/
 
@@ -121,7 +128,7 @@ void autonomous()
     setintakespd(-70);
     pidMoveold(13.7, 0.5, 200, 50);
     pidTurnRel(33, 2, 200);
-    pidMoveold(13.2, 0.5, 200, 15); // go into the 3 blocks
+    pidMoveold(14, 0.5, 200, 15); // go into the 3 blocks
     setintakespd(0);
     setintakerspd(0);
     //pros::delay(2000);
@@ -146,12 +153,16 @@ void autonomous()
     pros::delay(500);
     setintakespd(-100);
     moveForSec(80, true, 0.6); //collecting match load
-    moveForSec(30, false, 0.2);
+    pros::delay(200);
+    moveForSec(30, true, 0.2);
+    pros::delay(200);
     moveForSec(30, true, 0.3);
     pros::delay(1000);
 
     setintakespd(0);
-    moveForSec(55, false, 1.8);
+    moveForSec(55, false, 0.6);
+    pidTurnRel(3, 0.5, 200);
+    moveForSec(55, false, 1);
     jeminrooft();
     setintakespd(-100);
 
