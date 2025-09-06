@@ -92,21 +92,38 @@ void autonomous()
 
     // pros::c::screen_print(pros::E_TEXT_MEDIUM, 2, "encoder unit: %d", vertical_encoder.get_position());
 
+    
     setintakespd(-100);
     pidMoveold(14, 0.5, 200, 50);
     pidTurnRel(-35, 2, 200);
-    pidMoveold(14, 0.5, 200, 10); // go into the 3 blocks
+    pidMoveold(13.6, 0.5, 200, 15); // go into the 3 blocks
     setintakespd(0);
+    setintakerspd(0);
+    //pros::delay(2000);
 
-    pidTurnRel(-105, 2, 50);
-    moveForSec(30, false, 0.9); // go to middle goal
-    setintakerspd(-100);
+    pidTurnRel(-92, 1, 50);
+    jeminrooft();
+    moveForSec(30, false, 1.15); // go to middle goal
+    setintakerspd(-100); //scoring
     pros::delay(2000);
     setintakerspd(0);
 
-    pidMoveold(45, 0.5, 200, 60);
+    setintakerspd(20);
+    pidMoveold(50, 0.5, 200, 60); //going to mtach load
+    setintakerspd(0);
+    pidTurnRel(-45, 2, 50);
+    jeminmecht();
+    jeminrooft();
+    pros::delay(200);
     setintakespd(-100);
-    pidTurnRel(-60, 2, 50);
+    moveForSec(35, true, 0.8); //collecting match load
+    pros::delay(1000);
+
+    setintakespd(0);
+    moveForSec(40, false, 2);
+    jeminrooft();
+    setintakespd(-100);
+
 
     pros::c::screen_print(pros::E_TEXT_MEDIUM, 2, "encoder unit");
 
