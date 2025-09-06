@@ -82,21 +82,11 @@ void competition_initialize()
  */
 void autonomous()
 {
-    // chassis.turnToHeading(90,5000);
-
-    // pros::lcd::print(1, "encoder unit: %d", front_left_motor.get_encoder_units());
-    // pros::c::screen_print(pros::E_TEXT_MEDIUM, 2, "encoder unit: %d", front_left_motor.get_encoder_units());
-    // master.print(1, "encoder unit: %d", front_left_motor.get_encoder_units());
-    // moveForMsec(20, true, 6000);
-    // moveForSec(20, true, 2);
-
-    // pros::c::screen_print(pros::E_TEXT_MEDIUM, 2, "encoder unit: %d", vertical_encoder.get_position());
-
-    
-    setintakespd(-100);
+    //LEFT 7BALL CODE
+    /*setintakespd(-100);
     pidMoveold(14, 0.5, 200, 50);
     pidTurnRel(-35, 2, 200);
-    pidMoveold(13.6, 0.5, 200, 15); // go into the 3 blocks
+    pidMoveold(12.5, 0.5, 200, 15); // go into the 3 blocks
     setintakespd(0);
     setintakerspd(0);
     //pros::delay(2000);
@@ -109,23 +99,63 @@ void autonomous()
     setintakerspd(0);
 
     setintakerspd(20);
-    pidMoveold(50, 0.5, 200, 60); //going to mtach load
+    pidMoveold(51, 0.5, 200, 60); //going to mtach load
     setintakerspd(0);
     pidTurnRel(-45, 2, 50);
     jeminmecht();
     jeminrooft();
-    pros::delay(200);
+    pros::delay(500);
     setintakespd(-100);
-    moveForSec(35, true, 0.8); //collecting match load
+    moveForSec(80, true, 0.6); //collecting match load
+    moveForSec(30, false, 0.2);
+    moveForSec(30, true, 0.3);
     pros::delay(1000);
 
     setintakespd(0);
-    moveForSec(40, false, 2);
+    moveForSec(60, false, 1.7);
+    jeminrooft();
+    setintakespd(-100);*/
+
+
+    //RIGHT 7BALL CODE
+    setintakespd(-70);
+    pidMoveold(13.7, 0.5, 200, 50);
+    pidTurnRel(33, 2, 200);
+    pidMoveold(13.2, 0.5, 200, 15); // go into the 3 blocks
+    setintakespd(0);
+    setintakerspd(0);
+    //pros::delay(2000);
+
+    pidTurnRel(-87, 1, 50);
+    jeminrooft();
+    jeminmecht();
+    pros::delay(500);
+    moveForSec(35, true, 0.5); // go to middle goal
+    setintakerspd(100);
+    pros::delay(2000);
+    moveForSec(35, false, 0.2);
+    setintakerspd(0);
+
+    jeminmecht();
+    pidTurnRel(150, 1, 200);
+    pidMoveold(33.4, 0.5, 200, 60); //going to mtach load
+    setintakerspd(0);
+    pidTurnRel(47, 2, 50);
+    jeminmecht();
+    jeminrooft();
+    pros::delay(500);
+    setintakespd(-100);
+    moveForSec(80, true, 0.6); //collecting match load
+    moveForSec(30, false, 0.2);
+    moveForSec(30, true, 0.3);
+    pros::delay(1000);
+
+    setintakespd(0);
+    moveForSec(55, false, 1.8);
     jeminrooft();
     setintakespd(-100);
 
 
-    pros::c::screen_print(pros::E_TEXT_MEDIUM, 2, "encoder unit");
 
    
 }
