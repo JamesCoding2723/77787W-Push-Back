@@ -83,15 +83,15 @@ void competition_initialize()
 void autonomous()
 {
     //LEFT 7BALL CODE
-    /*setintakespd(-100);
-    pidMoveold(14, 0.5, 200, 50);
+    setintakespd(-100);
+    pidMoveold(13.8, 0.5, 200, 50);
     pidTurnRel(-37, 2, 200);
-    pidMoveold(12.5, 0.5, 200, 15); // go into the 3 blocks
+    pidMoveold(13.5, 0.5, 200, 15); // go into the 3 blocks
     setintakespd(0);
     setintakerspd(0);
     //pros::delay(2000);
 
-    pidTurnRel(-90, 1, 50);
+    pidTurnRel(-88.5, 1, 50);
     jeminrooft();
     moveForSec(30, false, 1.3); // go to middle goal
     setintakerspd(-100); //scoring
@@ -100,63 +100,63 @@ void autonomous()
 
     setintakerspd(20);
     pidTurnRel(3, 0.5, 50);
-    pidMoveold(46.5, 0.5, 200, 60); //going to mtach load
+    pidMoveold(42.4, 0.5, 200, 60); //going to mtach load
     setintakerspd(0);
-    pidTurnRel(-43, 1, 50);
+    pidTurnRel(-48, 1, 50);
     //moveForSec(30, false, 0.3);
     pros::delay(500);
     jeminmecht();
     jeminrooft();
-    pros::delay(600);
+    pros::delay(100);
     setintakespd(-100);
     moveForSec(80, true, 0.6); //collecting match load
     pros::delay(200);
-    moveForSec(50, true, 0.2);
+    moveForSec(50, false, 0.2);
     pros::delay(200);
-    moveForSec(50, true, 0.2);
+    moveForSec(50, true, 0.3);
     pros::delay(800);
 
     setintakespd(0);
-    moveForSec(60, false, 0.3);
-    pidTurnRel(-1.2, 0.5, 100);
-    moveForSec(60, false, 1.4);
-    jeminrooft();
-    setintakespd(-100);*/
+    // moveForSec(60, false, 0.3);
+    // pidTurnRel(-1.4, 0.5, 100);
+    // moveForSec(60, false, 1.4);
+    // jeminrooft();
+    // setintakespd(-100);
 
 
     //RIGHT 7BALL CODE
-    setintakespd(-70);
-    pidMoveold(13.7, 0.5, 200, 50);
-    pidTurnRel(33, 2, 200);
-    pidMoveold(14, 0.5, 200, 15); // go into the 3 blocks
+    /*setintakespd(-70);
+    pidMoveold(14, 0.5, 200, 50);
+    pidTurnRel(39, 2, 200);
+    pidMoveold(16, 0.5, 200, 15); // go into the 3 blocks
     setintakespd(0);
     setintakerspd(0);
     //pros::delay(2000);
 
-    pidTurnRel(-87, 1, 50);
+    pidTurnRel(-92, 1, 50);
     jeminrooft();
     jeminmecht();
     pros::delay(500);
     moveForSec(35, true, 0.5); // go to middle goal
     setintakerspd(100);
-    pros::delay(2000);
+    pros::delay(1500);
     moveForSec(35, false, 0.2);
     setintakerspd(0);
 
     jeminmecht();
     pidTurnRel(150, 1, 200);
-    pidMoveold(33.4, 0.5, 200, 60); //going to mtach load
+    pidMoveold(35, 0.5, 200, 60); //going to mtach load
     setintakerspd(0);
-    pidTurnRel(47, 2, 50);
+    pidTurnRel(43, 2, 50);
     jeminmecht();
     jeminrooft();
     pros::delay(500);
     setintakespd(-100);
     moveForSec(80, true, 0.6); //collecting match load
-    pros::delay(200);
-    moveForSec(30, true, 0.2);
-    pros::delay(200);
-    moveForSec(30, true, 0.3);
+    pros::delay(100);
+    moveForSec(30, false, 0.2);
+    pros::delay(100);
+    moveForSec(50, true, 0.3);
     pros::delay(1000);
 
     setintakespd(0);
@@ -164,7 +164,7 @@ void autonomous()
     pidTurnRel(3, 0.5, 200);
     moveForSec(55, false, 1);
     jeminrooft();
-    setintakespd(-100);
+    setintakespd(-100);*/
 
 
 
