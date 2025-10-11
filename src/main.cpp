@@ -91,7 +91,7 @@ void autonomous()
     setintakerspd(0);
     //pros::delay(2000);
 
-    pidTurnRel(-90, 1, 50);
+    pidTurnRel(-85, 1, 50);
     pros::delay(200);
     jeminrooft();
     moveForSec(30, false, 1.3); // go to middle goal
