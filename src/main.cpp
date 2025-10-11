@@ -84,44 +84,44 @@ void autonomous()
 {
     //LEFT 7BALL CODE
     setintakespd(-100);
-    pidMoveold(14, 0.5, 200, 50);
+    pidMoveold(13.5, 0.5, 200, 50);
     pidTurnRel(-30, 2, 200);
-    pidMoveold(12.2, 0.5, 200, 15); // go into the 3 blocks
+    pidMoveold(14.5, 0.5, 200, 15); // go into the 3 blocks
     setintakespd(0);
     setintakerspd(0);
     //pros::delay(2000);
 
-    pidTurnRel(-85, 1, 50);
+    pidTurnRel(-96, 1, 50);
     pros::delay(200);
     jeminrooft();
-    moveForSec(30, false, 1.3); // go to middle goal
+    moveForSec(30, false, 1.1); // go to middle goal
     setintakerspd(-100); //scoring
     pros::delay(2000);
     setintakerspd(0);
 
     setintakerspd(20);
-    pidMoveold(49.5, 0.5, 200, 60); //going to mtach load
+    pidMoveold(49, 0.5, 200, 60); //going to mtach load
     setintakerspd(0);
-    pidTurnRel(-44, 2, 50);
-    //moveForSec(30, false, 0.3);
+    pidTurnRel(-48, 2, 50);
+    moveForSec(30, false, 0.1);
     pros::delay(500);
     jeminmecht();
     jeminrooft();
     pros::delay(100);
     setintakespd(-100);
-    moveForSec(80, true, 0.6); //collecting match load
+    moveForSec(40, true, 0.7); //collecting match load
     pros::delay(200);
-    moveForSec(60, false, 0.2);
+    moveForSec(30, false, 0.2);
     pros::delay(200);
-    moveForSec(60, true, 0.3);
+    moveForSec(30, true, 0.4);
     pros::delay(800);
 
     setintakespd(0);
     // moveForSec(60, false, 0.3);
     // pidTurnRel(-1.4, 0.5, 100);
-    // moveForSec(60, false, 1.4);
-    // jeminrooft();
-    // setintakespd(-100);
+    moveForSec(50, false, 1.4);
+    jeminrooft();
+    setintakespd(-100);
 
 
     //RIGHT 7BALL CODE
