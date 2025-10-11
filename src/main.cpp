@@ -82,6 +82,10 @@ void competition_initialize()
  */
 void autonomous()
 {
+    //WTV
+    //moveForSec(30, true, 0.2);
+
+
     //LEFT 7BALL CODE
     setintakespd(-100);
     pidMoveold(13.5, 0.5, 200, 50);
@@ -114,13 +118,13 @@ void autonomous()
     moveForSec(30, false, 0.2);
     pros::delay(200);
     moveForSec(30, true, 0.4);
-    pros::delay(800);
+    pros::delay(400);
 
     setintakespd(0);
+    jeminrooft();
     // moveForSec(60, false, 0.3);
     // pidTurnRel(-1.4, 0.5, 100);
     moveForSec(50, false, 1.4);
-    jeminrooft();
     setintakespd(-100);
 
 
