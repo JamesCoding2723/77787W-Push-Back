@@ -228,7 +228,7 @@ void opcontrol()
             jemintake.set_value(jemintaketoggle);
         }
 
-        if(master.get_digital_new_press(pros::E_CONTROLLER_DIGITAL_LEFT)) {
+        if(master.get_digital_new_press(pros::E_CONTROLLER_DIGITAL_RIGHT)) {
             jeminwingtoggle = !jeminwingtoggle;
             jeminwing.set_value(jeminwingtoggle);
         }
