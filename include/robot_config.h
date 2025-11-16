@@ -6,13 +6,14 @@
 #include "pros/motors.h"
 #include <cmath>
 
-extern pros::Motor rightintakem;
-extern pros::Motor leftintakem1;
-extern pros::Motor leftintakem2;
-extern pros::Motor leftintakem3;
+extern pros::Motor rightintakem1;
+extern pros::Motor rightintakem2;
+extern pros::Motor leftintakem;
 
 extern pros::ADIDigitalOut jeminmech;
 extern pros::ADIDigitalOut jeminroof;
+extern pros::ADIDigitalOut jemintake;
+extern pros::ADIDigitalOut jeminwing;
 
 extern pros::Controller master;
 

@@ -223,9 +223,19 @@ void opcontrol()
             jeminroof.set_value(jeminrooftoggle);
         }
 
+        if(master.get_digital_new_press(pros::E_CONTROLLER_DIGITAL_UP)) {
+            jemintaketoggle = !jemintaketoggle;
+            jemintake.set_value(jemintaketoggle);
+        }
+
+        if(master.get_digital_new_press(pros::E_CONTROLLER_DIGITAL_LEFT)) {
+            jeminwingtoggle = !jeminwingtoggle;
+            jeminwing.set_value(jeminwingtoggle);
+        }
+
         if (master.get_digital(pros::E_CONTROLLER_DIGITAL_R1))
         {
-            setintakespd(-100);
+            setintakerspd(-100);
         }
         else if (master.get_digital(pros::E_CONTROLLER_DIGITAL_R2))
         {
@@ -233,7 +243,7 @@ void opcontrol()
         }
         else if (master.get_digital(pros::E_CONTROLLER_DIGITAL_L1))
         {
-            setintakerspd(-100);
+            setintakespd(-100);
         }
         else if (master.get_digital(pros::E_CONTROLLER_DIGITAL_L2))
         {

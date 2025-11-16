@@ -36,6 +36,14 @@ extern bool jeminrooftoggle;
 
 void jeminrooft();
 
+extern bool jemintaketoggle;
+
+void jemintaket();
+
+extern bool jeminwingtoggle;
+
+void jeminwingt();
+
 void moveforward(float, bool, float);
 
 void wait(float);

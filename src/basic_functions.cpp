@@ -35,25 +35,22 @@ void intake()
     {
         if (intakespd == 0 && intakerspd == 0)
         {
-            rightintakem.brake();
-            leftintakem2.brake();
-            leftintakem3.brake();
-            leftintakem1.brake();
+            rightintakem1.brake();
+            rightintakem2.brake();
+            leftintakem.brake();
             
         }
         else if (intakerspd != 0)
         {
-            rightintakem.move((int)1.27 * intakerspd);
-            leftintakem1.move((int)1.27 * intakerspd);
-            leftintakem2.move((int)-1.27 * intakerspd);
-            leftintakem3.move((int)1.27 * intakerspd);
+            rightintakem1.move((int)1.27 * intakerspd);
+            leftintakem.move((int)-1.27 * intakerspd);
+            rightintakem2.move((int)1.27 * intakerspd);
         }
         else
         {
-            rightintakem.move((int)1.27 * intakespd);
-            leftintakem1.move((int)1.27 * intakespd);
-            leftintakem2.move((int)-1.27 * intakespd);
-            leftintakem3.move((int)-1.27 * intakespd);
+            rightintakem1.move((int)1.27 * intakespd);
+            leftintakem.move((int)1.27 * intakespd);
+            rightintakem2.move((int)1.27 * intakespd);
         }
     }
 }
@@ -177,6 +174,25 @@ void jeminrooft()
     jeminrooftoggle = !jeminrooftoggle;
     jeminroof.set_value(jeminrooftoggle);
 }
+
+bool jemintaketoggle = false;
+
+void jemintaket()
+{
+    // bool clamptoggle = false;
+    jemintaketoggle = !jemintaketoggle;
+    jemintake.set_value(jemintaketoggle);
+}
+
+bool jeminwingtoggle = false;
+
+void jeminwingt()
+{
+    // bool clamptoggle = false;
+    jeminwingtoggle = !jeminwingtoggle;
+    jeminwing.set_value(jeminwingtoggle);
+}
+
 
 void moveforward(float dis, bool dir, float tm)
 {
