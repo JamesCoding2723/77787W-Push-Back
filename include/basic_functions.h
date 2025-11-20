@@ -4,15 +4,15 @@ int sign(float);
 
 extern int intakespd();
 
-extern int intakerspd();
+extern int intake2spd();
 
 void setintakespd(float);
 
-void setintakerspd(float);
+void setintake2spd(float);
 
 void intake();
 
-void intaker();
+void intake2();
 
 void moveleft(float);
 

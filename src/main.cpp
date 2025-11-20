@@ -34,8 +34,8 @@ void initialize()
 
     // pros::c::screen_print(pros::E_TEXT_MEDIUM, 4, "encoder unit: %d", front_left_motor.get_encoder_units());
     pros::Task Intake(intake);
-    //pros::Task IntakeR(intaker);
-    pros::Task GPS(GPStracking);
+    pros::Task Intake2(intake2);
+    //pros::Task GPS(GPStracking);
 
     // pros::lcd::clear();
     // pros::lcd::print(5, "IUESHIUSEFIHUWER");
@@ -87,7 +87,7 @@ void autonomous()
 
 
     //LEFT 7BALL CODE
-    setintakespd(-100);
+    /*setintakespd(-100);
     pidMoveold(13.5, 0.5, 200, 50);
     pidTurnRel(-30, 2, 200);
     pidMoveold(14.5, 0.5, 200, 15); // go into the 3 blocks
@@ -125,7 +125,7 @@ void autonomous()
     // moveForSec(60, false, 0.3);
     // pidTurnRel(-1.4, 0.5, 100);
     moveForSec(50, false, 1.4);
-    setintakespd(-100);
+    setintakespd(-100);*/
 
 
     //RIGHT 7BALL CODE
@@ -190,11 +190,6 @@ void autonomous()
  */
 void opcontrol()
 {
-    // loop forever
-    bool clamptoggle = false;
-    bool doinkertoggle = false;
-    bool clampsignal = false;
-
     front_left_motor.set_brake_mode(pros::E_MOTOR_BRAKE_COAST);
     middle_left_motor.set_brake_mode(pros::E_MOTOR_BRAKE_COAST);
     back_left_motor.set_brake_mode(pros::E_MOTOR_BRAKE_COAST);
@@ -211,7 +206,6 @@ void opcontrol()
         // move the robot
         chassis.arcade(leftY, rightX);
 
-        // clamp
         if (master.get_digital_new_press(pros::E_CONTROLLER_DIGITAL_X))
         {
             jeminmechtoggle = !jeminmechtoggle;
@@ -235,24 +229,28 @@ void opcontrol()
 
         if (master.get_digital(pros::E_CONTROLLER_DIGITAL_R1))
         {
-            setintakerspd(-100);
+            setintake2spd(-100);
+            setintakespd(-100);
         }
         else if (master.get_digital(pros::E_CONTROLLER_DIGITAL_R2))
         {
             setintakespd(100);
+            setintake2spd(100);
         }
         else if (master.get_digital(pros::E_CONTROLLER_DIGITAL_L1))
         {
             setintakespd(-100);
+            setintake2spd(-100);
         }
         else if (master.get_digital(pros::E_CONTROLLER_DIGITAL_L2))
         {
-            setintakerspd(100);
+            setintake2spd(100);
+            setintakespd(100);
         }
         else 
         {
             setintakespd(0);
-            setintakerspd(0);
+            setintake2spd(0);
         }
         pros::c::delay(25);
     }

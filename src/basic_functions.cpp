@@ -17,60 +17,46 @@ int sign(float _input)
 }
 
 int intakespd = 0;
-int intakerspd = 0;
+int intake2spd = 0;
 
 void setintakespd(float spd)
 {
     intakespd = spd;
 }
 
-void setintakerspd(float spd) 
+void setintake2spd(float spd) 
 {
-    intakerspd = spd;
+    intake2spd = spd;
 }
 
 void intake()
 {
     while (true)
     {
-        if (intakespd == 0 && intakerspd == 0)
+        if (intakespd)
         {
             rightintakem1.brake();
-            rightintakem2.brake();
-            leftintakem.brake();
-            
-        }
-        else if (intakerspd != 0)
-        {
-            rightintakem1.move((int)1.27 * intakerspd);
-            leftintakem.move((int)-1.27 * intakerspd);
-            rightintakem2.move((int)1.27 * intakerspd);
+            rightintakem2.brake();     
         }
         else
         {
             rightintakem1.move((int)1.27 * intakespd);
-            leftintakem.move((int)1.27 * intakespd);
             rightintakem2.move((int)1.27 * intakespd);
         }
     }
 }
 
-/*void intaker() {
-    if (intakerspd == 0)
+void intake2() {
+    if (intake2spd == 0)
     {
-        rightintakem.brake();
-        leftintakem2.brake();
-        leftintakem3.brake();
-        leftintakem1.brake();
+        leftintakem.brake();
     }
     else
     {
-        rightintakem.move((int)130 * intakespd);
-        leftintakem1.move(int(130) * intakespd);
-        leftintakem2.move((int)-130 * intakespd);
-        leftintakem3.move((int)-130 * intakespd);
+        leftintakem.move((int)1.27 * intakespd);
+
     }
-}*/
+}
 
 void moveleft(float spd)
 {
