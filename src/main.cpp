@@ -234,8 +234,14 @@ void opcontrol()
         }
         else if (master.get_digital(pros::E_CONTROLLER_DIGITAL_R2))
         {
-            setintakespd(100);
-            setintake2spd(100);
+            if (jemintaketoggle == true){
+                setintakespd(60);
+                setintake2spd(0);
+            }
+            else {
+                setintakespd(100);
+                setintake2spd(100);
+            }
         }
         else if (master.get_digital(pros::E_CONTROLLER_DIGITAL_L1))
         {
@@ -244,8 +250,14 @@ void opcontrol()
         }
         else if (master.get_digital(pros::E_CONTROLLER_DIGITAL_L2))
         {
-            setintake2spd(100);
-            setintakespd(100);
+            if (jemintaketoggle == true){
+                setintakespd(60);
+                setintake2spd(0);
+            }
+            else {
+                setintakespd(100);
+                setintake2spd(100);
+            }
         }
         else 
         {

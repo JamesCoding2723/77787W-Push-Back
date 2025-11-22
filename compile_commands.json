@@ -30,11 +30,11 @@
             "-funwind-tables",
             "--std=gnu++17",
             "-o",
-            "bin/basic_functions.cpp.o",
-            "src/basic_functions.cpp"
+            "bin/robot_config.cpp.o",
+            "src/robot_config.cpp"
         ],
         "directory": "/Users/Evan/Documents/GitHub/77787W-Push-Back",
-        "file": "src/basic_functions.cpp"
+        "file": "src/robot_config.cpp"
     },
     {
         "arguments": [
@@ -141,11 +141,11 @@
             "-funwind-tables",
             "--std=gnu++17",
             "-o",
-            "bin/robot_config.cpp.o",
-            "src/robot_config.cpp"
+            "bin/basic_functions.cpp.o",
+            "src/basic_functions.cpp"
         ],
         "directory": "/Users/Evan/Documents/GitHub/77787W-Push-Back",
-        "file": "src/robot_config.cpp"
+        "file": "src/basic_functions.cpp"
     },
     {
         "arguments": [

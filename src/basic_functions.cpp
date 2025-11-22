@@ -101,9 +101,12 @@ void stop()
     middle_left_motor.brake();
     back_left_motor.brake();
     front_right_motor.brake();
-    front_left_motor.brake();
     middle_right_motor.brake();
     back_right_motor.brake();
+}
+
+double motorpos(){
+    return ((front_left_motor.get_position() + front_right_motor.get_position() + middle_left_motor.get_position() + middle_right_motor.get_position() + back_left_motor.get_position() + back_right_motor.get_position()) / 6);
 }
 
 void moveDis(float spd, float dis)

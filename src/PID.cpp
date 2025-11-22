@@ -182,3 +182,68 @@ void pidTurnAbs(float target, float rotate_tolocal, float timeout)
     pros::c::delay(10);
   }
 }
+
+
+
+void pidswingRel(float target, float rotate_tolocal, float timeout, bool side)
+{ // ROTATE with tolerate variable
+  float pTol = rotate_tolocal;
+  float dTol = rotate_tolocal;
+  float lastError;
+  float kp = 0.8;      // for new robot
+  float kd = 0.4;      // for new robot
+  float ki = 0.02;     // for new roobot
+  float spd_ratio = 2; // 0.5
+  float s_error = 0;
+  int n = 0;
+  int repeat = 0;
+  // imu.set_rotation(0);
+  target = imu.get_rotation() + target;
+
+  while (true)
+  {
+
+    float error = target - imu.get_rotation();
+    float P = error * kp;
+    float D = (error - lastError) * kd;
+    s_error += error;              // 1
+    s_error = fmin(s_error, 100);  // 2
+    s_error = fmax(s_error, -100); // 2
+    // Brain.Screen.printAt(10,10,"inertial=%f,error=%f,P+D+I=%f",sensor.rotation(deg),error,P+D);//1031
+    if (error * lastError < 0)
+      s_error = 0; // 3
+    float I = ki * s_error;
+    // if (error != 0) break; //delete later
+
+    if (fabs(error) < pTol)
+    {
+      stop();
+      break;
+    }
+
+    if (repeat > timeout)
+    {
+      stop();
+      break;
+    }
+
+    float pidspd = (P + D + I);
+
+    if (std::abs(pidspd) < 23)
+      pidspd = sign(pidspd) * 23;
+
+    
+    if (side == true) {
+      moveright(pidspd);
+    }
+    else{
+      moveleft(pidspd);
+    }
+    std::cout << pidspd << std::endl;
+    pros::c::screen_print(pros::E_TEXT_MEDIUM, n++, "pid: %f, %f, %f", (P+D+I), imu.get_rotation(), error);
+    repeat++;
+
+    lastError = error;
+    pros::c::delay(10);
+  }
+}
