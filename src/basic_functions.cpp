@@ -4,6 +4,7 @@
 #include "pros/rtos.h"
 #include "pros/rtos.hpp"
 #include <cmath>
+#include "pros/vision.h"
 #include "robot_config.h"
 
 int sign(float _input)
@@ -17,6 +18,7 @@ int sign(float _input)
 }
 
 int intakespd = 0;
+
 int intake2spd = 0;
 
 void setintakespd(float spd)
@@ -33,7 +35,7 @@ void intake()
 {
     while (true)
     {
-        if (intakespd)
+        if (intakespd == 0)
         {
             rightintakem1.brake();
             rightintakem2.brake();     
@@ -47,14 +49,17 @@ void intake()
 }
 
 void intake2() {
-    if (intake2spd == 0)
+    while (true)
     {
-        leftintakem.brake();
-    }
-    else
-    {
-        leftintakem.move((int)1.27 * intakespd);
+        if (intake2spd == 0)
+        {
+            leftintakem.brake();
+        }
+        else
+        {
+            leftintakem.move((int)1.27 * intake2spd);
 
+        }
     }
 }
 
@@ -106,7 +111,16 @@ void stop()
 }
 
 double motorpos(){
-    return ((front_left_motor.get_position() + front_right_motor.get_position() + middle_left_motor.get_position() + middle_right_motor.get_position() + back_left_motor.get_position() + back_right_motor.get_position()) / 6);
+    return ((front_left_motor.get_position() + front_right_motor.get_position()) / 2);
+}
+
+void resetmotorpos(){
+    front_left_motor.set_zero_position(0);
+    middle_left_motor.set_zero_position(0);
+    back_left_motor.set_zero_position(0);
+    front_right_motor.set_zero_position(0);
+    middle_right_motor.set_zero_position(0);
+    back_right_motor.set_zero_position(0);
 }
 
 void moveDis(float spd, float dis)

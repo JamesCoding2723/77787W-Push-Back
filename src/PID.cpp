@@ -1,3 +1,4 @@
+#include "pros/motors.h"
 #include "pros/rtos.h"
 #include "pros/screen.h"
 #include <cmath>
@@ -11,25 +12,32 @@ float InchToEncoderunit(float distance)
   return ((distance * 360) / 10.21017) * (4 / 3); // gear ratio is 4:3
 }
 
+
+
 void pidMoveold(float target_inch, float tolerence_inch, float timeout, float max)
 { // MOVE MOVE MOVE
 
   // float target = target_inch
   // float tolerence = InchToEncoderunit(tolerence_inch);
   float lastError;
-  float kp = 2.1; // for new robot
-  float kd = 0.1; // for new robot
+  float kp = 2.8; // for new robot
+  float kd = 0.2; // for new robot
   float ki = 0.0; // for new roobot
   float s_error = 0;
   int line_number = 1;
   float speed_ratio = 2.2, spd;
-  vertical_encoder.set_position(0);
+  front_right_motor.set_encoder_units(pros::E_MOTOR_ENCODER_DEGREES);
+  front_left_motor.set_encoder_units(pros::E_MOTOR_ENCODER_DEGREES);
+  front_left_motor.set_zero_position(0);
+  front_right_motor.set_zero_position(0);
+  
+  
   int repeat_limit = 2000000;
   int repeat = 0;
 
   while (true)
   {
-    float error = target_inch - (vertical_encoder.get_position() * 0.0002399827721);
+    float error = target_inch - (((front_right_motor.get_position() + front_left_motor.get_position()) / 2) * 0.02127120025);
     float P = error * kp;
     float D = (error - lastError) * kd;
     s_error += error;
@@ -43,6 +51,7 @@ void pidMoveold(float target_inch, float tolerence_inch, float timeout, float ma
     {
       // move_turn(0);
       stop();
+      pros::c::screen_print(pros::E_TEXT_MEDIUM, line_number++, "error: %f", front_right_motor.get_position());
       break;
     }
 
@@ -60,7 +69,6 @@ void pidMoveold(float target_inch, float tolerence_inch, float timeout, float ma
     move(std::clamp(spd, -max, max));
     repeat++;
     pros::c::delay(10);
-    // pros::c::screen_print(pros::E_TEXT_MEDIUM, line_number++, "error: %f", vertical_encoder.get_position());
   }
 }
 
@@ -69,15 +77,16 @@ void pidTurnRel(float target, float rotate_tolocal, float timeout)
   float pTol = rotate_tolocal;
   float dTol = rotate_tolocal;
   float lastError;
-  float kp = 0.8;      // for new robot
-  float kd = 0.4;      // for new robot
-  float ki = 0.02;     // for new roobot
+  float kp = 1.1;      // for new robot
+  float kd = 0.35;      // for new robot
+  float ki = 0.0;     // for new roobot
   float spd_ratio = 2; // 0.5
   float s_error = 0;
   int n = 0;
   int repeat = 0;
-  // imu.set_rotation(0);
-  target = imu.get_rotation() + target;
+  int line_number = 1;
+  imu.set_rotation(0);
+  //target = imu.get_rotation() + target;
 
   while (true)
   {
@@ -97,6 +106,7 @@ void pidTurnRel(float target, float rotate_tolocal, float timeout)
     if (fabs(error) < pTol)
     {
       stop();
+      pros::c::screen_print(pros::E_TEXT_MEDIUM, line_number++, "error: %f", imu.get_rotation());
       break;
     }
 
@@ -197,8 +207,8 @@ void pidswingRel(float target, float rotate_tolocal, float timeout, bool side)
   float s_error = 0;
   int n = 0;
   int repeat = 0;
-  // imu.set_rotation(0);
-  target = imu.get_rotation() + target;
+  imu.set_rotation(0);
+  //target = imu.get_rotation() + target;
 
   while (true)
   {

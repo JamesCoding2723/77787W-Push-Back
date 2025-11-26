@@ -20,6 +20,10 @@ void moveright(float);
 
 void move(float);
 
+double motorpos();
+
+void resetmotorpos();
+
 void turn(float);
 
 void stop();

@@ -18,6 +18,12 @@
 
 void initialize()
 {
+    front_left_motor.set_encoder_units(pros::E_MOTOR_ENCODER_DEGREES);
+    middle_left_motor.set_encoder_units(pros::E_MOTOR_ENCODER_DEGREES);
+    back_left_motor.set_encoder_units(pros::E_MOTOR_ENCODER_DEGREES);
+    front_right_motor.set_encoder_units(pros::E_MOTOR_ENCODER_DEGREES);
+    middle_right_motor.set_encoder_units(pros::E_MOTOR_ENCODER_DEGREES);
+    back_right_motor.set_encoder_units(pros::E_MOTOR_ENCODER_DEGREES);
 
     pros::lcd::initialize(); // initialize brain screen
     chassis.calibrate();     // calibrate sensors
@@ -83,7 +89,8 @@ void competition_initialize()
 void autonomous()
 {
     //WTV
-    //moveForSec(30, true, 0.2);
+    imu.set_heading(0);
+    pidTurnRel(90, 1, 400);
 
 
     //LEFT 7BALL CODE
@@ -206,13 +213,13 @@ void opcontrol()
         // move the robot
         chassis.arcade(leftY, rightX);
 
-        if (master.get_digital_new_press(pros::E_CONTROLLER_DIGITAL_X))
+        if (master.get_digital_new_press(pros::E_CONTROLLER_DIGITAL_B)) //dble park
         {
             jeminmechtoggle = !jeminmechtoggle;
             jeminmech.set_value(jeminmechtoggle);
         }
 
-        if(master.get_digital_new_press(pros::E_CONTROLLER_DIGITAL_A)) {
+        if(master.get_digital_new_press(pros::E_CONTROLLER_DIGITAL_Y)) { //chopstick
             jeminrooftoggle = !jeminrooftoggle;
             jeminroof.set_value(jeminrooftoggle);
         }
@@ -222,7 +229,7 @@ void opcontrol()
             jemintake.set_value(jemintaketoggle);
         }
 
-        if(master.get_digital_new_press(pros::E_CONTROLLER_DIGITAL_RIGHT)) {
+        if(master.get_digital_new_press(pros::E_CONTROLLER_DIGITAL_X)) {
             jeminwingtoggle = !jeminwingtoggle;
             jeminwing.set_value(jeminwingtoggle);
         }
@@ -235,8 +242,8 @@ void opcontrol()
         else if (master.get_digital(pros::E_CONTROLLER_DIGITAL_R2))
         {
             if (jemintaketoggle == true){
-                setintakespd(60);
-                setintake2spd(0);
+                setintakespd(80);
+                setintake2spd(80);
             }
             else {
                 setintakespd(100);
@@ -246,18 +253,12 @@ void opcontrol()
         else if (master.get_digital(pros::E_CONTROLLER_DIGITAL_L1))
         {
             setintakespd(-100);
-            setintake2spd(-100);
+            setintake2spd(50);
         }
         else if (master.get_digital(pros::E_CONTROLLER_DIGITAL_L2))
         {
-            if (jemintaketoggle == true){
-                setintakespd(60);
-                setintake2spd(0);
-            }
-            else {
-                setintakespd(100);
-                setintake2spd(100);
-            }
+            setintakespd(-100);
+            //setintake2spd(-100);
         }
         else 
         {
