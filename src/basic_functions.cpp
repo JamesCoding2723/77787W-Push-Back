@@ -17,13 +17,21 @@ int sign(float _input)
         return 0;
 }
 
-int intakespd = 0;
+int intakespd1 = 0;
+int intakespd2 = 0;
 
 int intake2spd = 0;
 
 void setintakespd(float spd)
 {
-    intakespd = spd;
+    intakespd1 = spd;
+    intakespd2 = spd;
+}
+
+void setintakespddiff(float spd1, float spd2)
+{
+    intakespd1 = spd1;
+    intakespd2 = spd2;
 }
 
 void setintake2spd(float spd) 
@@ -35,15 +43,18 @@ void intake()
 {
     while (true)
     {
-        if (intakespd == 0)
+        if (intakespd1 == 0)
         {
-            rightintakem1.brake();
-            rightintakem2.brake();     
+            rightintakem1.brake();  
+        }
+        else if (intakespd2 == 1)
+        {
+            rightintakem2.brake();  
         }
         else
         {
-            rightintakem1.move((int)1.27 * intakespd);
-            rightintakem2.move((int)1.27 * intakespd);
+            rightintakem1.move((int)1.27 * intakespd1);
+            rightintakem2.move((int)1.27 * intakespd2);
         }
     }
 }
@@ -169,13 +180,13 @@ void jeminmecht()
     jeminmech.set_value(jeminmechtoggle);
 }
 
-bool jeminrooftoggle = false;
+bool jeminloadertoggle = false;
 
-void jeminrooft()
+void jeminloadert()
 {
     // bool clamptoggle = false;
-    jeminrooftoggle = !jeminrooftoggle;
-    jeminroof.set_value(jeminrooftoggle);
+    jeminloadertoggle = !jeminloadertoggle;
+    jeminloader.set_value(jeminloadertoggle);
 }
 
 bool jemintaketoggle = false;

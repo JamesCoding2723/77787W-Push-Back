@@ -77,9 +77,9 @@ void pidTurnRel(float target, float rotate_tolocal, float timeout)
   float pTol = rotate_tolocal;
   float dTol = rotate_tolocal;
   float lastError;
-  float kp = 1.1;      // for new robot
-  float kd = 0.35;      // for new robot
-  float ki = 0.0;     // for new roobot
+  float kp = 0.95;      // for new robot
+  float kd = 0.2;      // for new robot
+  float ki = 0.15;     // for new roobot
   float spd_ratio = 2; // 0.5
   float s_error = 0;
   int n = 0;

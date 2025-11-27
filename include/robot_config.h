@@ -11,7 +11,7 @@ extern pros::Motor rightintakem2;
 extern pros::Motor leftintakem;
 
 extern pros::ADIDigitalOut jeminmech;
-extern pros::ADIDigitalOut jeminroof;
+extern pros::ADIDigitalOut jeminloader;
 extern pros::ADIDigitalOut jemintake;
 extern pros::ADIDigitalOut jeminwing;
 

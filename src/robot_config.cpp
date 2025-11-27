@@ -16,7 +16,7 @@ pros::Motor leftintakem(-3, pros::E_MOTOR_GEAR_BLUE);
 //pros::Motor leftintakem1(6, pros::E_MOTOR_GEAR_BLUE);
 
 pros::ADIDigitalOut jeminmech('A', false);
-pros::ADIDigitalOut jeminroof('B', false);
+pros::ADIDigitalOut jeminloader('B', false);
 pros::ADIDigitalOut jemintake('C', false);
 pros::ADIDigitalOut jeminwing('D', false);
 

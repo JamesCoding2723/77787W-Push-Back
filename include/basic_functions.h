@@ -8,6 +8,8 @@ extern int intake2spd();
 
 void setintakespd(float);
 
+void setintakespddiff(float, float);
+
 void setintake2spd(float);
 
 void intake();
@@ -36,9 +38,9 @@ extern bool jeminmechtoggle;
 
 void jeminmecht();
 
-extern bool jeminrooftoggle;
+extern bool jeminloadertoggle;
 
-void jeminrooft();
+void jeminloadert();
 
 extern bool jemintaketoggle;
 

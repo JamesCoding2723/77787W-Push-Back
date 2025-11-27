@@ -89,9 +89,52 @@ void competition_initialize()
 void autonomous()
 {
     //WTV
-    imu.set_heading(0);
-    pidTurnRel(90, 1, 400);
+    // imu.set_heading(0);
+    // pidTurnRel(90, 1, 400);
 
+    //new robot auton
+    pidMoveold(15, 0.5, 200, 100);
+    setintakespddiff(-100, -25);
+    pidMoveold(4.3, 0.5, 200, 70);
+    pros::delay(300);
+    pidMoveold(9.3, 0.5, 200, 40);
+    setintakespd(0);
+    pros::delay(100);
+
+    pidTurnRel(-54, 2, 400);
+    pros::delay(100);
+    pidMoveold(15.5, 0.5, 200, 60);
+
+    jemintaket();
+    setintakespd(75); //outtake
+    pros::delay(200);
+    pidMoveold(1, 0.5, 200, 30);
+    pros::delay(1500);
+    jemintaket();
+    pros::delay(200);
+    setintakespd(0);
+
+    pidMoveold(-55.2, 0.5, 200, 100);
+    pros::delay(100);
+    pidTurnRel(-130.5, 2, 200);
+
+    jeminloadert();
+    pros::delay(400);
+    moveForSec(55, true, 0.75);
+    pros::delay(100);
+    setintakespddiff(-100, -25);
+    moveForSec(10, false, 0.2);
+    pros::delay(600);
+    moveForSec(10, true, 0.1);
+    pros::delay(300);
+
+    moveForSec(55, false, 0.8);
+    pidTurnRel(0.4, 0.5, 200);
+    moveForSec(55, false, 0.2);
+    setintakespd(-100);
+    setintake2spd(-100);
+    moveForSec(10, false, 0.3);
+    jeminloadert();
 
     //LEFT 7BALL CODE
     /*setintakespd(-100);
@@ -220,8 +263,8 @@ void opcontrol()
         }
 
         if(master.get_digital_new_press(pros::E_CONTROLLER_DIGITAL_Y)) { //chopstick
-            jeminrooftoggle = !jeminrooftoggle;
-            jeminroof.set_value(jeminrooftoggle);
+            jeminloadertoggle = !jeminloadertoggle;
+            jeminloader.set_value(jeminloadertoggle);
         }
 
         if(master.get_digital_new_press(pros::E_CONTROLLER_DIGITAL_UP)) {
