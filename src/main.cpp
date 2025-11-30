@@ -279,8 +279,8 @@ void opcontrol()
 
         if (master.get_digital(pros::E_CONTROLLER_DIGITAL_R1))
         {
-            setintake2spd(-100);
             setintakespd(-100);
+            setintake2spd(-100);
         }
         else if (master.get_digital(pros::E_CONTROLLER_DIGITAL_R2))
         {

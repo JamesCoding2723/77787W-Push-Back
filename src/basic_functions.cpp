@@ -46,14 +46,17 @@ void intake()
         if (intakespd1 == 0)
         {
             rightintakem1.brake();  
+        } 
+        else 
+        {
+            rightintakem1.move((int)1.27 * intakespd1);
         }
-        else if (intakespd2 == 1)
+        if (intakespd2 == 0)
         {
             rightintakem2.brake();  
         }
         else
         {
-            rightintakem1.move((int)1.27 * intakespd1);
             rightintakem2.move((int)1.27 * intakespd2);
         }
     }

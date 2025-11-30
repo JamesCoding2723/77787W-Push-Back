@@ -2,9 +2,11 @@
 
 int sign(float);
 
-extern int intakespd();
+extern int intakespd1;
 
-extern int intake2spd();
+extern int intakespd2;
+
+extern int intake2spd;
 
 void setintakespd(float);
 
