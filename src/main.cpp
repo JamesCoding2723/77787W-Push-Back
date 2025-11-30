@@ -92,8 +92,8 @@ void autonomous()
     // imu.set_heading(0);
     // pidTurnRel(90, 1, 400);
 
-    //new robot auton
-    pidMoveold(15, 0.5, 200, 100);
+    //Right 7 Ball (lower middle goal)
+    /*pidMoveold(15, 0.5, 200, 100);
     setintakespddiff(-100, -25);
     pidMoveold(4.3, 0.5, 200, 70);
     pros::delay(300);
@@ -130,6 +130,49 @@ void autonomous()
 
     moveForSec(55, false, 0.8);
     pidTurnRel(0.4, 0.5, 200);
+    moveForSec(55, false, 0.2);
+    setintakespd(-100);
+    setintake2spd(-100);
+    moveForSec(10, false, 0.3);
+    jeminloadert();*/
+
+    //Left 7 Ball (lower middle goal)
+    pidMoveold(15, 0.5, 200, 100);
+    setintakespddiff(-100, -25);
+    pidMoveold(4.3, 0.5, 200, 70);
+    pros::delay(300);
+    pidMoveold(9.3, 0.5, 200, 40);
+    setintakespd(0);
+    pros::delay(100);
+
+    pidTurnRel(-114, 2, 400);
+    pros::delay(100);
+    pidMoveold(-15.5, 0.5, 200, 60);
+
+    setintakespd(-75);
+    setintake2spd(50); //outtake
+    pros::delay(200);
+    pidMoveold(-1, 0.5, 200, 30);
+    pros::delay(1500);
+    setintakespd(0);
+    setintake2spd(0);
+
+    pidMoveold(51, 0.5, 200, 100);
+    pros::delay(100);
+    pidTurnRel(-40.5, 2, 200);
+
+    jeminloadert();
+    pros::delay(400);
+    moveForSec(55, true, 0.75);
+    pros::delay(100);
+    setintakespddiff(-100, -25);
+    moveForSec(10, false, 0.2);
+    pros::delay(600);
+    moveForSec(10, true, 0.1);
+    pros::delay(300);
+
+    moveForSec(55, false, 0.8);
+    pidTurnRel(-0.4, 0.5, 200);
     moveForSec(55, false, 0.2);
     setintakespd(-100);
     setintake2spd(-100);
