@@ -26,6 +26,9 @@ extern pros::ADIDigitalOut jeminloader;
 extern pros::ADIDigitalOut jemintake;
 extern pros::ADIDigitalOut jeminwing;
 <<<<<<< HEAD
+<<<<<<< HEAD
+>>>>>>> parent of 58a9a06 (AUTO SKILLS PLUS COMP)
+=======
 >>>>>>> parent of 58a9a06 (AUTO SKILLS PLUS COMP)
 =======
 >>>>>>> parent of 58a9a06 (AUTO SKILLS PLUS COMP)

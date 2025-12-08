@@ -210,8 +210,11 @@ void jeminwingt()
     jeminwing.set_value(jeminwingtoggle);
 }
 
+<<<<<<< HEAD
 
 <<<<<<< HEAD
+=======
+>>>>>>> parent of 58a9a06 (AUTO SKILLS PLUS COMP)
 
 =======
 void moveforward(float dis, bool dir, float tm)
