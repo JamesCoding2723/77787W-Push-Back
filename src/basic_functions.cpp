@@ -211,7 +211,18 @@ void jeminwingt()
 }
 
 
+<<<<<<< HEAD
 
+=======
+void moveforward(float dis, bool dir, float tm)
+{
+    chassis.setPose(0, 0, 0);
+    if (dir == false)
+        chassis.moveToPoint(0, -dis, tm, {.forwards = false});
+    else if (dir == true)
+        chassis.moveToPoint(0, dis, tm);
+}
+>>>>>>> parent of 58a9a06 (AUTO SKILLS PLUS COMP)
 
 void wait(float time)
 {
