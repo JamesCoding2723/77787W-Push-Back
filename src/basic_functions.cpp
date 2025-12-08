@@ -129,7 +129,7 @@ double motorpos(){
 }
 
 void resetmotorpos(){
-    front_left_motor.set_zero_position(0);
+    front_left_motor.set_value(0);
     middle_left_motor.set_zero_position(0);
     back_left_motor.set_zero_position(0);
     front_right_motor.set_zero_position(0);
@@ -228,14 +228,7 @@ void jeminparkt()
     jeminpark.set_value(jeminparktoggle);
 }
 
-void moveforward(float dis, bool dir, float tm)
-{
-    chassis.setPose(0, 0, 0);
-    if (dir == false)
-        chassis.moveToPoint(0, -dis, tm, {.forwards = false});
-    else if (dir == true)
-        chassis.moveToPoint(0, dis, tm);
-}
+
 
 void wait(float time)
 {

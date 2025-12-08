@@ -1,5 +1,6 @@
 #include <cmath>
 #include <iostream>
+#include "pros/rtos.hpp"
 #include "pros/screen.h"
 #include "robot_config.h"
 #include "basic_functions.h"
