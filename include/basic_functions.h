@@ -52,6 +52,14 @@ extern bool jeminwingtoggle;
 
 void jeminwingt();
 
+extern bool jeminchoptoggle;
+
+void jeminchopt();
+
+extern bool jeminparktoggle;
+
+void jeminparkt();
+
 void moveforward(float, bool, float);
 
 void wait(float);

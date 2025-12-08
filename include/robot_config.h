@@ -14,6 +14,9 @@ extern pros::ADIDigitalOut jeminmech;
 extern pros::ADIDigitalOut jeminloader;
 extern pros::ADIDigitalOut jemintake;
 extern pros::ADIDigitalOut jeminwing;
+extern pros::ADIDigitalOut jeminchop;
+extern pros::ADIDigitalOut jeminpark;
+
 
 extern pros::Controller master;
 
