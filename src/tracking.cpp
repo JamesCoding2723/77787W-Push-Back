@@ -49,3 +49,11 @@ void GPSmove(float desx, float desy, int timeout)
     pidTurnRel(turndis, 1, 2000);
     pidMoveold(movedis, 1, 200);
 }
+
+
+void distrack(float desdis, int deswall)
+{
+    //float currentdis = 
+
+
+}

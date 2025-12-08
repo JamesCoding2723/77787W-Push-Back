@@ -70,7 +70,8 @@ bin/main.cpp.o: src/main.cpp include/lemlib/chassis/chassis.hpp \
  include/pros/misc.h include/pros/misc.hpp include/pros/screen.h \
  include/pros/colors.h include/robot_config.h include/pros/adi.hpp \
  include/pros/misc.h include/pros/misc.hpp include/pros/motors.h \
- include/basic_functions.h include/PID.h include/main.h include/odom.h
+ include/basic_functions.h include/PID.h include/main.h \
+ include/tracking.h
 include/lemlib/chassis/chassis.hpp:
 include/pros/rtos.hpp:
 include/pros/rtos.h:
@@ -207,4 +208,4 @@ include/pros/motors.h:
 include/basic_functions.h:
 include/PID.h:
 include/main.h:
-include/odom.h:
+include/tracking.h:
