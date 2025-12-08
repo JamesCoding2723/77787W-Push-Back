@@ -12,6 +12,7 @@ extern pros::adi::Motor rightintakem1;
 extern pros::adi::Motor rightintakem2;
 extern pros::adi::Motor leftintakem;
 
+<<<<<<< HEAD
 extern pros::adi::DigitalOut jeminmech;
 extern pros::adi::DigitalOut jeminloader;
 extern pros::adi::DigitalOut jemintake;
@@ -19,6 +20,12 @@ extern pros::adi::DigitalOut jeminwing;
 extern pros::adi::DigitalOut jeminchop;
 extern pros::adi::DigitalOut jeminpark;
 
+=======
+extern pros::ADIDigitalOut jeminmech;
+extern pros::ADIDigitalOut jeminloader;
+extern pros::ADIDigitalOut jemintake;
+extern pros::ADIDigitalOut jeminwing;
+>>>>>>> parent of 58a9a06 (AUTO SKILLS PLUS COMP)
 
 extern pros::Controller master;
 

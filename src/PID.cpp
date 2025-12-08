@@ -72,7 +72,7 @@ void pidMoveold(float target_inch, float tolerence_inch, float timeout, float ma
   }
 }
 
-void pidTurnRel(float target, float rotate_tolocal, float timeout, float max)
+void pidTurnRel(float target, float rotate_tolocal, float timeout)
 { // ROTATE with tolerate variable
   float pTol = rotate_tolocal;
   float dTol = rotate_tolocal;
@@ -110,7 +110,7 @@ void pidTurnRel(float target, float rotate_tolocal, float timeout, float max)
       break;
     }
 
-    if (repeat > 100 * timeout)
+    if (repeat > timeout)
     {
       stop();
       break;
@@ -121,7 +121,7 @@ void pidTurnRel(float target, float rotate_tolocal, float timeout, float max)
     if (std::abs(pidspd) < 23)
       pidspd = sign(pidspd) * 23;
 
-    turn(std::clamp(pidspd, -max, max));
+    turn(pidspd);
     std::cout << pidspd << std::endl;
     pros::c::screen_print(pros::E_TEXT_MEDIUM, n++, "pid: %f, %f, %f", (P+D+I), imu.get_rotation(), error);
     repeat++;
@@ -231,7 +231,7 @@ void pidswingRel(float target, float rotate_tolocal, float timeout, bool side)
       break;
     }
 
-    if (repeat > timeout*100)
+    if (repeat > timeout)
     {
       stop();
       break;

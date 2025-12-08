@@ -210,23 +210,6 @@ void jeminwingt()
     jeminwing.set_value(jeminwingtoggle);
 }
 
-bool jeminchoptoggle = false;
-
-void jeminchopt()
-{
-    // bool clamptoggle = false;
-    jeminchoptoggle = !jeminchoptoggle;
-    jeminchop.set_value(jeminchoptoggle);
-}
-
-bool jeminparktoggle = false;
-
-void jeminparkt()
-{
-    // bool clamptoggle = false;
-    jeminparktoggle = !jeminparktoggle;
-    jeminpark.set_value(jeminparktoggle);
-}
 
 
 
