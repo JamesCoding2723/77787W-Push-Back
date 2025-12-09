@@ -1,4 +1,4 @@
-
+#include "lemlib/chassis/chassis.hpp"
 #include "pros/adi.hpp"
 #include "pros/llemu.hpp"
 #include "pros/misc.h"
@@ -26,7 +26,7 @@ void initialize()
     back_right_motor.set_encoder_units(pros::E_MOTOR_ENCODER_DEGREES);
 
     pros::lcd::initialize(); // initialize brain screen
-    imu.reset();
+    chassis.calibrate();     // calibrate sensors
     vertical_encoder.reset();
     vertical_encoder.set_reversed(true);
     // print position to brain screen

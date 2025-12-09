@@ -129,7 +129,7 @@ double motorpos(){
 }
 
 void resetmotorpos(){
-    front_left_motor.set_value(0);
+    front_left_motor.set_zero_position(0);
     middle_left_motor.set_zero_position(0);
     back_left_motor.set_zero_position(0);
     front_right_motor.set_zero_position(0);
@@ -225,7 +225,28 @@ void moveforward(float dis, bool dir, float tm)
     else if (dir == true)
         chassis.moveToPoint(0, dis, tm);
 }
+<<<<<<< HEAD
 >>>>>>> parent of 58a9a06 (AUTO SKILLS PLUS COMP)
+=======
+
+bool jeminparktoggle = false;
+
+void jeminparkt()
+{
+    // bool clamptoggle = false;
+    jeminparktoggle = !jeminparktoggle;
+    jeminpark.set_value(jeminparktoggle);
+}
+
+void moveforward(float dis, bool dir, float tm)
+{
+    chassis.setPose(0, 0, 0);
+    if (dir == false)
+        chassis.moveToPoint(0, -dis, tm, {.forwards = false});
+    else if (dir == true)
+        chassis.moveToPoint(0, dis, tm);
+}
+>>>>>>> parent of c22deed (DO NOT USE THIS LOL)
 
 void wait(float time)
 {

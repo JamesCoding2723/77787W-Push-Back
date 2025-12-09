@@ -1,17 +1,16 @@
-
+#include "lemlib/chassis/chassis.hpp"
+#include "lemlib/chassis/trackingWheel.hpp"
 #include "pros/adi.hpp"
-#include "pros/imu.hpp"
 #include "pros/misc.h"
 #include "pros/misc.hpp"
 #include "pros/motors.h"
-#include "pros/motors.hpp"
-#include "pros/rotation.hpp"
 #include <cmath>
 
-extern pros::adi::Motor rightintakem1;
-extern pros::adi::Motor rightintakem2;
-extern pros::adi::Motor leftintakem;
+extern pros::Motor rightintakem1;
+extern pros::Motor rightintakem2;
+extern pros::Motor leftintakem;
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 extern pros::adi::DigitalOut jeminmech;
 extern pros::adi::DigitalOut jeminloader;
@@ -19,6 +18,14 @@ extern pros::adi::DigitalOut jemintake;
 extern pros::adi::DigitalOut jeminwing;
 extern pros::adi::DigitalOut jeminchop;
 extern pros::adi::DigitalOut jeminpark;
+=======
+extern pros::ADIDigitalOut jeminmech;
+extern pros::ADIDigitalOut jeminloader;
+extern pros::ADIDigitalOut jemintake;
+extern pros::ADIDigitalOut jeminwing;
+extern pros::ADIDigitalOut jeminchop;
+extern pros::ADIDigitalOut jeminpark;
+>>>>>>> parent of c22deed (DO NOT USE THIS LOL)
 
 =======
 extern pros::ADIDigitalOut jeminmech;
@@ -35,8 +42,8 @@ extern pros::ADIDigitalOut jeminwing;
 
 extern pros::Controller master;
 
-extern pros::adi::Motor front_left_motor;   // front left motor -13
-extern pros::adi::Motor middle_left_motor;  // middle left motorv -12
+extern pros::Motor front_left_motor;   // front left motor -13
+extern pros::Motor middle_left_motor;  // middle left motorv -12
 extern pros::Motor back_left_motor;    // back left motor -11
 extern pros::Motor front_right_motor;  // front right motor 15
 extern pros::Motor middle_right_motor; // middle right motor 17
@@ -45,7 +52,11 @@ extern pros::Motor back_right_motor;   // back right motor 16
 extern pros::Rotation vertical_encoder;
 
 // left group
+extern pros::MotorGroup left_motor_group;
+// right group
+extern pros::MotorGroup right_motor_group;
 
+extern lemlib::Drivetrain drivetrain;
 
 // lemlib::TrackingWheel vertical_tracking_wheel(&vertical_encoder, lemlib::Omniwheel::NEW_2, 0);
 // lemlib::TrackingWheel horizontal_tracking_wheel(&horizontal_encoder, lemlib::Omniwheel::NEW_2, 0.75);
@@ -61,7 +72,7 @@ lemlib::TrackingWheel horizontal_tracking_wheel(&horizontal_encoder, lemlib::Omn
 // lemlib::TrackingWheel vertical_tracking_wheel(&vertical_encoder, lemlib::Omniwheel::NEW_275, -2.5);
 
 // odometry settings
-/*extern lemlib::OdomSensors sensors;
+extern lemlib::OdomSensors sensors;
 
 // lateral PID controller
 extern lemlib::ControllerSettings lateral_controller;
@@ -69,4 +80,4 @@ extern lemlib::ControllerSettings lateral_controller;
 // angular PID controller
 extern lemlib::ControllerSettings angular_controller;
 
-extern lemlib::Chassis chassis;*/
+extern lemlib::Chassis chassis;

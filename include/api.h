@@ -8,7 +8,7 @@
  * This file should not be modified by users, since it gets replaced whenever
  * a kernel upgrade occurs.
  *
- * \copyright Copyright (c) 2017-2024, Purdue University ACM SIGBots.
+ * \copyright Copyright (c) 2017-2023, Purdue University ACM SIGBots.
  * All rights reserved.
  *
  * This Source Code Form is subject to the terms of the Mozilla Public
@@ -39,10 +39,13 @@
 #include <unistd.h>
 #endif /* __cplusplus */
 
+#define PROS_VERSION_MAJOR 3
+#define PROS_VERSION_MINOR 8
+#define PROS_VERSION_PATCH 3
+#define PROS_VERSION_STRING "3.8.3"
+
 #include "pros/adi.h"
-#include "pros/ai_vision.h"
 #include "pros/colors.h"
-#include "pros/device.h"
 #include "pros/distance.h"
 #include "pros/error.h"
 #include "pros/ext_adi.h"
@@ -60,16 +63,12 @@
 
 #ifdef __cplusplus
 #include "pros/adi.hpp"
-#include "pros/ai_vision.hpp"
-#include "pros/colors.hpp"
-#include "pros/device.hpp"
 #include "pros/distance.hpp"
 #include "pros/gps.hpp"
 #include "pros/imu.hpp"
 #include "pros/link.hpp"
 #include "pros/llemu.hpp"
 #include "pros/misc.hpp"
-#include "pros/motor_group.hpp"
 #include "pros/motors.hpp"
 #include "pros/optical.hpp"
 #include "pros/rotation.hpp"
@@ -78,4 +77,4 @@
 #include "pros/vision.hpp"
 #endif
 
-#endif  // _PROS_API_H_
+#endif // _PROS_API_H_
