@@ -5,6 +5,7 @@
 #include "pros/misc.hpp"
 #include "pros/motors.h"
 #include <cmath>
+#include "pros/optical.hpp"
 #include "robot_config.h"
 
 // ROBOT CONFIG  //  PID CONFIG
@@ -50,6 +51,8 @@ lemlib::Drivetrain drivetrain(&left_motor_group,          // left group
 // lemlib::TrackingWheel horizontal_tracking_wheel(&horizontal_encoder, lemlib::Omniwheel::NEW_2, 0.75);
 
 pros::Imu imu(20);
+
+pros::Optical foptical(8);
 
 /*pros::Rotation horizontal_encoder(20);
 // vertical tracking wheel encoder

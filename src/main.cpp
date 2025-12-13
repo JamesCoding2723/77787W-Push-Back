@@ -481,12 +481,12 @@ void opcontrol()
             jeminmech.set_value(jeminmechtoggle);
         }
 
-        if(master.get_digital_new_press(pros::E_CONTROLLER_DIGITAL_A)) { //MATHCLOAD
+        if(master.get_digital_new_press(pros::E_CONTROLLER_DIGITAL_RIGHT)) { //MATHCLOAD
             jeminloadertoggle = !jeminloadertoggle;
             jeminloader.set_value(jeminloadertoggle);
         }
 
-        if(master.get_digital_new_press(pros::E_CONTROLLER_DIGITAL_UP)) {
+        if(master.get_digital_new_press(pros::E_CONTROLLER_DIGITAL_DOWN)) {
             jemintaketoggle = !jemintaketoggle;
             jemintake.set_value(jemintaketoggle);
         }
@@ -496,15 +496,15 @@ void opcontrol()
             jeminwing.set_value(jeminwingtoggle);
         }
 
-        if(master.get_digital_new_press(pros::E_CONTROLLER_DIGITAL_DOWN)) {
+        /*if(master.get_digital_new_press(pros::E_CONTROLLER_DIGITAL_DOWN)) {
             jeminchoptoggle = !jeminchoptoggle;
             jeminchop.set_value(jeminchoptoggle);
-        }
+        }*/
 
-        if(master.get_digital_new_press(pros::E_CONTROLLER_DIGITAL_LEFT)) {
+        /*if(master.get_digital_new_press(pros::E_CONTROLLER_DIGITAL_LEFT)) {
             jeminparktoggle = !jeminparktoggle;
             jeminpark.set_value(jeminparktoggle);
-        }
+        }*/
         
 
         if (master.get_digital(pros::E_CONTROLLER_DIGITAL_R1))
@@ -530,7 +530,7 @@ void opcontrol()
         }
         else if (master.get_digital(pros::E_CONTROLLER_DIGITAL_L2))
         {
-            setintakespd(-100);
+            setintakespd(100);
             //setintake2spd(-100);
         }
         else 

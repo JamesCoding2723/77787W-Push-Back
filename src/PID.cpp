@@ -86,7 +86,7 @@ void pidTurnRel(float target, float rotate_tolocal, float timeout, float max)
   int repeat = 0;
   int line_number = 1;
   imu.set_rotation(0);
-  //target = imu.get_rotation() + target;
+  target += imu.get_rotation();
 
   while (true)
   {
@@ -133,7 +133,7 @@ void pidTurnRel(float target, float rotate_tolocal, float timeout, float max)
 
 float start_heading = 0;
 
-void pidTurnAbs(float target, float rotate_tolocal, float timeout)
+void pidTurnAbs(float target, float rotate_tolocal, float timeout, float max)
 { // ROTATE with tolerate variable
   float pTol = rotate_tolocal;
   float dTol = rotate_tolocal;
@@ -184,7 +184,7 @@ void pidTurnAbs(float target, float rotate_tolocal, float timeout)
     if (std::abs(pidspd) < 23)
       pidspd = sign(pidspd) * 23;
 
-    turn(pidspd);
+    turn(std::clamp(pidspd, -max, max));
     // pros::c::screen_print(pros::E_TEXT_MEDIUM, n++, "pid: %f, %f, %f", (P+D+I), imu.get_rotation(), error);
     repeat++;
 
