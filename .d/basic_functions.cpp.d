@@ -8,7 +8,8 @@ bin/basic_functions.cpp.o: src/basic_functions.cpp \
  include/lemlib/exitcondition.hpp include/lemlib/driveCurve.hpp \
  include/pros/vision.h include/robot_config.h include/pros/adi.hpp \
  include/pros/misc.h include/pros/misc.hpp include/pros/misc.h \
- include/pros/motors.h
+ include/pros/motors.h include/pros/optical.hpp include/pros/optical.h \
+ include/pros/error.h include/basic_functions.h
 include/lemlib/chassis/chassis.hpp:
 include/pros/rtos.hpp:
 include/pros/rtos.h:
@@ -33,3 +34,7 @@ include/pros/misc.h:
 include/pros/misc.hpp:
 include/pros/misc.h:
 include/pros/motors.h:
+include/pros/optical.hpp:
+include/pros/optical.h:
+include/pros/error.h:
+include/basic_functions.h:

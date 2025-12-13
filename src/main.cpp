@@ -88,6 +88,9 @@ void competition_initialize()
  */
 void autonomous()
 {
+    bwallMove(5, 0.5, 1, 1,  30); 
+    pros::delay(100000);
+    
     //AUTO SKILLS
     /*jeminwingt(); //FIRST HALF
     pidMoveold(39, 0.5, 2, 50);
@@ -491,7 +494,7 @@ void opcontrol()
             jemintake.set_value(jemintaketoggle);
         }
 
-        if(master.get_digital_new_press(pros::E_CONTROLLER_DIGITAL_X)) {
+        if(master.get_digital_new_press(pros::E_CONTROLLER_DIGITAL_Y)) {
             jeminwingtoggle = !jeminwingtoggle;
             jeminwing.set_value(jeminwingtoggle);
         }

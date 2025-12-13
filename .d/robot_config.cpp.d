@@ -9,7 +9,7 @@ bin/robot_config.cpp.o: src/robot_config.cpp \
  include/pros/misc.h include/pros/misc.hpp include/pros/optical.hpp \
  include/pros/optical.h include/pros/error.h include/robot_config.h \
  include/pros/adi.hpp include/pros/misc.h include/pros/misc.hpp \
- include/pros/motors.h
+ include/pros/motors.h include/pros/optical.hpp
 include/lemlib/chassis/chassis.hpp:
 include/pros/rtos.hpp:
 include/pros/rtos.h:
@@ -37,3 +37,4 @@ include/pros/adi.hpp:
 include/pros/misc.h:
 include/pros/misc.hpp:
 include/pros/motors.h:
+include/pros/optical.hpp:

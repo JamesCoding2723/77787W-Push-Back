@@ -6,6 +6,7 @@
 #include <cmath>
 #include "pros/vision.h"
 #include "robot_config.h"
+#include "basic_functions.h"
 
 int sign(float _input)
 {
@@ -228,18 +229,20 @@ void jeminparkt()
     jeminpark.set_value(jeminparktoggle);
 }
 
-void moveforward(float dis, bool dir, float tm)
-{
-    chassis.setPose(0, 0, 0);
-    if (dir == false)
-        chassis.moveToPoint(0, -dis, tm, {.forwards = false});
-    else if (dir == true)
-        chassis.moveToPoint(0, dis, tm);
-}
+int d0 = 6;
+int wall = 0;
 
-void wait(float time)
+double wallpos(int wall)
 {
-    pros::c::delay(time);
+    double theta = imu.get_heading();
+    if (wall == 2) theta -= 90;
+    if (wall == 3) theta -= 180;
+    if (wall == 4) theta -= 270;
+
+    if (fabs(theta) > 5) theta = fabs(theta) - 5;
+    else theta = 0;
+
+    return (foptical.get_proximity() + d0) * cos(deg2rad(theta));
 }
 
 float deg2rad(float _input)

@@ -67,3 +67,5 @@ void wait(float);
 float rad2deg(float);
 
 float deg2rad(float);
+
+double wallpos(float wall);

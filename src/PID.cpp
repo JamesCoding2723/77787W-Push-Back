@@ -257,3 +257,57 @@ void pidswingRel(float target, float rotate_tolocal, float timeout, bool side)
     pros::c::delay(10);
   }
 }
+
+
+void bwallMove(float target_inch, float tolerence_inch, float wall, float timeout, float max)
+{ // MOVE MOVE MOVE
+
+  // float target = target_inch
+  // float tolerence = InchToEncoderunit(tolerence_inch);
+  float lastError;
+  float kp = 2.8; // for new robot
+  float kd = 0.2; // for new robot
+  float ki = 0.0; // for new roobot
+  float s_error = 0;
+  int line_number = 1;
+  float speed_ratio = 2.2, spd;
+  
+  int repeat_limit = 2000000;
+  int repeat = 0;
+
+  while (true)
+  {
+    float error = target_inch - wallpos(wall);
+    float P = error * kp;
+    float D = (error - lastError) * kd;
+    s_error += error;
+    s_error = fmin(s_error, 100);
+    s_error = fmax(s_error, -100);
+    // Brain.Screen.printAt(10,20,"error=%f",error);
+    if (error * lastError < 0)
+      s_error = 0;
+
+    if (fabs(error) < tolerence_inch && spd < 16)
+    {
+      // move_turn(0);
+      stop();
+      pros::c::screen_print(pros::E_TEXT_MEDIUM, line_number++, "error: %f", front_right_motor.get_position());
+      break;
+    }
+
+    if (repeat > 100 * timeout)
+    {
+      stop();
+      break;
+    }
+
+    float I = ki * s_error;
+    lastError = error;
+    spd = (P + D + I) * speed_ratio;
+    if (std::abs(spd) < 15)
+      spd = sign(spd) * 15;
+    move(std::clamp(spd, -max, max));
+    repeat++;
+    pros::c::delay(10);
+  }
+}

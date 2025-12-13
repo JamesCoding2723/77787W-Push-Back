@@ -4,6 +4,7 @@
 #include "pros/misc.h"
 #include "pros/misc.hpp"
 #include "pros/motors.h"
+#include "pros/optical.hpp"
 #include <cmath>
 
 extern pros::Motor rightintakem1;
@@ -40,6 +41,7 @@ extern lemlib::Drivetrain drivetrain;
 // lemlib::TrackingWheel horizontal_tracking_wheel(&horizontal_encoder, lemlib::Omniwheel::NEW_2, 0.75);
 
 extern pros::Imu imu;
+extern pros::Optical foptical;
 
 /*pros::Rotation horizontal_encoder(20);
 // vertical tracking wheel encoder
