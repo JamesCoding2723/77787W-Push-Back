@@ -1,6 +1,7 @@
 #include "lemlib/chassis/chassis.hpp"
 #include "lemlib/chassis/trackingWheel.hpp"
 #include "pros/adi.hpp"
+#include "pros/distance.hpp"
 #include "pros/misc.h"
 #include "pros/misc.hpp"
 #include "pros/motors.h"
@@ -52,7 +53,7 @@ lemlib::Drivetrain drivetrain(&left_motor_group,          // left group
 
 pros::Imu imu(20);
 
-pros::Optical foptical(8);
+pros::Distance distance_sensor(10);
 
 /*pros::Rotation horizontal_encoder(20);
 // vertical tracking wheel encoder

@@ -86,7 +86,7 @@ void pidTurnRel(float target, float rotate_tolocal, float timeout, float max)
   int repeat = 0;
   int line_number = 1;
   imu.set_rotation(0);
-  target += imu.get_rotation();
+  //target += imu.get_rotation();
 
   while (true)
   {
@@ -259,7 +259,7 @@ void pidswingRel(float target, float rotate_tolocal, float timeout, bool side)
 }
 
 
-void bwallMove(float target_inch, float tolerence_inch, float wall, float timeout, float max)
+/*void bwallMove(float target_inch, float tolerence_inch, int wall, float timeout, float max)
 { // MOVE MOVE MOVE
 
   // float target = target_inch
@@ -269,6 +269,7 @@ void bwallMove(float target_inch, float tolerence_inch, float wall, float timeou
   float kd = 0.2; // for new robot
   float ki = 0.0; // for new roobot
   float s_error = 0;
+  int n = 0;
   int line_number = 1;
   float speed_ratio = 2.2, spd;
   
@@ -306,8 +307,11 @@ void bwallMove(float target_inch, float tolerence_inch, float wall, float timeou
     spd = (P + D + I) * speed_ratio;
     if (std::abs(spd) < 15)
       spd = sign(spd) * 15;
-    move(std::clamp(spd, -max, max));
+    
+    move(std::clamp(-spd, -max, max));
+
+    pros::c::screen_print(pros::E_TEXT_MEDIUM, n++, "pid: %f, %f, %f", (P+D+I), wallpos(wall), bdistance.get());
     repeat++;
     pros::c::delay(10);
   }
-}
+}*/

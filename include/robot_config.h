@@ -1,6 +1,7 @@
 #include "lemlib/chassis/chassis.hpp"
 #include "lemlib/chassis/trackingWheel.hpp"
 #include "pros/adi.hpp"
+#include "pros/distance.hpp"
 #include "pros/misc.h"
 #include "pros/misc.hpp"
 #include "pros/motors.h"
@@ -41,7 +42,7 @@ extern lemlib::Drivetrain drivetrain;
 // lemlib::TrackingWheel horizontal_tracking_wheel(&horizontal_encoder, lemlib::Omniwheel::NEW_2, 0.75);
 
 extern pros::Imu imu;
-extern pros::Optical foptical;
+extern pros::Distance distance_sensor;
 
 /*pros::Rotation horizontal_encoder(20);
 // vertical tracking wheel encoder
@@ -55,9 +56,9 @@ lemlib::TrackingWheel horizontal_tracking_wheel(&horizontal_encoder, lemlib::Omn
 extern lemlib::OdomSensors sensors;
 
 // lateral PID controller
-extern lemlib::ControllerSettings lateral_controller;
+//extern lemlib::ControllerSettings lateral_controller;
 
 // angular PID controller
-extern lemlib::ControllerSettings angular_controller;
+//extern lemlib::ControllerSettings angular_controller;
 
 extern lemlib::Chassis chassis;

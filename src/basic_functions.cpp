@@ -1,6 +1,8 @@
 #include "lemlib/chassis/chassis.hpp"
 #include "pros/adi.hpp"
+#include "pros/distance.h"
 #include "pros/motors.h"
+#include "pros/optical.h"
 #include "pros/rtos.h"
 #include "pros/rtos.hpp"
 #include <cmath>
@@ -235,6 +237,8 @@ int wall = 0;
 double wallpos(int wall)
 {
     double theta = imu.get_heading();
+    theta = fabs(theta-360);
+    
     if (wall == 2) theta -= 90;
     if (wall == 3) theta -= 180;
     if (wall == 4) theta -= 270;
@@ -242,7 +246,7 @@ double wallpos(int wall)
     if (fabs(theta) > 5) theta = fabs(theta) - 5;
     else theta = 0;
 
-    return (foptical.get_proximity() + d0) * cos(deg2rad(theta));
+    return ((distance_sensor.get()) * 0.0393701 + d0) * cos(deg2rad(theta));
 }
 
 float deg2rad(float _input)

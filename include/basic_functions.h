@@ -68,4 +68,4 @@ float rad2deg(float);
 
 float deg2rad(float);
 
-double wallpos(float wall);
+double wallpos(int wall);
