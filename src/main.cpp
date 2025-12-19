@@ -106,11 +106,11 @@ void autonomous()
     pidTurnRel(80, 1, 2, 50);
     pros::delay(200);
 
-    moveForSec(40, true, 1.1);
+    moveForSec(50, true, 1.2);
     pros::delay(100);
     setintakespd(-100);
     setintake2spd(-100);
-    //moveForSec(10, false, 0.1);
+    moveForSec(5, false, 0.1);
     pros::delay(300);
     moveForSec(10, true, 0.1);
     pros::delay(1700); //DONE MATCHLOAD
@@ -127,13 +127,19 @@ void autonomous()
 
     pidTurnRel(-43, 1, 2);
     pros::delay(400);
-    pidMoveold(61, 1, 5);
+    pidMoveold(68, 1, 5, 80);
     pros::delay(400);
     
-    pidTurnRel(-40, 1, 2);
-    pidMoveold(14.5, 0.5, 2);
-    pidTurnRel(43, 1, 2);
-    pros::delay(300);
+    pidTurnRel(-85, 1, 2);
+    moveForSec(80, false, 0.6);
+    pidMoveold(15, 0.5, 2);
+    pidTurnRel(83, 1, 2);
+    pros::delay(200); //ALIGNED
+
+    // pidTurnRel(-40, 1, 2);
+    // pidMoveold(14.5, 0.5, 2);
+    // pidTurnRel(43, 1, 2);
+    // pros::delay(300);
 
     moveForSec(50, false, 1);
     setintakespd(-100);
@@ -148,7 +154,7 @@ void autonomous()
     moveForSec(50, true, 1.6);
     jeminmecht();
     pros::delay(100);
-    //moveForSec(10, false, 0.1);
+    moveForSec(3, false, 0.1);
     pros::delay(300);
     moveForSec(10, true, 0.1);
     pros::delay(1500);
@@ -168,6 +174,7 @@ void autonomous()
     setintake2spd(0);
     jeminloadert();
     pidMoveold(11, 0.5, 2);
+    jeminmecht();
 
     //going to second long goal
     
@@ -175,20 +182,19 @@ void autonomous()
     pros::delay(200);
     moveForSec(50, false, 1);
     pros::delay(200);
-    pidMoveold(112, 0.5, 8);
+    pidMoveold(112, 0.5, 8, 75);
     pros::delay(200);
 
 
+    jeminloadert();
     pidTurnRel(80, 1, 2, 50); //SECOND HALF
     pros::delay(200);
-    jeminloadert();
 
-    jeminmecht();
     setintakespd(-100);
     setintake2spd(-100);
     moveForSec(40, true, 1.1);
-    pros::delay(100);
-    //moveForSec(10, false, 0.1);
+    pros::delay(300);
+    moveForSec(3, false, 0.1);
     pros::delay(200);
     moveForSec(10, true, 0.1);
     pros::delay(1600); //MATCHLOAD DONE
@@ -207,7 +213,7 @@ void autonomous()
     pros::delay(200);
     
     pidTurnRel(-85, 1, 2);
-    moveForSec(50, false, 1.1);
+    moveForSec(75, false, 0.7);
     pidMoveold(16, 0.5, 2);
     pidTurnRel(83, 1, 2);
     pros::delay(200); //ALIGNED
@@ -228,16 +234,16 @@ void autonomous()
     pros::delay(100);
     setintakespd(-100);
     setintake2spd(-100);
-    moveForSec(10, false, 0.1);
+    moveForSec(5, false, 0.1);
     pros::delay(300);
     moveForSec(10, true, 0.1);
-    pros::delay(1400); //MATCHLOAD DONE
+    pros::delay(1600); //MATCHLOAD DONE
     setintakespd(0);
     setintake2spd(0);
 
     pidMoveold(-2, 0.5, 1); 
     //pidswingRel(-4, 1, 1, true);
-    moveForSec(50, false, 1.4);
+    moveForSec(75, false, 1.2);
     jeminmecht(); 
     setintakespd(-100);
     setintake2spd(-100);
@@ -253,12 +259,12 @@ void autonomous()
     setintakespd(100);
     pidMoveold(25, 1, 2);
     pidTurnRel(-13, 1, 2);
-    moveForSec(70, true, 1.5);*/
+    moveForSec(70, true, 1.2);*/
 
 
 
     //Right 7 Ball (lower middle goal)
-   /* pidMoveold(15, 0.5, 200, 100);
+    pidMoveold(15, 0.5, 200, 100);
     setintakespddiff(-100, -25);
     pidMoveold(4.3, 0.5, 200, 70);
     pros::delay(300);
@@ -309,7 +315,7 @@ void autonomous()
     pidMoveold(11, 0.5, 1);
     jeminwingt();
     pidTurnRel(45, 1, 1);
-    pidMoveold(-23, 1, 3, 100);*/
+    pidMoveold(-23, 1, 3, 100);
 
 
 
