@@ -99,7 +99,7 @@ void autonomous()
 
     //AUTO SKILLS
 
-    /*jemintaket();
+   /*jemintaket();
     jeminwingt(); //FIRST HALF
     pidMoveold(38.3, 0.5, 2, 50);
     jeminloadert();
@@ -287,8 +287,8 @@ void autonomous()
     jemintaket();
     setintakespd(0);
 
-    pidMoveold(-52, 0.5, 200, 80);
-    pros::delay(100);
+    pidMoveold(-51.5, 0.5, 200, 80);
+    pros::delay(200);
     pidTurnRel(-125, 2, 200);
 
     jeminloadert();
@@ -301,7 +301,7 @@ void autonomous()
     moveForSec(10, true, 0.1);
     pros::delay(200);
 
-    moveForSec(55, false, 0.9);
+    moveForSec(55, false, 1.2);
     jeminmecht(); 
     pidTurnRel(0.4, 0.5, 200);
     moveForSec(55, false, 0.2);
@@ -312,27 +312,26 @@ void autonomous()
     pros::delay(1200);
 
 
-    pidMoveold(7, 0.5, 1);
     setintakespd(0);
     setintake2spd(0);
-    pidTurnRel(-45, 1, 1);
-    pidMoveold(10.6, 0.5, 1);
+    pidTurnRel(-45, 1, 2, 100);
+    pidMoveold(10, 0.5, 1, 60);
     jeminwingt();
-    pidTurnRel(45, 1, 1);
+    pidTurnRel(32, 1, 1);
     pidMoveold(-24, 1, 3, 100);*/
 
 
 
 
     //Left 7 Ball (upper middle goal)
-    jemintaket();
+    /*jemintaket();
     jeminwingt();
 
     pidMoveold(15, 0.5, 200, 100);
     setintakespddiff(-100, -25);
     pidMoveold(4.3, 0.5, 200, 70);
     pros::delay(100);
-    pidMoveold(9.5, 0.5, 200, 40);
+    pidMoveold(10.5, 0.5, 200, 40);
     setintakespd(0);
     pros::delay(100);
 
@@ -340,17 +339,17 @@ void autonomous()
     pros::delay(100);
     pidMoveold(-16.5, 0.5, 1.5, 60);
 
-    setintakespd(-105);
+    setintakespd(-90);
     setintake2spd(70); //outtake
     pros::delay(1500);
-    setintakespd(-50);
-    setintake2spd(-50);
+    setintakespd(0);
+    setintake2spd(0);
 
     //jeminwingt();
 
-    pidMoveold(50.6, 0.5, 200, 100);
-    pros::delay(100);
-    pidTurnRel(-40.5, 2, 200);
+    pidMoveold(52.5, 0.5, 200, 100);
+    pros::delay(300);
+    pidTurnRel(-43, 2, 200);
 
     jeminloadert();
     pros::delay(400);
@@ -362,7 +361,7 @@ void autonomous()
     moveForSec(10, true, 0.1);
     pros::delay(150);
 
-    moveForSec(55, false, 1);
+    moveForSec(55, false, 0.9);
     jeminmecht();
     pidTurnRel(-0.4, 0.5, 200);
     moveForSec(40, false, 0.1);
@@ -372,19 +371,19 @@ void autonomous()
     jeminloadert();
     pros::delay(1100);
 
-    pidMoveold(5, 0.5, 1);
-    pidTurnRel(-45, 1, 1);
-    pidMoveold(11, 0.5, 1);
+    setintakespd(0);
+    setintake2spd(0);
+    pidTurnRel(-45, 1, 2, 100);
+    pidMoveold(11.5, 0.5, 1, 60);
     jeminwingt();
-    pidTurnRel(44, 1, 1);
-    pidMoveold(-23, 1, 3, 100);
-    pidTurnRel(12, 1, 1);
+    pidTurnRel(37, 1, 1);
+    pidMoveold(-24, 1, 3, 70);*/
 
     //moveForSec(50, true, 0.1);
 
 
     //SOLO AWP
-    /*jemintaket();
+    jemintaket();
     jeminwingt();
 
     pidMoveold(15, 0.5, 200, 100);
@@ -417,25 +416,24 @@ void autonomous()
     jeminloadert();
     pidMoveold(10, 1, 1);
 
-    pidTurnRel(-37, 2, 400);
+    pidTurnRel(-39, 2, 400);
     pros::delay(100);
     pidMoveold(-13, 0.5, 1.1, 60);
 
     setintakespd(-100);
     setintake2spd(70); //outtake MIDDLE UPPER
-    pros::delay(900);
-    setintakespd(-50);
+    pros::delay(700);
+    setintakespd(0);
     setintake2spd(0);
-
     jeminwingt();
 
-    pidMoveold(51, 0.5, 200, 100);
+    pidMoveold(52, 0.5, 200, 100);
     pros::delay(100);
-    pidTurnRel(-47, 1, 200);
+    pidTurnRel(-45, 1, 200);
 
     //jeminloadert();
     pros::delay(200);
-    setintakespddiff(-100, -25);
+    setintakespddiff(-100, -100);
     moveForSec(40, true, 1.1);
     pros::delay(100);
     moveForSec(10, false, 0.1);
@@ -446,7 +444,7 @@ void autonomous()
     moveForSec(90, false, 0.8);
     jeminmecht();
     setintakespd(-100);
-    setintake2spd(-100);*/
+    setintake2spd(-100);
     //moveForSec(10, false, 0.3);   
 }
 
@@ -472,15 +470,24 @@ void opcontrol()
     middle_right_motor.set_brake_mode(pros::E_MOTOR_BRAKE_COAST);
     back_right_motor.set_brake_mode(pros::E_MOTOR_BRAKE_COAST);
     
+    const float Joystick_LowerDeadzone = 3;
 
     while (true)
     {
         // get left y and right x positions
-        int leftY = master.get_analog(pros::E_CONTROLLER_ANALOG_LEFT_Y);
-        int rightX = master.get_analog(pros::E_CONTROLLER_ANALOG_RIGHT_X);
+        int rightX = abs(master.get_analog(pros::E_CONTROLLER_ANALOG_RIGHT_X)) < Joystick_LowerDeadzone ? 0: master.get_analog(pros::E_CONTROLLER_ANALOG_RIGHT_X);
+        int leftY = abs(master.get_analog(pros::E_CONTROLLER_ANALOG_LEFT_Y)) < Joystick_LowerDeadzone ? 0: master.get_analog(pros::E_CONTROLLER_ANALOG_LEFT_Y);
 
         // move the robot
-        chassis.arcade(leftY, rightX);
+        moveleft(leftY + 1 * rightX);
+        moveright(leftY - 1 * rightX);
+
+        /*int Ch1 = abbs(C1) < Joystick_LowerDeadzone ? 0 : C1;
+        int Ch3 = abbs(C3) < Joystick_LowerDeadzone ? 0 : C3;
+
+
+        moveLeft(Ch3 + 1 * Ch1);
+        moveRight(Ch3 - 1 * Ch1);*/
 
         if (master.get_digital_new_press(pros::E_CONTROLLER_DIGITAL_B)) //hood
         {
