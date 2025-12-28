@@ -10,7 +10,7 @@ constexpr double start_heading = 90;
 double x = 0;
 double y = 0;
 
-double GPStracking()
+double GPStracking()  //do not use this
 {
     int line_number = 1;
     vertical_encoder.set_position(0);
