@@ -99,7 +99,7 @@ void autonomous()
 
     //AUTO SKILLS
     
-    /*jemintaket();
+    jemintaket();
     jeminwingt(); //FIRST HALF
 
     setintakespd(-100);
@@ -131,7 +131,7 @@ void autonomous()
     
     setintakespd(00);
     setintake2spd(00);
-    pidTurnRel(21, 1.7, 1);
+    pidTurnRel(210, 1.7, 1);
     pros::delay(400);
 
 
@@ -147,7 +147,7 @@ void autonomous()
     //jeminwingt();
     
 
-    pidMoveold(-56, 0.5, 200, 80);
+    pidMoveold(-55, 0.5, 200, 80);
     pros::delay(200);
 
     jeminloadert();
@@ -524,7 +524,7 @@ void autonomous()
 
 
     //BETTER SOLO AWP
-    jemintaket();
+    /*jemintaket();
     jeminwingt();
 
     setintakespd(-100);
@@ -592,7 +592,7 @@ void autonomous()
     moveForSec(90, false, 0.8);
     jeminmecht();
     setintakespd(-100);
-    setintake2spd(-100);
+    setintake2spd(-100);*/
     //moveForSec(10, false, 0.3);
 
 
