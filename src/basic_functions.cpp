@@ -74,7 +74,17 @@ void intake2() {
         }
         else
         {
-            leftintakem.move((int)1.27 * intake2spd);
+
+            if (jemintaketoggle == false) {
+                pros::delay(500);
+                leftintakem.move((int)1.27 * intake2spd);
+               
+            }
+
+            else{
+                leftintakem.move((int)1.27 * intake2spd);
+            }
+
 
         }
     }
