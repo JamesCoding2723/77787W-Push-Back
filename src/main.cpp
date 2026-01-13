@@ -99,7 +99,7 @@ void autonomous()
 
     //AUTO SKILLS
     
-    jemintaket();
+    /*jemintaket();
     jeminwingt(); //FIRST HALF
 
     setintakespd(-100);
@@ -113,29 +113,30 @@ void autonomous()
     moveForSec(10, true, 0.5);
     setintakespd(0);
     setintake2spd(0);
-    moveForSec(60, false, 0.85);
+    moveForSec(40, false, 0.2);
+    moveForSec(60, false, 0.8);
     pros::delay(300);
     moveForSec(25, true, 0.6);
 
-    pros::delay(300); //
+    pros::delay(200); //
     //jemintaket();
 
     pidMoveold(-21, 1, 1);
     pros::delay(400);
-    pidTurnRel(-77, 2, 1);
-    pros::delay(400);
+    pidTurnRel(-82, 2, 1);
+    pros::delay(300);
     setintakespd(-100);
     setintake2spd(-100);
-    pidMoveold(31, 1, 1);
-    pros::delay(500);
+    pidMoveold(32, 0.5, 3);
+    pros::delay(300);
     
-    setintakespd(00);
-    setintake2spd(00);
-    pidTurnRel(210, 1.7, 1);
-    pros::delay(400);
+    //setintakespd(00);
+    //setintake2spd(00);
+    pidTurnRel(-132, 2, 2);
+    pros::delay(300);
 
 
-    pidMoveold(25.5, 1, 2);
+    pidMoveold(27.25, 0.5, 1.8);
 
     jemintaket();
     setintakespd(75);
@@ -143,7 +144,7 @@ void autonomous()
     pros::delay(50);
     setintake2spd(60);
     setintakespd(60);
-    pros::delay(3100);
+    pros::delay(3200);
     //jeminwingt();
     
 
@@ -152,7 +153,7 @@ void autonomous()
 
     jeminloadert();
     jemintaket();
-    pidTurnRel(-128, 2, 200);
+    pidTurnRel(-126, 1.5, 2);
 
 
 
@@ -161,23 +162,23 @@ void autonomous()
     setintakespd(-100);
     setintake2spd(-100);
     pidMoveold(9, 1, 1);
-    moveForSec(60, true, 0.7);
-    moveForSec(20, true, 0.6);
+    moveForSec(55, true, 0.8);
+    moveForSec(20, true, 0.8);
 
     //DONE MATCHLOAD
 
-    pidMoveold(-8, 0.5, 2, 50);
+    pidMoveold(-5, 0.5, 2, 50);
 
     jeminloadert();
-    pidTurnRel(-146, 2, 2, 50);
+    pidTurnRel(-143, 2, 3, 50);
     pros::delay(200);
     setintakespddiff(0, 0);
     setintake2spd(0);
 
     //pidTurnRel(-42, 1, 2);
     //pros::delay(400);
-    pidMoveold(93, 1, 7, 80);
-    pros::delay(300);
+    pidMoveold(96, 1, 7, 80);
+    pros::delay(200);
     
     pidTurnRel(-79, 2, 2, 70);
     moveForSec(80, false, 0.5);
@@ -192,7 +193,7 @@ void autonomous()
 
     setintakespd(-100);
     setintake2spd(-100);
-    moveForSec(50, false, 0.6);
+    moveForSec(60, false, 0.5);
     //setintakespd(100);
     //setintake2spd(100);
     jeminmecht();
@@ -205,22 +206,27 @@ void autonomous()
     //pidMoveold(1.5, 0.5, 1);
    //pidswingRel(-4, 1, 1, false);
     //jeminmecht();
-    //pros::delay(300);
-    pidMoveold(26, 1, 1, 70);
+
+    //jeminloadert();
+    //jemintaket();
+    //setintake2spd(-100);
+    //setintakespd(-100);
+
+
+    pidMoveold(18, 1, 1, 70);
+
+    
+
     jeminmecht();
-    moveForSec(60, true, 0.5);
-    moveForSec(10, true, 1.4);
-    //pros::delay(100);
-    //moveForSec(10, false, 0.2);
-    //pros::delay(300);
-    //moveForSec(10, true, 0.1);
-    //pros::delay(1500);
-    //setintakespd(0);
-    //setintake2spd(0);
+    moveForSec(60, true, 0.9);
+    moveForSec(10, true, 1.4); //second mathclaod
+
 
     //pidMoveold(-3, 0.5, 1);
     //pidTurnRel(2.5, 1, 1);    
-    moveForSec(50, false, 1.3);
+    moveForSec(70, false, 0.4);
+    pidTurnRel(1, 0.5, 1);
+    moveForSec(70, false, 0.5);    
     jeminmecht(); 
     //setintakespd(100);
     //setintake2spd(100);
@@ -229,11 +235,13 @@ void autonomous()
     setintake2spd(-100);
     pros::delay(1400); //SECOND SCORE DONE
 
+    //jemintaket();
+    //jeminmecht();
 
     setintakespd(0);
     setintake2spd(0);
     jeminloadert();
-    pidMoveold(6, 0.5, 2, 70); 
+    pidMoveold(7, 0.5, 2, 70); 
     pidTurnRel(-75, 2, 1);
     moveForSec(70, false, 0.9);
 
@@ -243,7 +251,7 @@ void autonomous()
     pros::delay(200);
 
     jeminloadert();
-    pidTurnRel(74, 1, 2, 50);
+    pidTurnRel(67, 1, 2, 50);
     setintakespd(-100);
     setintake2spd(-100);
     //pidTurnRel(3, 1, 1);
@@ -274,7 +282,7 @@ void autonomous()
     
     pidTurnRel(-85, 1, 2);
     moveForSec(75, false, 0.7);
-    pidMoveold(16.25, 0.5, 2);
+    pidMoveold(15, 0.5, 2);
     pidTurnRel(84, 1, 2);
     pros::delay(200); //ALIGNED
 
@@ -313,7 +321,9 @@ void autonomous()
     pidMoveold(-2, 0.5, 1); 
     //pidTurnRel(3, 1, 1);
     //pidswingRel(-4, 1, 1, true);
-    moveForSec(75, false, 1.2);
+    moveForSec(70, false, 0.25);
+    pidTurnRel(1, 0.5, 1);
+    moveForSec(70, false, 0.65); 
     jeminmecht(); 
     //setintakespd(100);
     //pros::delay(200);
@@ -329,8 +339,8 @@ void autonomous()
     pidTurnRel(-35, 1, 2);
     pros::delay(100);
     setintakespd(100);
-    pidMoveold(34.5, 1, 2, 70);
-    pidTurnRel(-19, 1, 2, 70);
+    pidMoveold(34, 1, 2, 70);
+    pidTurnRel(-21, 1, 3, 70);
     moveForSec(90, true, 0.84);
     //*/
 
@@ -375,7 +385,7 @@ void autonomous()
     setintakespd(-100);
     setintake2spd(-100);
     pidMoveold(9, 1, 1);
-    moveForSec(60, true, 0.6);
+    moveForSec(60, true, 0.7);
    //moveForSec(20, true, 0.6);
 
     moveForSec(55, false, 1.2);
@@ -399,41 +409,43 @@ void autonomous()
 
 
     //Left 7 Ball (upper middle goal)
-    /*jemintaket();
+    jemintaket();
     jeminwingt();
 
-    pidMoveold(16, 0.5, 200, 100);
+    pidMoveold(15, 0.5, 200, 100);
     setintakespddiff(-100, -25);
-    pidMoveold(4.3, 0.5, 200, 70);
+    pidMoveold(6.3, 0.5, 200, 70);
     pros::delay(100);
     pidMoveold(10.5, 0.5, 200, 40);
     //setintakespd(0);
     pros::delay(100);
 
-    pidTurnRel(-115, 2, 400);
+    pidTurnRel(-120, 2, 400);
     pros::delay(100);
-    pidMoveold(-16.5, 0.5, 1.5, 60);
+    pidMoveold(-16, 0.5, 0.7, 60);
 
     setintakespd(-90);
-    setintake2spd(70); //outtake
-    pros::delay(800);
-    setintakespd(0);
-    setintake2spd(0);
+    setintake2spd(60); //outtake
+    pros::delay(650);
+    setintakespd(60);
+    setintake2spd(60);
 
     //jeminwingt();
 
-    pidMoveold(52, 0.5, 2, 100);
+    pidMoveold(55, 0.5, 3, 100);
     pros::delay(300);
     jeminloadert();
-    pidTurnRel(-41, 2, 200);
+    pidTurnRel(-39, 2, 1);
 
     //jeminloadert();
     setintakespd(-100);
     setintake2spd(-100);
     pidMoveold(9, 1, 1);
-    moveForSec(60, true, 0.66);
+    moveForSec(60, true, 0.58);
 
-    moveForSec(55, false, 0.9);
+    moveForSec(75, false, 0.4);
+    //pidTurnRel(1, 0.5, 1, 70);
+    moveForSec(60, false, 0.5);
     jeminmecht();
     pidTurnRel(-0.4, 0.5, 200);
     moveForSec(40, false, 0.1);
@@ -446,10 +458,10 @@ void autonomous()
     setintakespd(0);
     setintake2spd(0);
     pidTurnRel(-45, 1, 2, 100);
-    pidMoveold(11.5, 0.5, 1, 60);
+    pidMoveold(10, 0.5, 1, 60);
     jeminwingt();
-    pidTurnRel(37, 1, 1);
-    pidMoveold(-25, 1, 3, 80);
+    pidTurnRel(33, 1, 1);
+    pidMoveold(-25.5, 1, 3, 90);
 
     //*/
 
@@ -538,11 +550,11 @@ void autonomous()
     setintakespd(-100);
     setintake2spd(-100);
     pidMoveold(10, 1, 1, 70);
-    moveForSec(60, true, 0.5);
+    moveForSec(60, true, 0.7);
 
     moveForSec(75, false, 0.4);
-    pidTurnRel(1, 0.5, 1, 70);
-    moveForSec(75, false, 0.5);
+    //pidTurnRel(1, 0.5, 1, 70);
+    moveForSec(60, false, 0.5);
     jeminmecht();
     //pidTurnRel(3, 1, 1, 70);
     //moveForSec(40, false, 0.1);
@@ -557,8 +569,8 @@ void autonomous()
     setintake2spd(-100);
     setintakespd(-100);
 
-
-    pidTurnRel(101, 1, 1.5, 80);
+    moveForSec(20, true, 0.2);
+    pidTurnRel(93, 1, 1.2, 80);
     pidMoveold(10, 1, 1, 80);
     jeminmecht();
 
@@ -568,32 +580,40 @@ void autonomous()
     jeminloadert();
     pidMoveold(10, 1, 1,80);
 
-    pidTurnRel(-41, 2, 400);
+    pidTurnRel(-45, 2, 400);
     pros::delay(100);
-    pidMoveold(-15, 0.5, 1.1, 60);
+    pidMoveold(-16.6, 0.5, 1, 60);
 
 
     setintakespd(100);
     setintake2spd(100);
-    pros::delay(100);
+    pros::delay(200);
     setintakespd(-100);
     setintake2spd(70); //outtake MIDDLE UPPER
-    pros::delay(530);
-    setintakespd(0);
+    pros::delay(430);
+    setintakespd(20);
     setintake2spd(0);
     //jeminwingt();
 
-    pidMoveold(45, 0.5, 200, 100);
+    pidMoveold(52, 0.5, 200, 100);
     pros::delay(100);
-    pidTurnRel(-45, 1, 200);
+    //jeminloadert();
+    pidTurnRel(-41, 1, 200);
 
     //jeminloadert();
+    //setintake2spd(-100);
+    //setintakespd(-100);
+    //pidMoveold(10, 1, 1, 100);
+    //moveForSec(60, true, 0.2);
 
-    moveForSec(90, false, 0.8);
-    jeminmecht();
+    moveForSec(100, false, 0.7);
+    //jeminmecht();
     setintakespd(-100);
-    setintake2spd(-100);*/
-    //moveForSec(10, false, 0.3);
+    setintake2spd(-100);
+    jeminmecht();
+    //moveForSec(10, false, 0.3); */
+
+    //moveForSec(30, 1, 0.3);
 
 
 }
@@ -620,7 +640,7 @@ void opcontrol()
     middle_right_motor.set_brake_mode(pros::E_MOTOR_BRAKE_COAST);
     back_right_motor.set_brake_mode(pros::E_MOTOR_BRAKE_COAST);
 
-    const float Joystick_LowerDeadzone = 5;
+    const float Joystick_LowerDeadzone = 7;
 
     while (true)
     {

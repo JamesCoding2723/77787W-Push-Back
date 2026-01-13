@@ -1,7 +1,7 @@
 {
   "configurations": [
     {
-      "name": "Push Back 2R",
+      "name": "Right",
       "includePath": [
         "${workspaceFolder}/**",
         "/Users/jameszhang/Documents/GitHub/77787W-Push-Back/include",
