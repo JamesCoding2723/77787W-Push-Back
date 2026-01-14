@@ -241,22 +241,32 @@ void jeminparkt()
     jeminpark.set_value(jeminparktoggle);
 }
 
+float wall_heading;
+
+void setwall_heading(float _input)
+{
+    wall_heading = _input;
+}
+
 int d0 = 6;
 int wall = 0;
+double wallpos;
 
-double wallpos(int wall)
+void getwallpos()
 {
-    double theta = imu.get_heading();
-    theta = fabs(theta-360);
-    
-    if (wall == 2) theta -= 90;
-    if (wall == 3) theta -= 180;
-    if (wall == 4) theta -= 270;
+        double theta = imu.get_heading();
+        theta = fabs(theta-360);
 
-    if (fabs(theta) > 5) theta = fabs(theta) - 5;
-    else theta = 0;
+        theta -= wall_heading;
 
-    return ((distance_sensor.get()) * 0.0393701 + d0) * cos(deg2rad(theta));
+        if (theta > 180) theta -= 360;
+        if (theta < -180) theta += 360;
+
+        if (fabs(theta) > 5) theta = fabs(theta) - 5;
+        else theta = 0;
+
+        wallpos = ((distance_sensor.get())/25.5 + d0) * cos(deg2rad(theta));
+        //pros::delay(20);
 }
 
 float deg2rad(float _input)

@@ -20,7 +20,7 @@ void pidMoveold(float target_inch, float tolerence_inch, float timeout, float ma
   // float target = target_inch
   // float tolerence = InchToEncoderunit(tolerence_inch);
   float lastError;
-  float kp = 2.8; // for new robot
+  float kp = 5.0; // for new robot
   float kd = 0.2; // for new robot
   float ki = 0.0; // for new roobot
   float s_error = 0;
@@ -130,7 +130,6 @@ void pidTurnRel(float target, float rotate_tolocal, float timeout, float max)
   }
 }
 
-float start_heading = 0;
 
 void pidTurnAbs(float target, float rotate_tolocal, float timeout, float max)
 { // ROTATE with tolerate variable
@@ -138,23 +137,23 @@ void pidTurnAbs(float target, float rotate_tolocal, float timeout, float max)
   float dTol = rotate_tolocal;
   float lastError;
   float error;
-  float kp = 0.8;      // for new robot
-  float kd = 0.4;      // for new robot
-  float ki = 0.02;     // for new robot
+  float kp = 1.3;      // for new robot
+  float kd = 7.0;      // for new robot
+  float ki = 0.0;     // for new robot
   //float spd_ratio = 2; // 0.5
   float s_error = 0;
   int n = 0;
   int repeat = 0;
-  while (true)
+  int settletime;
+  while (settletime < 15)
   {
-    if (std::abs(target - std::fmod(imu.get_heading(), 360)) < std::abs(target - std::fmod(360 - imu.get_heading(), 360)))
-    {
-      error = target - std::fmod(imu.get_heading(), 360);
-    }
-    else
-    {
-      error = target - std::fmod(360 - imu.get_heading(), 360);
-    }
+    double currentHeading = imu.get_heading(); 
+    double error = target - currentHeading;
+
+    // Handle wraparound
+    if (error > 180) error -= 360;
+    if (error < -180) error += 360;
+
     float P = error * kp;
     float D = (error - lastError) * kd;
     s_error += error;              // 1
@@ -166,13 +165,8 @@ void pidTurnAbs(float target, float rotate_tolocal, float timeout, float max)
     float I = ki * s_error;
     // if (error != 0) break; //delete later
 
-    if (fabs(error) < pTol)
-    {
-      stop();
-      break;
-    }
 
-    if (repeat > timeout)
+    if (repeat > timeout*100)
     {
       stop();
       break;
@@ -180,8 +174,15 @@ void pidTurnAbs(float target, float rotate_tolocal, float timeout, float max)
 
     float pidspd = (P + D + I);
 
-    if (std::abs(pidspd) < 23)
-      pidspd = sign(pidspd) * 23;
+   // if (std::abs(pidspd) < 15)
+   //   pidspd = sign(pidspd) * 15;
+
+
+    if (fabs(error) < pTol && fabs(pidspd) < 15)
+    {
+      settletime++;
+    }
+
 
     turn(std::clamp(pidspd, -max, max));
     // pros::c::screen_print(pros::E_TEXT_MEDIUM, n++, "pid: %f, %f, %f", (P+D+I), imu.get_rotation(), error);
@@ -190,11 +191,12 @@ void pidTurnAbs(float target, float rotate_tolocal, float timeout, float max)
     lastError = error;
     pros::c::delay(10);
   }
+  stop();
 }
 
 
 
-void pidswingRel(float target, float rotate_tolocal, float timeout, bool side)
+void pidswingAbs(float target, float rotate_tolocal, float timeout, bool side)
 { // ROTATE with tolerate variable
   float pTol = rotate_tolocal;
   float dTol = rotate_tolocal;
@@ -207,12 +209,19 @@ void pidswingRel(float target, float rotate_tolocal, float timeout, bool side)
   int n = 0;
   int repeat = 0;
   imu.set_rotation(0);
+  int settletime;
   //target = imu.get_rotation() + target;
 
   while (true)
   {
 
-    float error = target - imu.get_rotation();
+    double currentHeading = imu.get_heading(); 
+    double error = target - currentHeading;
+
+    // Handle wraparound
+    if (error > 180) error -= 360;
+    if (error < -180) error += 360;
+    
     float P = error * kp;
     float D = (error - lastError) * kd;
     s_error += error;              // 1
@@ -316,7 +325,10 @@ void pidswingRel(float target, float rotate_tolocal, float timeout, bool side)
 }*/
 
 
-void drivePIDGyro(double targetInches, double targetHeading, double timeout, double settleTime, double max) {
+void pidGyro(double targetInches, double targetHeading, double timeout, double max) {
+
+    pros::c::screen_print(pros::E_TEXT_MEDIUM, 5, "pid: %f, %f, %f, %f", 1,2,3,4);        
+
 
     // Reset sensors
     front_right_motor.set_encoder_units(pros::E_MOTOR_ENCODER_DEGREES);
@@ -326,22 +338,23 @@ void drivePIDGyro(double targetInches, double targetHeading, double timeout, dou
 
 
     //drive PID
-    double kP_drive = 2.8;
+    double kP_drive = 5.0;
     double kI_drive = 0.0;
     double kD_drive = 0.2;
     double driveS_error;
 
     //turn PID
-    double kP_turn = 0.95;
-    double kI_turn = 0.15;
-    double kD_turn = 0.2;
+    double kP_turn = 1.3;
+    double kI_turn = 0.0;
+    double kD_turn = 7.0;
     double turnS_error;
 
-    double driveError = 0, drivePrevError = 0;
-    double turnError = 0, turnPrevError = 0;
+    double driveError, drivePrevError;
+    double turnError, turnPrevError;
 
-    int repeat = 0;
-    while (settleTime < 10) {
+    double settleTime;
+    int repeat;
+    while (true) {
         repeat++;
         //Drive PID
         driveError = targetInches - (((front_right_motor.get_position() + front_left_motor.get_position()) / 2) * 0.02127120025);
@@ -369,8 +382,8 @@ void drivePIDGyro(double targetInches, double targetHeading, double timeout, dou
         turnS_error += turnError;              // 1
         turnS_error = fmin(turnS_error, 100);  // 2
         turnS_error = fmax(turnS_error, -100); // 2
-        if (driveError * turnS_error < 0)
-          driveS_error = 0; // 3
+        if (turnError * turnS_error < 0)
+          turnS_error = 0; // 3
         float turnI = kI_turn * turnS_error;
 
         double turnOutput = turnP + turnI + turnD;
@@ -393,7 +406,7 @@ void drivePIDGyro(double targetInches, double targetHeading, double timeout, dou
         moveright(rightPower);
 
         //exit
-        if (fabs(driveError) < 15 && fabs(turnError) < 2 && (leftPower + rightPower)/2 < 25)
+        if (fabs(driveError) < 1 && fabs(turnError) < 2 && (leftPower + rightPower)/2 < 25)
             settleTime++;
         else
             settleTime = 0;
@@ -407,7 +420,14 @@ void drivePIDGyro(double targetInches, double targetHeading, double timeout, dou
           break;
         }
 
+        if (settleTime > 15)
+        {
+          stop();
+          break;
+        }
+
+        pros::c::screen_print(pros::E_TEXT_MEDIUM, repeat++, "pid: %f, %f, %f, %f", leftPower, rightPower, driveError, turnError);        
+
         pros::delay(20);
     }
-    stop();
 }

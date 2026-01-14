@@ -68,4 +68,6 @@ float rad2deg(float);
 
 float deg2rad(float);
 
-double wallpos(int wall);
+void setwall_heading(float);
+
+void getwallpos();

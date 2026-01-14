@@ -36,7 +36,7 @@ double GPStracking()  //do not use this
         return y;
 
         pros::c::screen_print(pros::E_TEXT_MEDIUM, line_number++, "Xerror: %f, %f", x, y);
-        std::cout << x << " " << y << std::endl;
+        //std::cout << x << " " << y << std::endl;
         pros::delay(10);
     }
 }
@@ -46,6 +46,6 @@ void GPSmove(float desx, float desy, int timeout)
     float movedis = std::sqrt((std::pow((desx - x), 2.0)) + (std::pow((desy - y), 2.0)));
     float turndis = rad2deg(std::atan((desy - y) / (desx - x)));
 
-    pidTurnRel(turndis, 1, 2000);
-    pidMoveold(movedis, 1, 200);
+    //pidTurnRel(turndis, 1, 2000);
+    //pidMoveold(movedis, 1, 200);
 }

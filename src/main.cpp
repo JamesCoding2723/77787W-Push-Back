@@ -93,8 +93,10 @@ void competition_initialize()
  */
 void autonomous()
 {
+    imu.set_heading(0);
 
-    
+    pidTurnAbs(90, 1, 1);
+
 
 
     //AUTO SKILLS
@@ -409,7 +411,7 @@ void autonomous()
 
 
     //Left 7 Ball (upper middle goal)
-    jemintaket();
+    /*jemintaket();
     jeminwingt();
 
     pidMoveold(15, 0.5, 200, 100);
