@@ -30,6 +30,7 @@ void initialize()
 
     pros::lcd::initialize(); // initialize brain screen
     imu.tare();     // calibrate sensors
+    imu.set_data_rate(pros::E_MOTOR_ENCODER_DEGREES);
     vertical_encoder.reset();
     vertical_encoder.set_reversed(true);
     // print position to brain screen
@@ -44,6 +45,7 @@ void initialize()
     // pros::c::screen_print(pros::E_TEXT_MEDIUM, 4, "encoder unit: %d", front_left_motor.get_encoder_units());
     pros::Task Intake(intake);
     pros::Task Intake2(intake2);
+    pros::Task Walltask(imu_display_task);
     //pros::Task GPS(GPStracking);
 
     // pros::lcd::clear();
@@ -93,15 +95,11 @@ void competition_initialize()
  */
 void autonomous()
 {
-    imu.set_heading(0);
-
-    pidTurnAbs(90, 1, 1);
-
-
+    imu.set_heading(180);
 
     //AUTO SKILLS
     
-    /*jemintaket();
+    jemintaket();
     jeminwingt(); //FIRST HALF
 
     setintakespd(-100);
@@ -123,49 +121,51 @@ void autonomous()
     pros::delay(200); //
     //jemintaket();
 
-    pidMoveold(-21, 1, 1);
+    pidMoveold(-22, 1, 1);
     pros::delay(400);
     pidTurnRel(-82, 2, 1);
     pros::delay(300);
     setintakespd(-100);
     setintake2spd(-100);
-    pidMoveold(32, 0.5, 3);
+    pidMoveold(30, 0.5, 3);
     pros::delay(300);
     
     //setintakespd(00);
     //setintake2spd(00);
-    pidTurnRel(-132, 2, 2);
+    pidTurnAbs(313, 3, 0.8);
     pros::delay(300);
 
 
-    pidMoveold(27.25, 0.5, 1.8);
+    pidMoveold(25.8, 0.5, 1.7);
+    //moveForSec(30, false, 0.1);
 
     jemintaket();
     setintakespd(75);
     setintake2spd(0);
     pros::delay(50);
-    setintake2spd(60);
-    setintakespd(60);
+    setintake2spd(50);
+    setintakespd(50);
     pros::delay(3200);
     //jeminwingt();
     
-
-    pidMoveold(-55, 0.5, 200, 80);
+    //pidMoveold(-30, 1, 3);
+    //pidTurnRel(-10, 1, 1);
+    pidWallMove(22, 0.5, 90, 3);
     pros::delay(200);
 
     jeminloadert();
     jemintaket();
-    pidTurnRel(-126, 1.5, 2);
+    pidTurnAbs(180, 5, 1);
 
 
 
-    pros::delay(200);
+    //pros::delay(200);
 
     setintakespd(-100);
     setintake2spd(-100);
     pidMoveold(9, 1, 1);
     moveForSec(55, true, 0.8);
-    moveForSec(20, true, 0.8);
+    moveForSec(10, true, 0.9);
 
     //DONE MATCHLOAD
 
@@ -174,8 +174,8 @@ void autonomous()
     jeminloadert();
     pidTurnRel(-143, 2, 3, 50);
     pros::delay(200);
-    setintakespddiff(0, 0);
-    setintake2spd(0);
+    //setintakespddiff(0, 0);
+    //setintake2spd(0);
 
     //pidTurnRel(-42, 1, 2);
     //pros::delay(400);
@@ -184,7 +184,7 @@ void autonomous()
     
     pidTurnRel(-79, 2, 2, 70);
     moveForSec(80, false, 0.5);
-    pidMoveold(15, 0.5, 2);
+    pidMoveold(16, 0.5, 2);
     pidTurnRel(83, 2, 2);
     pros::delay(200); //ALIGNED
 
@@ -215,20 +215,19 @@ void autonomous()
     //setintakespd(-100);
 
 
-    pidMoveold(18, 1, 1, 70);
+    pidMoveold(26.41, 1, 1, 70);
+    jeminmecht();
+    moveForSec(60, true, 0.5);
+    moveForSec(10, true, 1.4); //second mathclaod
 
     
-
-    jeminmecht();
-    moveForSec(60, true, 0.9);
-    moveForSec(10, true, 1.4); //second mathclaod
 
 
     //pidMoveold(-3, 0.5, 1);
     //pidTurnRel(2.5, 1, 1);    
-    moveForSec(70, false, 0.4);
-    pidTurnRel(1, 0.5, 1);
-    moveForSec(70, false, 0.5);    
+    moveForSec(70, false, 0.25);
+    //pidTurnRel(1, 0.5, 1);
+    moveForSec(70, false, 0.65);    
     jeminmecht(); 
     //setintakespd(100);
     //setintake2spd(100);
@@ -240,12 +239,13 @@ void autonomous()
     //jemintaket();
     //jeminmecht();
 
-    setintakespd(0);
-    setintake2spd(0);
+    //setintakespd(0);
+    //setintake2spd(0);
     jeminloadert();
     pidMoveold(7, 0.5, 2, 70); 
     pidTurnRel(-75, 2, 1);
     moveForSec(70, false, 0.9);
+    jeminmecht();
 
 
 
@@ -253,18 +253,16 @@ void autonomous()
     pros::delay(200);
 
     jeminloadert();
+    pros::delay(300);
     pidTurnRel(67, 1, 2, 50);
     setintakespd(-100);
     setintake2spd(-100);
     //pidTurnRel(3, 1, 1);
     pidMoveold(15, 1, 1, 70);
-    jeminmecht();
+    //jeminmecht();
     moveForSec(60, true, 0.5);
-    moveForSec(30, true, 0.4);
-    //pros::delay(300);
-    //moveForSec(10, false, 0.2);
-    //pros::delay(200);
-    //moveForSec(10, true, 0.1);
+    moveForSec(6.7, true, 0.5);
+
     //pros::delay(1600); //3 MATCHLOAD DONE
 
 
@@ -284,8 +282,8 @@ void autonomous()
     
     pidTurnRel(-85, 1, 2);
     moveForSec(75, false, 0.7);
-    pidMoveold(15, 0.5, 2);
-    pidTurnRel(84, 1, 2);
+    pidMoveold(16, 0.5, 2);
+    pidTurnRel(84, 2, 2);
     pros::delay(200); //ALIGNED
 
     setintakespd(-100);

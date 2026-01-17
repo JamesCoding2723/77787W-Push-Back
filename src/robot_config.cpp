@@ -53,7 +53,7 @@ lemlib::Drivetrain drivetrain(&left_motor_group,          // left group
 
 pros::Imu imu(20);
 
-pros::Distance distance_sensor(10);
+pros::Distance distance_sensor(6);
 
 /*pros::Rotation horizontal_encoder(20);
 // vertical tracking wheel encoder

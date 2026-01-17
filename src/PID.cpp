@@ -145,7 +145,7 @@ void pidTurnAbs(float target, float rotate_tolocal, float timeout, float max)
   int n = 0;
   int repeat = 0;
   int settletime;
-  while (settletime < 15)
+  while (settletime < 10)
   {
     double currentHeading = imu.get_heading(); 
     double error = target - currentHeading;
@@ -178,7 +178,7 @@ void pidTurnAbs(float target, float rotate_tolocal, float timeout, float max)
    //   pidspd = sign(pidspd) * 15;
 
 
-    if (fabs(error) < pTol && fabs(pidspd) < 15)
+    if (fabs(error) < pTol && fabs(pidspd) < 22)
     {
       settletime++;
     }
@@ -430,4 +430,59 @@ void pidGyro(double targetInches, double targetHeading, double timeout, double m
 
         pros::delay(20);
     }
+}
+
+
+void pidWallMove(float target_inch, float tolerence_inch, float _wall, float timeout, float max)
+{ // MOVE MOVE MOVE
+
+  // float target = target_inch
+  // float tolerence = InchToEncoderunit(tolerence_inch);
+  float lastError;
+  float kp = 5.0; // for new robot
+  float kd = 0.2; // for new robot
+  float ki = 0.0; // for new roobot
+  float s_error = 0;
+  int line_number = 1;
+  float spd;
+
+  
+  int repeat_limit = 2000000;
+  int repeat = 0;
+  float settletime;
+
+  while (true)
+  {
+    float error = getwallpos(_wall) - target_inch;
+    float P = error * kp;
+    float D = (error - lastError) * kd;
+    s_error += error;
+    s_error = fmin(s_error, 100);
+    s_error = fmax(s_error, -100);
+    // Brain.Screen.printAt(10,20,"error=%f",error);
+    if (error * lastError < 0)
+      s_error = 0;
+
+    if (fabs(error) < tolerence_inch && spd < 16)
+    {
+      stop();
+      break;
+    }
+
+    if (repeat > 100 * timeout)
+    {
+      stop();
+      break;
+    }
+
+
+    float I = ki * s_error;
+    lastError = error;
+    spd = (P + D + I);
+
+    move(std::clamp(-spd, -max, max));
+    repeat++;
+    pros::c::delay(10);
+  }
+  stop();
 }

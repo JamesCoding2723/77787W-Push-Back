@@ -11,3 +11,5 @@ void pidswingRel(float, float, float, bool);
 void bwallMove(float, float, int, float, float max = 50);
 
 void pidGyro(double, double, double, double max = 70);
+
+void pidWallMove(float, float, float _wall, float, float max = 70);

@@ -9,6 +9,7 @@
 #include "pros/vision.h"
 #include "robot_config.h"
 #include "basic_functions.h"
+#include "pros/screen.h"
 
 int sign(float _input)
 {
@@ -248,11 +249,11 @@ void setwall_heading(float _input)
     wall_heading = _input;
 }
 
-int d0 = 6;
+float d0 = 6.5;
 int wall = 0;
 double wallpos;
 
-void getwallpos()
+double getwallpos(float wall_heading)
 {
         double theta = imu.get_heading();
         theta = fabs(theta-360);
@@ -262,12 +263,11 @@ void getwallpos()
         if (theta > 180) theta -= 360;
         if (theta < -180) theta += 360;
 
-        if (fabs(theta) > 5) theta = fabs(theta) - 5;
-        else theta = 0;
+        //if (fabs(theta) > 5) theta = fabs(theta) - 5;
+        //else theta = 0;
 
-        wallpos = ((distance_sensor.get())/25.5 + d0) * cos(deg2rad(theta));
-        //pros::delay(20);
-}
+        return wallpos = ((distance_sensor.get())/25.5 + d0) * cos(deg2rad(theta));
+    }
 
 float deg2rad(float _input)
 {
@@ -277,4 +277,13 @@ float deg2rad(float _input)
 float rad2deg(float _input)
 {
     return _input * 180 / M_PI;
+}
+
+void imu_display_task(void*) {
+  while (true) {
+        pros::c::screen_print(pros::E_TEXT_MEDIUM, 1, "wallpos: %f, %f", wallpos, imu.get_heading());
+
+
+    pros::delay(100);   // update ~10 times per second
+  }
 }

@@ -70,4 +70,6 @@ float deg2rad(float);
 
 void setwall_heading(float);
 
-void getwallpos();
+double getwallpos(float wall_heading);
+
+void imu_display_task(void*);
