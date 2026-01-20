@@ -15,3 +15,5 @@ void pidGyro(double, double, double, double max = 70);
 void pidWallMove(float, float, float _wall, float, float max = 70);
 
 void pidwallGyro(double, double, float _wall, double, double max = 70);
+
+void pidSideWall(double , double , double _wall, double , double max = 70);

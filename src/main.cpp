@@ -126,7 +126,7 @@ void autonomous()
     pidTurnAbs(90, 1, 1);
     //pros::delay(300);
     setintakespddiff(-100, 0);
-    pidMoveold(31, 0.5, 3);
+    pidMoveold(33, 0.5, 3);
     pros::delay(200);
     
     //setintakespd(00);
@@ -135,7 +135,7 @@ void autonomous()
     //pros::delay(300);
 
 
-    pidMoveold(26.3, 0.5, 1.7);
+    pidMoveold(27.3, 0.5, 1.7);
     //moveForSec(30, false, 0.1);
 
     jemintaket();
@@ -183,7 +183,7 @@ void autonomous()
     
     pidTurnRel(-70, 2, 2, 70);
     pidWallMove(22.5, 0.5, 90, 3);
-    pidTurnAbs(15, 1, 1);
+    pidTurnAbs(10, 1, 1);
     //pros::delay(1000); //ALIGNED
 
     // pidTurnRel(-40, 1, 2);
@@ -193,9 +193,6 @@ void autonomous()
 
     
     moveForSec(60, false, 0.5);
-    //setintakespd(100);
-    //setintake2spd(100);
-    //pros::delay(100);
     setintakespd(-100);
     setintake2spd(-100);
     jeminmecht();
@@ -216,7 +213,7 @@ void autonomous()
     //setintakespd(-100);
 
 
-    pidGyro(26, 0, 3, 80);
+    pidGyro(26, -2, 3, 80);
     jeminmecht();
     moveForSec(60, true, 0.5);
     moveForSec(10, true, 1.4); //second mathclaod
@@ -304,7 +301,7 @@ void autonomous()
     //pros::delay(500);
 
     //pidTurnRel(-3, 1, 1);
-    pidGyro(26, 180, 3, 80);
+    pidGyro(26, 178, 3, 80);
     jeminmecht();
     moveForSec(60, true, 0.5);
     moveForSec(10, true, 1.4);
@@ -313,7 +310,7 @@ void autonomous()
     setintakespd(0);
     setintake2spd(0);
 
-    pidGyro(-38, 180, 3);
+    pidGyro(-38, 178, 3);
     jeminmecht(); 
     //setintakespd(100);
     //pros::delay(200);

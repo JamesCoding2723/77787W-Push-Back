@@ -77,3 +77,5 @@ void setwall_heading(float);
 double getwallpos(float wall_heading);
 
 void imu_display_task(void*);
+
+double getsidewallpos(float wall_heading);

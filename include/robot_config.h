@@ -43,6 +43,7 @@ extern lemlib::Drivetrain drivetrain;
 
 extern pros::Imu imu;
 extern pros::Distance distance_sensor;
+extern pros::Distance sidedistance;
 
 /*pros::Rotation horizontal_encoder(20);
 // vertical tracking wheel encoder
