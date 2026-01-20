@@ -145,7 +145,7 @@ void pidTurnAbs(float target, float rotate_tolocal, float timeout, float max)
   int n = 0;
   int repeat = 0;
   int settletime;
-  while (settletime < 10)
+  while (settletime < 5)
   {
     double currentHeading = imu.get_heading(); 
     double error = target - currentHeading;
@@ -178,7 +178,7 @@ void pidTurnAbs(float target, float rotate_tolocal, float timeout, float max)
    //   pidspd = sign(pidspd) * 15;
 
 
-    if (fabs(error) < pTol && fabs(pidspd) < 22)
+    if (fabs(error) < pTol && fabs(pidspd) < 25)
     {
       settletime++;
     }
@@ -267,64 +267,6 @@ void pidswingAbs(float target, float rotate_tolocal, float timeout, bool side)
 }
 
 
-/*void bwallMove(float target_inch, float tolerence_inch, int wall, float timeout, float max)
-{ // MOVE MOVE MOVE
-
-  // float target = target_inch
-  // float tolerence = InchToEncoderunit(tolerence_inch);
-  float lastError;
-  float kp = 2.8; // for new robot
-  float kd = 0.2; // for new robot
-  float ki = 0.0; // for new roobot
-  float s_error = 0;
-  int n = 0;
-  int line_number = 1;
-  float speed_ratio = 2.2, spd;
-  
-  int repeat_limit = 2000000;
-  int repeat = 0;
-
-  while (true)
-  {
-    float error = target_inch - wallpos(wall);
-    float P = error * kp;
-    float D = (error - lastError) * kd;
-    s_error += error;
-    s_error = fmin(s_error, 100);
-    s_error = fmax(s_error, -100);
-    // Brain.Screen.printAt(10,20,"error=%f",error);
-    if (error * lastError < 0)
-      s_error = 0;
-
-    if (fabs(error) < tolerence_inch && spd < 16)
-    {
-      // move_turn(0);
-      stop();
-      pros::c::screen_print(pros::E_TEXT_MEDIUM, line_number++, "error: %f", front_right_motor.get_position());
-      break;
-    }
-
-    if (repeat > 100 * timeout)
-    {
-      stop();
-      break;
-    }
-
-    float I = ki * s_error;
-    lastError = error;
-    spd = (P + D + I) * speed_ratio;
-    if (std::abs(spd) < 15)
-      spd = sign(spd) * 15;
-    
-    move(std::clamp(-spd, -max, max));
-
-    pros::c::screen_print(pros::E_TEXT_MEDIUM, n++, "pid: %f, %f, %f", (P+D+I), wallpos(wall), bdistance.get());
-    repeat++;
-    pros::c::delay(10);
-  }
-}*/
-
-
 void pidGyro(double targetInches, double targetHeading, double timeout, double max) {
 
     pros::c::screen_print(pros::E_TEXT_MEDIUM, 5, "pid: %f, %f, %f, %f", 1,2,3,4);        
@@ -344,7 +286,7 @@ void pidGyro(double targetInches, double targetHeading, double timeout, double m
     double driveS_error;
 
     //turn PID
-    double kP_turn = 1.3;
+    double kP_turn = 2;
     double kI_turn = 0.0;
     double kD_turn = 7.0;
     double turnS_error;
@@ -389,8 +331,13 @@ void pidGyro(double targetInches, double targetHeading, double timeout, double m
         double turnOutput = turnP + turnI + turnD;
 
         //outputs-----------------------------------------
+        double turnScale = 1.0 - std::min(fabs(turnError) / 20.0, 1.0);
+
+        driveOutput *= turnScale;
+
         double leftPower = driveOutput + turnOutput;
         double rightPower = driveOutput - turnOutput;
+
 
         double maxMag = std::max(fabs(leftPower), fabs(rightPower));
         if (maxMag > 100) {
@@ -406,7 +353,7 @@ void pidGyro(double targetInches, double targetHeading, double timeout, double m
         moveright(rightPower);
 
         //exit
-        if (fabs(driveError) < 1 && fabs(turnError) < 2 && (leftPower + rightPower)/2 < 25)
+        if (fabs(driveError) < 1 && fabs(turnError) < 1 && (leftPower + rightPower)/2 < 25)
             settleTime++;
         else
             settleTime = 0;
@@ -433,6 +380,8 @@ void pidGyro(double targetInches, double targetHeading, double timeout, double m
 }
 
 
+
+
 void pidWallMove(float target_inch, float tolerence_inch, float _wall, float timeout, float max)
 { // MOVE MOVE MOVE
 
@@ -453,7 +402,7 @@ void pidWallMove(float target_inch, float tolerence_inch, float _wall, float tim
 
   while (true)
   {
-    float error = getwallpos(_wall) - target_inch;
+    float error = target_inch - getwallpos(_wall);
     float P = error * kp;
     float D = (error - lastError) * kd;
     s_error += error;
@@ -480,9 +429,126 @@ void pidWallMove(float target_inch, float tolerence_inch, float _wall, float tim
     lastError = error;
     spd = (P + D + I);
 
-    move(std::clamp(-spd, -max, max));
+    move(std::clamp(spd, -max, max));
     repeat++;
     pros::c::delay(10);
   }
   stop();
+}
+
+
+
+
+
+
+void pidwallGyro(double targetInches, double targetHeading, float _wall, double timeout, double max) {
+
+    pros::c::screen_print(pros::E_TEXT_MEDIUM, 5, "pid: %f, %f, %f, %f", 1,2,3,4);        
+
+
+    // Reset sensors
+    front_right_motor.set_encoder_units(pros::E_MOTOR_ENCODER_DEGREES);
+    front_left_motor.set_encoder_units(pros::E_MOTOR_ENCODER_DEGREES);
+    front_left_motor.set_zero_position(0);
+    front_right_motor.set_zero_position(0);
+
+
+    //drive PID
+    double kP_drive = 5.0;
+    double kI_drive = 0.0;
+    double kD_drive = 0.2;
+    double driveS_error;
+
+    //turn PID
+    double kP_turn = 2;
+    double kI_turn = 0.0;
+    double kD_turn = 7.0;
+    double turnS_error;
+
+    double driveError, drivePrevError;
+    double turnError, turnPrevError;
+
+    double settleTime;
+    int repeat;
+    while (true) {
+        repeat++;
+        //Drive PID
+        driveError = targetInches - getwallpos(_wall);
+        float driveP = driveError * kP_drive;
+        float driveD = (driveError - drivePrevError) * kD_drive;
+        driveS_error += driveError;              // 1
+        driveS_error = fmin(driveS_error, 100);  // 2
+        driveS_error = fmax(driveS_error, -100); // 2
+        if (driveError * drivePrevError < 0)
+          driveS_error = 0; // 3
+        float driveI = kI_drive * driveS_error;
+
+        double driveOutput = driveP + driveI + driveD;
+
+        //Turn PID
+        double currentHeading = imu.get_heading(); 
+        turnError = targetHeading - currentHeading;
+
+        // Handle wraparound
+        if (turnError > 180) turnError -= 360;
+        if (turnError < -180) turnError += 360;
+
+        float turnP = turnError * kP_turn;
+        float turnD = (turnError - turnPrevError) * kD_turn;
+        turnS_error += turnError;              // 1
+        turnS_error = fmin(turnS_error, 100);  // 2
+        turnS_error = fmax(turnS_error, -100); // 2
+        if (turnError * turnS_error < 0)
+          turnS_error = 0; // 3
+        float turnI = kI_turn * turnS_error;
+
+        double turnOutput = turnP + turnI + turnD;
+
+        //outputs-----------------------------------------
+        double turnScale = 1.0 - std::min(fabs(turnError) / 20.0, 1.0);
+
+        driveOutput *= turnScale;
+
+        double leftPower = driveOutput + turnOutput;
+        double rightPower = driveOutput - turnOutput;
+
+
+        double maxMag = std::max(fabs(leftPower), fabs(rightPower));
+        if (maxMag > 100) {
+          double scale = 100 / maxMag;
+          leftPower *= scale;
+          rightPower *= scale;
+        }
+
+        leftPower  = std::clamp(leftPower, -max, max);
+        rightPower = std::clamp(rightPower, -max, max);
+
+        moveleft(leftPower);
+        moveright(rightPower);
+
+        //exit
+        if (fabs(driveError) < 0.5 && fabs(turnError) < 1 && (leftPower + rightPower)/2 < 25)
+            settleTime++;
+        else
+            settleTime = 0;
+
+        drivePrevError = driveError;
+        turnPrevError = turnError;
+
+        if (repeat > timeout * 50)
+        {
+          stop();
+          break;
+        }
+
+        if (settleTime > 15)
+        {
+          stop();
+          break;
+        }
+
+        pros::c::screen_print(pros::E_TEXT_MEDIUM, repeat++, "pid: %f, %f, %f, %f", leftPower, rightPower, driveError, turnError);        
+
+        pros::delay(20);
+    }
 }

@@ -10,6 +10,8 @@ extern int intake2spd;
 
 void setintakespd(float);
 
+void setintake3spd(float);
+
 void setintakespddiff(float, float);
 
 void setintake2spd(float);
@@ -17,6 +19,8 @@ void setintake2spd(float);
 void intake();
 
 void intake2();
+
+void intake3();
 
 void moveleft(float);
 
