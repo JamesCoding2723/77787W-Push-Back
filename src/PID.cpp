@@ -267,7 +267,7 @@ void pidswingAbs(float target, float rotate_tolocal, float timeout, bool side)
 }
 
 
-void pidGyro(double targetInches, double targetHeading, double timeout, double max) {
+void pidGyro(double targetInches, double targetHeading, double timeout, double max, double E_TOL, double D_TOL, double _settle) {
 
     pros::c::screen_print(pros::E_TEXT_MEDIUM, 5, "pid: %f, %f, %f, %f", 1,2,3,4);        
 
@@ -353,7 +353,7 @@ void pidGyro(double targetInches, double targetHeading, double timeout, double m
         moveright(rightPower);
 
         //exit
-        if (fabs(driveError) < 1 && fabs(turnError) < 1 && (leftPower + rightPower)/2 < 25)
+        if (fabs(driveError) < D_TOL && fabs(turnError) < 1 && (leftPower + rightPower)/2 < E_TOL)
             settleTime++;
         else
             settleTime = 0;
@@ -367,7 +367,7 @@ void pidGyro(double targetInches, double targetHeading, double timeout, double m
           break;
         }
 
-        if (settleTime > 15)
+        if (settleTime > _settle)
         {
           stop();
           break;
@@ -579,7 +579,6 @@ void pidSideWall(double targetInches, double targetwall, double _wall, double ti
     double kI_turn = 0.0;
     double kD_turn = 7.0;
     double turnS_error;
-    double turnpriority = 1.8;
 
     double driveError, drivePrevError;
     double turnError, turnPrevError;
@@ -614,13 +613,10 @@ void pidSideWall(double targetInches, double targetwall, double _wall, double ti
           turnS_error = 0; // 3
         float turnI = kI_turn * turnS_error;
 
-        double turnOutput = turnpriority * (turnP + turnI + turnD);
+        double turnOutput = (turnP + turnI + turnD);
 
         //outputs-----------------------------------------
-        if (driveError < 2.0)
-        {
-          turnOutput = 0;
-        }
+        
 
         double leftPower = driveOutput - turnOutput;
         double rightPower = driveOutput + turnOutput;
@@ -640,7 +636,7 @@ void pidSideWall(double targetInches, double targetwall, double _wall, double ti
         moveright(rightPower);
 
         //exit
-        if (fabs(driveError) < 1 && (leftPower + rightPower)/2 < 25)
+        if (fabs(driveError) < 1 && fabs(turnError) < 1 && (leftPower + rightPower)/2 < 25)
             settleTime++;
         else
             settleTime = 0;
@@ -660,7 +656,7 @@ void pidSideWall(double targetInches, double targetwall, double _wall, double ti
           break;
         }
 
-        pros::c::screen_print(pros::E_TEXT_MEDIUM, 2, "pid: %f, %f, %f, %f", leftPower, rightPower, driveError, turnError);        
+        pros::c::screen_print(pros::E_TEXT_MEDIUM, repeat++, "pid: %f, %f, %f, %f", leftPower, rightPower, driveError, turnError);        
 
         pros::delay(20);
     }
