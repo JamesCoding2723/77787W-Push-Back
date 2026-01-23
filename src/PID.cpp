@@ -377,6 +377,7 @@ void pidGyro(double targetInches, double targetHeading, double timeout, double m
 
         pros::delay(20);
     }
+    stop();
 }
 
 

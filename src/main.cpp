@@ -16,6 +16,7 @@
 #include "PID.h"
 #include "main.h"
 #include "odom.h"
+#include <iostream>
 
 #pragma region
 
@@ -305,6 +306,7 @@ void autonomous()
 
 
     //Right 7 Ball (lower middle goal)
+    /*
     imu.set_heading(8.5);
 
     jemintaket();
@@ -318,20 +320,20 @@ void autonomous()
     //setintakespd(0);
     pros::delay(100);
 
-    pidTurnRel(-51, 2, 400);
+    pidTurnRel(-56, 2, 400);
     pros::delay(100);
-    pidMoveold(14, 0.5, 1, 60);
+    pidMoveold(17.5, 0.5, 1, 60);
 
     jemintaket();
     setintakespd(80); //outtake MIDDLE LOWER
     setintake2spd(80);
     pros::delay(200);
     //pidMoveold(1, 0.5, 1, 30);
-    pros::delay(1000);
+    pros::delay(1400);
     jemintaket();
-    setintakespd(-10);
 
-    pidwallGyro(23, 310, 90, 3);
+    pidwallGyro(24, 310, 90, 3);
+    setintakespd(-10);
 
     jeminloadert();
     //jemintaket();
@@ -344,17 +346,17 @@ void autonomous()
     setintakespd(-100);
     setintake2spd(-100);
     pidMoveold(9, 1, 1);
-    moveForSec(60, true, 0.7);
+    moveForSec(60, true, 0.6);
    //moveForSec(20, true, 0.6);
 
     moveForSec(55, false, 0.3);
-    pidTurnAbs(178, 1, 1);
+    pidTurnAbs(186, 1, 0.5);
     moveForSec(55, false, 0.9);
     setintakespd(-100);
     setintake2spd(-100);
     jeminmecht(); 
     jeminloadert();
-    pros::delay(1200);
+    pros::delay(1100);
 
 
     setintakespd(0);
@@ -362,15 +364,50 @@ void autonomous()
     pidTurnRel(-45, 1, 2, 100);
     pidMoveold(10, 0.5, 1, 60);
     jeminwingt();
-    pidTurnRel(32, 1, 1);
+    pidTurnRel(35, 1, 1);
     pidMoveold(-24, 1, 3, 100);
+    */
 
     //*/
 
+    //Right 4 Ball 
 
+    imu.set_heading(8.5);
+
+    jemintaket();
+    jeminwingt();
+
+    setintakespddiff(-100, -25);
+    pidMoveold(19.3, 0.5, 200, 100);
+    jeminloadert();
+    pidMoveold(9.7, 0.5, 200, 100);
+    //setintakespd(0);
+    // pros::delay(100);
+
+    pidGyro(32, 115, 3, 100);
+    std::cout << "gheigh" << std::endl;
+
+    // pidTurnAbs(180, 1, 0.3);
+    pidGyro(0, 180, 1, 100);
+    moveForSec(75, false, 0.4);
+    setintakespd(-100);
+    setintake2spd(-100);
+    jeminmecht(); 
+    jeminloadert();
+    pros::delay(1400);
+
+
+    setintakespd(0);
+    setintake2spd(0);
+    pidTurnRel(-45, 1, 2, 100);
+    pidMoveold(10, 0.5, 1, 60);
+    jeminwingt();
+    pidTurnRel(35, 1, 1);
+    pidMoveold(-24, 1, 3, 100);
 
     //Left 7 Ball (upper middle goal)
-    /*imu.set_heading(351.5);
+    /*
+    imu.set_heading(351.5);
 
     jemintaket();
     jeminwingt();
@@ -378,8 +415,8 @@ void autonomous()
     pidMoveold(15, 0.5, 200, 100);
     setintakespddiff(-100, -25);
     pidMoveold(6.3, 0.5, 200, 70);
-    pros::delay(100);
-    pidMoveold(9.5, 0.5, 200, 40);
+    // pros::delay(100);
+    pidMoveold(10, 0.5, 200, 40);
     //setintakespd(0);
     pros::delay(100);
 
@@ -398,7 +435,7 @@ void autonomous()
     //jeminwingt();
     setintakespd(0);
     setintakespd(0);
-    pidMoveold(51, 0.5, 3, 80);
+    pidMoveold(52, 0.5, 3, 80);
     pros::delay(300);
     jeminloadert();
     pidTurnAbs(180, 1, 1);
@@ -409,26 +446,23 @@ void autonomous()
     pidMoveold(13, 1, 1);
     moveForSec(60, true, 0.5);
 
-    moveForSec(75, false, 0.4);
-    pidTurnAbs(180, 0.5, 0.6);
-    moveForSec(50, false, 0.8);
-    jeminmecht();
-    pidTurnRel(-0.4, 0.5, 200);
-    moveForSec(40, false, 0.1);
+    moveForSec(55, false, 0.3);
+    pidTurnAbs(186, 1, 0.5);
+    moveForSec(55, false, 0.9);
     setintakespd(-100);
     setintake2spd(-100);
-    moveForSec(10, false, 0.3);
+    jeminmecht(); 
     jeminloadert();
-    pros::delay(600);
+    pros::delay(1100);
+
 
     setintakespd(0);
     setintake2spd(0);
     pidTurnRel(-45, 1, 2, 100);
-    pidMoveold(11, 0.5, 1, 60);
+    pidMoveold(10, 0.5, 1, 60);
     jeminwingt();
-    pidTurnRel(33, 1, 1);
-    pidMoveold(-25.5, 1, 3, 90);
-
+    pidTurnRel(35, 1, 1);
+    pidMoveold(-24, 1, 3, 100);
     //*/
 
     //moveForSec(50, true, 0.1);
