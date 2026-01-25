@@ -124,7 +124,7 @@ void autonomous()
     //pros::delay(200); //
     //jemintaket();
 
-    pidMoveold(-24, 1, 1);
+    pidMoveold(-26, 1, 1);
     pros::delay(200);
     pidTurnAbs(90, 1, 1);
     //pros::delay(300);
@@ -138,7 +138,7 @@ void autonomous()
     //pros::delay(300);
 
 
-    pidMoveold(24, 0.5, 2);
+    pidMoveold(26, 0.5, 2);
     //moveForSec(30, false, 0.1);
 
     jemintaket();
@@ -171,10 +171,10 @@ void autonomous()
 
     //DONE MATCHLOAD
 
-    pidMoveold(-4, 0.5, 2, 50);
+    pidMoveold(-3, 0.5, 2, 50);
 
     jeminloadert();
-    pidTurnRel(-125, 2, 3, 60);
+    pidTurnRel(-122, 2, 3, 60);
     //pros::delay(200);
     setintakespddiff(-100, 0);
     setintake2spd(0);
@@ -295,15 +295,14 @@ void autonomous()
 
     setintakespd(100);
     setintake2spd(100);
-    pidMoveold(7, 1, 2 ,70);
+    pidMoveold(20, 1, 2 ,70);
     jeminmecht();
     pros::delay(100);
     pidTurnRel(-35, 1, 2);
     pros::delay(100);
     //setintakespd(100);
-    pidMoveold(34, 1, 2, 70);
-    pidTurnRel(-25, 1, 3, 70);
-    moveForSec(80, true, 1);
+    pidGyro(30, 110, 2, 70, 1, 25, 15, 10000);
+    moveForSec(80, true, 0.8);
     //*/
 
 
@@ -613,7 +612,7 @@ void autonomous()
     setintakespd(-100);
     setintake2spd(-100);
     pidMoveold(10, 1, 1, 70);
-    moveForSec(65, true, 0.6);
+    moveForSec(65, true, 0.9);
     
     moveForSec(100, false, 0.4);
     pidTurnRel(2.5, 1, 0.2, 70);
@@ -635,7 +634,7 @@ void autonomous()
 
     pidMoveold(7, 1, 1, 100);
     // pidTurnRel(96, 1, 1.2, 100);
-    pidGyro(36, 294, 3, 80, 1, 25, 10);
+    pidGyro(35, 294, 3, 80, 1, 25, 10);
     pidGyro(22, 315, 2, 80, 1, 25, 10);
     setintake2spd(0);
 
@@ -648,12 +647,13 @@ void autonomous()
 
 
     pidGyro(-26.8, 270, 3, 70, 1, 25, 5, 1000);
-    pidGyro(-4, 13, 1.5, 70, 1, 25, 1, 100);
+    pidGyro(-4, 13, 1.5, 70, 1, 25, 2, 100);
 
     jeminwingt();
     pros::delay(200);
     moveForSec(70, true, 0.25);
-    pidTurnRel(-40, 1, 1, 100);*/
+    pidTurnRel(-40, 1, 1, 100);
+    //*/
 
 
     //LEFT 3+4
@@ -808,7 +808,7 @@ void opcontrol()
         else if (master.get_digital(pros::E_CONTROLLER_DIGITAL_L1))
         {
                 setintakespd(-100);
-                setintake2spd(50);
+                setintake2spd(40);
         }
 
         else if (master.get_digital(pros::E_CONTROLLER_DIGITAL_L2))
