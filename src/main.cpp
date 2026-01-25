@@ -244,9 +244,9 @@ void autonomous()
 
 
 
-    pidMoveold(-4, 0.5, 2, 50);
+    pidMoveold(-3.5, 0.5, 2, 50);
     jeminloadert();
-    pidTurnRel(-122, 2, 3, 60);
+    pidTurnRel(-120, 2, 3, 60);
  
     setintakespddiff(-100, 0);
     setintake2spd(0);
@@ -807,15 +807,10 @@ void opcontrol()
         }
         else if (master.get_digital(pros::E_CONTROLLER_DIGITAL_L1))
         {
-            if (jemintaketoggle == false){
-                setintakespd(-100);
-                setintake2spd(30);
-            }
-            else {
                 setintakespd(-100);
                 setintake2spd(50);
-            }
         }
+
         else if (master.get_digital(pros::E_CONTROLLER_DIGITAL_L2))
         {
             setintakespd(100);
