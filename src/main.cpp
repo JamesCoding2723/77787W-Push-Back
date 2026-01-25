@@ -99,7 +99,7 @@ void autonomous()
 {   
 
     //AUTO SKILLS
-    imu.set_heading(180);
+    /*imu.set_heading(180);
     
     jemintaket();
     jeminwingt(); //FIRST HALF
@@ -598,13 +598,13 @@ void autonomous()
 
 
     //RIGHT 3+4
-    /*imu.set_heading(270);
+    imu.set_heading(270);
     jemintaket();
     jeminwingt();
 
     setintakespd(-100);
     setintake2spd(-100);
-    pidWallMove(27.5, 0.5, 90, 2);
+    pidWallMove(26.7, 0.5, 90, 2);
     jeminloadert();
     pidTurnAbs(180, 1, 0.6);
     //pros::delay(200);
@@ -615,7 +615,7 @@ void autonomous()
     moveForSec(65, true, 0.9);
     
     moveForSec(100, false, 0.4);
-    pidTurnRel(2.5, 1, 0.2, 70);
+    //pidTurnRel(2.5, 1, 0.2, 70);
     // pidTurnAbs(190, 1, 0.5);
     moveForSec(100, false, 0.3);
     jeminmecht();
@@ -634,7 +634,7 @@ void autonomous()
 
     pidMoveold(7, 1, 1, 100);
     // pidTurnRel(96, 1, 1.2, 100);
-    pidGyro(35, 294, 3, 80, 1, 25, 10);
+    pidGyro(29, 294, 3, 80, 1, 25, 10);
     pidGyro(22, 315, 2, 80, 1, 25, 10);
     setintake2spd(0);
 
@@ -808,7 +808,7 @@ void opcontrol()
         else if (master.get_digital(pros::E_CONTROLLER_DIGITAL_L1))
         {
                 setintakespd(-100);
-                setintake2spd(40);
+                setintake2spd(50);
         }
 
         else if (master.get_digital(pros::E_CONTROLLER_DIGITAL_L2))
