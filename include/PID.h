@@ -10,7 +10,7 @@ void pidswingAbs(float, float, float, bool);
 
 void bwallMove(float, float, int, float, float max = 50);
 
-void pidGyro(double, double, double, double max = 70, double E_TOL = 1, double D_TOL = 25, double _settle = 15);
+void pidGyro(double, double, double, double max = 70, double E_TOL = 1, double D_TOL = 25, double _settle = 15, float _turnscale = 15);
 
 void pidWallMove(float, float, float _wall, float, float max = 70);
 

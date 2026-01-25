@@ -47,6 +47,7 @@ void initialize()
     pros::Task Intake(intake);
     pros::Task Intake2(intake2);
     pros::Task Walltask(imu_display_task);
+    pros::Task matchload(jeminloaderd);
     //pros::Task GPS(GPStracking);
 
     // pros::lcd::clear();
@@ -98,7 +99,7 @@ void autonomous()
 {   
 
     //AUTO SKILLS
-    imu.set_heading(180);
+    /*imu.set_heading(180);
     
     jemintaket();
     jeminwingt(); //FIRST HALF
@@ -137,15 +138,15 @@ void autonomous()
     //pros::delay(300);
 
 
-    pidMoveold(23.5, 0.5, 2);
+    pidMoveold(24, 0.5, 2);
     //moveForSec(30, false, 0.1);
 
     jemintaket();
     setintakespd(90);
     setintake2spd(0);
-    pros::delay(300);
-    setintake2spd(50);
-    setintakespd(50);
+    pros::delay(400);
+    setintake2spd(54);
+    setintakespd(54);
     pros::delay(3800);
     //jeminwingt();
     
@@ -170,7 +171,7 @@ void autonomous()
 
     //DONE MATCHLOAD
 
-    pidMoveold(-5, 0.5, 2, 50);
+    pidMoveold(-4, 0.5, 2, 50);
 
     jeminloadert();
     pidTurnRel(-125, 2, 3, 60);
@@ -522,14 +523,13 @@ void autonomous()
     setintakespd(-100);
     setintake2spd(-100);
     pidMoveold(10, 1, 1, 70);
-    moveForSec(65, true, 0.7);
+    moveForSec(65, true, 0.9);
     
     moveForSec(100, false, 0.4);
-    pidTurnRel(3, 1, 0.2, 70);
+    pidTurnRel(2.5, 1, 0.2, 70);
     // pidTurnAbs(190, 1, 0.5);
     moveForSec(100, false, 0.3);
     jeminmecht();
-    pidTurnRel(3, 1, 0.5, 70);
     //moveForSec(40, false, 0.1);
     setintakespd(-100);
     setintake2spd(-100);
@@ -550,13 +550,15 @@ void autonomous()
     jeminmecht();
 
     //pros::delay(1000);
-    pidGyro(55.5, 272, 4, 100, 1, 25, 10);
-    // jeminloadert();
+    pidGyro(57.5, 272, 4, 100, 1, 25, 3);
+    //jeminloadert();
     //pros::delay(1000);
     //pidMoveold(6, 2, 1,80);
 
+    //pidGyro(5, 272, 3, 70, 1, 25);
     pidTurnAbs(220, 1, 0.5);
-    pidMoveold(-26, 0.5, 1, 100);
+    //jeminloadert();
+    pidMoveold(-20.3, 0.5, 1, 100);
 
 
     setintakespd(100);
@@ -572,7 +574,7 @@ void autonomous()
     
     //jeminwingt();
 
-    pidMoveold(52, 0.5, 3, 100);
+    pidMoveold(49.4, 0.5, 3, 100);
     // pros::delay(100);
     //jeminloadert();
     pidTurnAbs(178, 1, 0.6);
@@ -591,7 +593,125 @@ void autonomous()
     moveForSec(40, false, 0.3); 
     //*/
 
-    //moveForSec(30, 1, 0.3);
+    //moveForSec(30, 1, 0.3);'
+
+
+
+
+    //RIGHT 3+4
+    /*imu.set_heading(270);
+    jemintaket();
+    jeminwingt();
+
+    setintakespd(-100);
+    setintake2spd(-100);
+    pidWallMove(27.5, 0.5, 90, 2);
+    jeminloadert();
+    pidTurnAbs(180, 1, 0.6);
+    //pros::delay(200);
+
+    setintakespd(-100);
+    setintake2spd(-100);
+    pidMoveold(10, 1, 1, 70);
+    moveForSec(65, true, 0.6);
+    
+    moveForSec(100, false, 0.4);
+    pidTurnRel(2.5, 1, 0.2, 70);
+    // pidTurnAbs(190, 1, 0.5);
+    moveForSec(100, false, 0.3);
+    jeminmecht();
+    //moveForSec(40, false, 0.1);
+    setintakespd(-100);
+    setintake2spd(-100);
+    //moveForSec(10, false, 0.3);
+    jeminloadert();
+    moveForSec(40, false, 0.3);
+    pros::delay(650);
+    jeminmecht();
+
+    
+    setintake2spd(-100);
+    setintakespddiff(-100, 0);
+
+    pidMoveold(7, 1, 1, 100);
+    // pidTurnRel(96, 1, 1.2, 100);
+    pidGyro(36, 294, 3, 80, 1, 25, 10);
+    pidGyro(22, 315, 2, 80, 1, 25, 10);
+    setintake2spd(0);
+
+
+    jemintaket();
+    setintakespd(100);
+    pros::delay(700);
+    setintakespd(0);
+    jemintaket();
+
+
+    pidGyro(-26.8, 270, 3, 70, 1, 25, 5, 1000);
+    pidGyro(-4, 13, 1.5, 70, 1, 25, 1, 100);
+
+    jeminwingt();
+    pros::delay(200);
+    moveForSec(70, true, 0.25);
+    pidTurnRel(-40, 1, 1, 100);*/
+
+
+    //LEFT 3+4
+    imu.set_heading(90);
+    jemintaket();
+    jeminwingt();
+
+    setintakespd(-100);
+    setintake2spd(-100);
+    pidWallMove(27.5, 0.5, 270, 2);
+    jeminloadert();
+    pidTurnAbs(180, 1, 0.6);
+    //pros::delay(200);
+
+    setintakespd(-100);
+    setintake2spd(-100);
+    pidMoveold(9.2, 1, 1, 70);
+    moveForSec(50, true, 0.10);
+    
+    moveForSec(100, false, 0.4);
+    pidTurnRel(1, 0.5, 0.2, 70);
+    // pidTurnAbs(190, 1, 0.5);
+    moveForSec(100, false, 0.3);
+    jeminmecht();
+    //moveForSec(40, false, 0.1);
+    setintakespd(-100);
+    setintake2spd(-100);
+    //moveForSec(10, false, 0.3);
+    jeminloadert();
+    moveForSec(40, false, 0.3);
+    pros::delay(530);
+    jeminmecht();
+
+    
+    setintake2spd(-100);
+    setintakespddiff(-100, -40);
+
+    pidMoveold(9, 0.5, 1, 100);
+    // pidTurnRel(96, 1, 1.2, 100);
+    pidGyro(42, 60, 5, 50, 1, 25, 10);
+    pidTurnAbs(215, 1, 1, 80);
+    moveForSec(30, false, 0.7);
+    //setintake2spd(0);
+
+    setintakespd(-100);
+    setintake2spd(70);
+    pros::delay(800);
+    setintakespd(0);
+
+
+    pidGyro(28, 270, 2, 80, 1, 25, 5, 1000);
+    pidGyro(4, 167, 1.5, 70, 1, 25, 1, 100);
+
+    jeminwingt();
+    pros::delay(200);
+    moveForSec(70, false, 0.25);
+    pidTurnRel(40, 1, 1, 100);
+
 
 
 }
@@ -687,8 +807,14 @@ void opcontrol()
         }
         else if (master.get_digital(pros::E_CONTROLLER_DIGITAL_L1))
         {
-            setintakespd(-100);
-            setintake2spd(50);
+            if (jemintaketoggle == false){
+                setintakespd(-100);
+                setintake2spd(30);
+            }
+            else {
+                setintakespd(-100);
+                setintake2spd(50);
+            }
         }
         else if (master.get_digital(pros::E_CONTROLLER_DIGITAL_L2))
         {

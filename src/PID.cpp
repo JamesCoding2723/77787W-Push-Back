@@ -267,7 +267,7 @@ void pidswingAbs(float target, float rotate_tolocal, float timeout, bool side)
 }
 
 
-void pidGyro(double targetInches, double targetHeading, double timeout, double max, double E_TOL, double D_TOL, double _settle) {
+void pidGyro(double targetInches, double targetHeading, double timeout, double max, double E_TOL, double D_TOL, double _settle, float _turnscale) {
 
     pros::c::screen_print(pros::E_TEXT_MEDIUM, 5, "pid: %f, %f, %f, %f", 1,2,3,4);        
 
@@ -331,7 +331,7 @@ void pidGyro(double targetInches, double targetHeading, double timeout, double m
         double turnOutput = turnP + turnI + turnD;
 
         //outputs-----------------------------------------
-        double turnScale = 1.0 - std::min(fabs(turnError) / 15.0, 1.0);
+        double turnScale = 1.0 - std::min(fabs(turnError) / _turnscale, 1.0);
 
         driveOutput *= turnScale;
 

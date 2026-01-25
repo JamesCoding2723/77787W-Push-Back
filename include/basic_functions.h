@@ -79,3 +79,7 @@ double getwallpos(float wall_heading);
 void imu_display_task(void*);
 
 double getsidewallpos(float wall_heading);
+
+void setjeminparallel(float _time, bool _active);
+
+void jeminloaderd();

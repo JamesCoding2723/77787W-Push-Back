@@ -1,6 +1,7 @@
 #include "lemlib/chassis/chassis.hpp"
 #include "pros/adi.hpp"
 #include "pros/distance.h"
+#include "pros/misc.h"
 #include "pros/motors.h"
 #include "pros/optical.h"
 #include "pros/rtos.h"
@@ -42,6 +43,8 @@ void setintake2spd(float spd)
 {
     intake2spd = spd;
 }
+
+bool midgoal;
 
 void intake()
 {
@@ -204,6 +207,25 @@ void jeminloadert()
     // bool clamptoggle = false;
     jeminloadertoggle = !jeminloadertoggle;
     jeminloader.set_value(jeminloadertoggle);
+}
+
+void setjeminparallel(float _time, bool _active)
+{
+    float delay_time = _time;
+    bool delay_active = _active;
+}
+
+float delay_time;
+bool delay_active;
+
+void jeminloaderd()
+{
+    while(delay_active == true)
+    {
+        pros::delay(delay_time);
+        jeminloadertoggle = !jeminloadertoggle;
+        jeminloader.set_value(jeminloadertoggle);
+    }
 }
 
 bool jemintaketoggle = false;
