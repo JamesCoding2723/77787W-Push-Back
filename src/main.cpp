@@ -99,7 +99,7 @@ void autonomous()
 {   
 
     //AUTO SKILLS
-    /*imu.set_heading(180);
+    imu.set_heading(180);
     
     jemintaket();
     jeminwingt(); //FIRST HALF
@@ -657,7 +657,7 @@ void autonomous()
 
 
     //LEFT 3+4
-    imu.set_heading(90);
+    /*imu.set_heading(90);
     jemintaket();
     jeminwingt();
 
@@ -711,7 +711,7 @@ void autonomous()
     pros::delay(200);
     moveForSec(70, false, 0.25);
     pidTurnRel(40, 1, 1, 100);
-
+    //*/
 
 
 }
