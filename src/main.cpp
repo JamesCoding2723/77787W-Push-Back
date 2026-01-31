@@ -48,6 +48,7 @@ void initialize()
     pros::Task Intake2(intake2);
     pros::Task Walltask(imu_display_task);
     pros::Task matchload(jeminloaderd);
+    pros::Task ColorSort(color_sort);
     //pros::Task GPS(GPStracking);
 
     // pros::lcd::clear();
@@ -97,7 +98,7 @@ void competition_initialize()
  */
 void autonomous()
 {   
-
+    sort_on = false;
     //AUTO SKILLS
     /*imu.set_heading(180);
     
@@ -731,6 +732,10 @@ void autonomous()
  */
 void opcontrol()
 {
+    sort_on = true;
+    
+
+
     front_left_motor.set_brake_mode(pros::E_MOTOR_BRAKE_COAST);
     middle_left_motor.set_brake_mode(pros::E_MOTOR_BRAKE_COAST);
     back_left_motor.set_brake_mode(pros::E_MOTOR_BRAKE_COAST);

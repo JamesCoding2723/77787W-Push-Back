@@ -31,6 +31,8 @@ extern pros::Motor back_right_motor;   // back right motor 16
 
 extern pros::Rotation vertical_encoder;
 
+extern pros::Optical top_color_sensor;
+
 // left group
 extern pros::MotorGroup left_motor_group;
 // right group

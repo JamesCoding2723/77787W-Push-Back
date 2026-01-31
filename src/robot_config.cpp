@@ -33,7 +33,9 @@ pros::Motor front_right_motor(4, pros::E_MOTOR_GEAR_BLUE); // front right motor 
 pros::Motor middle_right_motor(2, pros::E_MOTOR_GEAR_BLUE); // middle right motor 17
 pros::Motor back_right_motor(-3, pros::E_MOTOR_GEAR_BLUE); // back right motor 16
 
-pros::Rotation vertical_encoder(11);
+pros::Rotation vertical_encoder(19);
+
+pros::Optical top_color_sensor(11); // 1 is temporary
 
 // left group
 pros::MotorGroup left_motor_group({front_left_motor, middle_left_motor, back_left_motor});

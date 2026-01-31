@@ -332,3 +332,29 @@ void imu_display_task(void*) {
     pros::delay(100);   // update ~10 times per second
   }
 }
+
+bool side = false; //false = red side; true = blue side
+bool sort_on = false;
+void color_sort() {
+    while (sort_on = true) {
+        pros::c::optical_rgb_s_t rgb = top_color_sensor.get_rgb();
+        if (!side && (rgb.red > 200 && rgb.red > rgb.green && rgb.red > rgb.blue)) {
+            pros::delay(100);
+            motor_sort();
+        } else if (side && (rgb.blue > 200 && rgb.blue > rgb.red && rgb.blue > rgb.green)) {
+            pros::delay(100);
+            motor_sort();
+        }
+        pros::delay(100);
+    }
+}
+
+void motor_sort() {
+    int currspeed = intakespd2;
+    int currspeed2 = intake2spd;
+    setintakespddiff(intakespd1, 85);
+    setintake2spd(60);
+    pros::delay(400);
+    setintakespddiff(intakespd1, currspeed);
+    setintake2spd(currspeed2);
+}

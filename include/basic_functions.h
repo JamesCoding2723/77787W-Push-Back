@@ -83,3 +83,9 @@ double getsidewallpos(float wall_heading);
 void setjeminparallel(float _time, bool _active);
 
 void jeminloaderd();
+
+extern bool side;
+extern bool sort_on;
+void color_sort();
+
+void motor_sort();
