@@ -657,7 +657,7 @@ void autonomous()
 
 
     //LEFT 3+4
-    /*imu.set_heading(90);
+    imu.set_heading(90);
     jemintaket();
     jeminwingt();
 
