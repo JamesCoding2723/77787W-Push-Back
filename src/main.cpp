@@ -97,6 +97,34 @@ void competition_initialize()
  */
 void autonomous()
 {   
+    //PARK CLEAR TEST
+    imu.set_heading(0);
+    jemintaket();
+    setintakespd(-100);
+    setintake2spd(-100);
+    pidMoveold(19, 1, 2 ,70);
+    pros::delay(100);
+    //jeminmecht();
+    pidTurnRel(-35, 1, 2);
+    pros::delay(100);
+    //setintakespd(100);
+    pidGyro(35, 285, 2, 70, 1, 25, 15, 10000);
+    pros::delay(1000);
+    moveForSec(70, true, 1.0);
+    jeminloadert();
+    moveForSec(70, true, 0.7);
+    //pros::delay(1000);
+    moveForSec(30, false, 0.8);
+    pidGyro(38, 225, 3, 70, 1, 25, 15, 100);
+    pidTurnAbs(0, 10, 1);
+    //pros::delay(1000);
+    pidGyro(-25, 0, 2.4);
+    jeminmecht();
+    setintakespd(-100);
+    setintake2spd(-100);
+
+
+
 
     //AUTO SKILLS
     /*imu.set_heading(180);
@@ -598,7 +626,7 @@ void autonomous()
 
 
     //RIGHT 3+4
-    imu.set_heading(270);
+    /*imu.set_heading(270);
     jemintaket();
     jeminwingt();
 
@@ -657,7 +685,7 @@ void autonomous()
 
 
     //LEFT 3+4
-    imu.set_heading(90);
+    /*imu.set_heading(90);
     jemintaket();
     jeminwingt();
 
