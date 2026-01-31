@@ -1,5 +1,4 @@
 #include <cmath>
-#include <iostream>
 #include "pros/screen.h"
 #include "robot_config.h"
 #include "basic_functions.h"

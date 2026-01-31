@@ -1,22 +1,17 @@
-#include "lemlib/chassis/chassis.hpp"
 #include "pros/adi.hpp"
-#include "pros/distance.h"
-#include "pros/distance.hpp"
 #include "pros/llemu.hpp"
 #include "pros/misc.h"
 #include "pros/misc.hpp"
 #include "pros/motors.h"
-#include "pros/optical.h"
 #include "pros/rtos.h"
 #include "pros/rtos.hpp"
-#include "pros/screen.h"
 #include <cmath>
 #include "robot_config.h"
 #include "basic_functions.h"
 #include "PID.h"
 #include "main.h"
 #include "odom.h"
-#include <iostream>
+
 
 #pragma region
 

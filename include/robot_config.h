@@ -1,11 +1,7 @@
 #include "lemlib/chassis/chassis.hpp"
-#include "lemlib/chassis/trackingWheel.hpp"
 #include "pros/adi.hpp"
 #include "pros/distance.hpp"
-#include "pros/misc.h"
 #include "pros/misc.hpp"
-#include "pros/motors.h"
-#include "pros/optical.hpp"
 #include <cmath>
 
 extern pros::Motor rightintakem1;

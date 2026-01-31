@@ -1,13 +1,7 @@
-#include "lemlib/chassis/chassis.hpp"
 #include "pros/adi.hpp"
-#include "pros/distance.h"
-#include "pros/misc.h"
 #include "pros/motors.h"
-#include "pros/optical.h"
-#include "pros/rtos.h"
 #include "pros/rtos.hpp"
 #include <cmath>
-#include "pros/vision.h"
 #include "robot_config.h"
 #include "basic_functions.h"
 #include "pros/screen.h"
