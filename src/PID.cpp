@@ -662,3 +662,62 @@ void pidSideWall(double targetInches, double targetwall, double _wall, double ti
         pros::delay(20);
     }
 }
+
+
+void pidmove(float target_inch, float settletime_TOL, float timeout, float max, float E_TOL, float D_TOL)
+{ // MOVE MOVE MOVE
+
+
+  float lastError;
+  float kp = 5.0; // for new robot
+  float kd = 0.2; // for new robot
+  float ki = 0.0; // for new roobot
+  float s_error = 0;
+  float spd;
+
+  front_right_motor.set_encoder_units(pros::E_MOTOR_ENCODER_DEGREES);
+  front_left_motor.set_encoder_units(pros::E_MOTOR_ENCODER_DEGREES);
+  front_left_motor.set_zero_position(0);
+  front_right_motor.set_zero_position(0);
+  
+  float settletime = 0;
+  int repeat_limit = 2000000;
+  int repeat = 0;
+
+  while (true)
+  {
+    float error = target_inch - (((front_right_motor.get_position() + front_left_motor.get_position()) / 2) * 0.02127120025);
+    float P = error * kp;
+    float D = (error - lastError) * kd;
+    s_error += error;
+    s_error = fmin(s_error, 100);
+    s_error = fmax(s_error, -100);
+    // Brain.Screen.printAt(10,20,"error=%f",error);
+    if (error * lastError < 0)
+      s_error = 0;
+
+    if (fabs(error) < E_TOL && spd < D_TOL)
+    {
+      settletime++;
+    }
+
+    if (repeat > 100 * timeout)
+    {
+      stop();
+      break;
+    }
+
+    if (settletime > settletime_TOL)
+    {
+      stop();
+      break;
+    }
+
+    float I = ki * s_error;
+    lastError = error;
+    spd = (P + D + I);
+    move(std::clamp(spd, -max, max));
+    repeat++;
+    pros::c::delay(15);
+  }
+}
