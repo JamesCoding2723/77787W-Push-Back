@@ -1,10 +1,7 @@
-#include "lemlib/chassis/chassis.hpp"
+
 #include "pros/adi.hpp"
-#include "pros/distance.h"
-#include "pros/misc.h"
 #include "pros/motors.h"
 #include "pros/optical.h"
-#include "pros/rtos.h"
 #include "pros/rtos.hpp"
 #include <cmath>
 #include "pros/vision.h"
@@ -50,7 +47,7 @@ void intake()
 {
     while (true)
     {
-        if (intakespd1 == 0)
+        if (intakespd1 == 0 && is_sorting == false)
         {
             rightintakem1.brake();  
         } 
@@ -58,7 +55,7 @@ void intake()
         {
             rightintakem1.move((int)1.27 * intakespd1);
         }
-        if (intakespd2 == 0)
+        if (intakespd2 == 0 && is_sorting == false)
         {
             rightintakem2.brake();  
         }
@@ -72,15 +69,15 @@ void intake()
 void intake2() {
     while (true)
     {
-        if (intake2spd == 0)
+        if (intake2spd == 0 && is_sorting == false)
         {
             leftintakem.brake();
         }
         else
         {
 
-            if (jemintaketoggle == false && sign(intakespd1) > 0) {
-                pros::delay(500);
+            if (jemintaketoggle == false) {
+                //pros::delay(500);
                 leftintakem.move((int)1.27 * intake2spd);
                
             }
@@ -327,34 +324,46 @@ float rad2deg(float _input)
 void imu_display_task(void*) {
   while (true) {
         pros::c::screen_print(pros::E_TEXT_MEDIUM, 1, "wallpos: %f, %f, %f", wallpos, sidewallpos, imu.get_heading());
-
+        pros::c::screen_print(pros::E_TEXT_MEDIUM, 2, "color sort: %f, %f, %f", top_color_sensor.get_rgb().red, top_color_sensor.get_rgb().green, top_color_sensor.get_rgb().blue);
 
     pros::delay(100);   // update ~10 times per second
   }
 }
 
-bool side = false; //false = red side; true = blue side
+bool side = false; //false = red out; true = blue out
 bool sort_on = false;
+bool is_sorting = false;
+
 void color_sort() {
-    while (sort_on = true) {
+    while (true) {
         pros::c::optical_rgb_s_t rgb = top_color_sensor.get_rgb();
         if (!side && (rgb.red > 200 && rgb.red > rgb.green && rgb.red > rgb.blue)) {
-            pros::delay(100);
-            motor_sort();
-        } else if (side && (rgb.blue > 200 && rgb.blue > rgb.red && rgb.blue > rgb.green)) {
-            pros::delay(100);
-            motor_sort();
+            is_sorting = true;
+            setintakespddiff(-85, -85);
+            setintake2spd(60);
+            pros::delay(1000);
+            setintakespddiff(intakespd1, intakespd2);
+            setintake2spd(intake2spd);
+            is_sorting = false;
+        } 
+        else if (side && (rgb.blue > 200 && rgb.blue > rgb.red && rgb.blue > rgb.green)) {
+            is_sorting = true;
+            setintakespddiff(-85, -85);
+            setintake2spd(60);
+            pros::delay(1000);
+            setintakespddiff(intakespd1, intakespd2);
+            setintake2spd(intake2spd);
+            is_sorting = false;
         }
-        pros::delay(100);
+        pros::delay(20);
     }
 }
 
 void motor_sort() {
+    pros::c::screen_print(pros::E_TEXT_MEDIUM, 3, "block out");
     int currspeed = intakespd2;
     int currspeed2 = intake2spd;
-    setintakespddiff(intakespd1, 85);
+    setintakespddiff(-85, -85);
     setintake2spd(60);
-    pros::delay(400);
-    setintakespddiff(intakespd1, currspeed);
-    setintake2spd(currspeed2);
+    pros::delay(500);
 }

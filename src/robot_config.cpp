@@ -20,8 +20,8 @@ pros::Motor leftintakem(-8, pros::E_MOTOR_GEAR_BLUE);
 pros::ADIDigitalOut jeminmech('A', false);
 pros::ADIDigitalOut jeminchop('E', false);
 pros::ADIDigitalOut jemintake('C', false);
-pros::ADIDigitalOut jeminwing('D', false);
-pros::ADIDigitalOut jeminloader('B', false);
+pros::ADIDigitalOut jeminloader('D', false);
+pros::ADIDigitalOut jeminwing('B', false);
 pros::ADIDigitalOut jeminpark('F', false);
 
 pros::Controller master(pros::E_CONTROLLER_MASTER);
@@ -35,7 +35,7 @@ pros::Motor back_right_motor(-3, pros::E_MOTOR_GEAR_BLUE); // back right motor 1
 
 pros::Rotation vertical_encoder(19);
 
-pros::Optical top_color_sensor(11); // 1 is temporary
+pros::Optical top_color_sensor(14); // 1 is temporary
 
 // left group
 pros::MotorGroup left_motor_group({front_left_motor, middle_left_motor, back_left_motor});

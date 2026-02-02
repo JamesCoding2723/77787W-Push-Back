@@ -1,22 +1,16 @@
-#include "lemlib/chassis/chassis.hpp"
 #include "pros/adi.hpp"
-#include "pros/distance.h"
-#include "pros/distance.hpp"
 #include "pros/llemu.hpp"
 #include "pros/misc.h"
 #include "pros/misc.hpp"
 #include "pros/motors.h"
-#include "pros/optical.h"
 #include "pros/rtos.h"
-#include "pros/rtos.hpp"
-#include "pros/screen.h"
 #include <cmath>
 #include "robot_config.h"
 #include "basic_functions.h"
 #include "PID.h"
 #include "main.h"
 #include "odom.h"
-#include <iostream>
+
 
 #pragma region
 
@@ -48,7 +42,8 @@ void initialize()
     pros::Task Intake2(intake2);
     pros::Task Walltask(imu_display_task);
     pros::Task matchload(jeminloaderd);
-    pros::Task ColorSort(color_sort);
+    //pros::Task ColorSort(color_sort);
+    top_color_sensor.set_led_pwm(100);
     //pros::Task GPS(GPStracking);
 
     // pros::lcd::clear();
@@ -98,7 +93,8 @@ void competition_initialize()
  */
 void autonomous()
 {   
-    sort_on = false;
+    sort_on = true;
+
     //AUTO SKILLS
     /*imu.set_heading(180);
     
@@ -733,6 +729,7 @@ void autonomous()
 void opcontrol()
 {
     sort_on = true;
+    side = false; //false is red, true is blue
     
 
 
@@ -747,6 +744,8 @@ void opcontrol()
 
     while (true)
     {
+        
+
         // get left y and right x positions
         int rightX = abs(master.get_analog(pros::E_CONTROLLER_ANALOG_RIGHT_X)) < Joystick_LowerDeadzone ? 0: master.get_analog(pros::E_CONTROLLER_ANALOG_RIGHT_X);
         int leftY = abs(master.get_analog(pros::E_CONTROLLER_ANALOG_LEFT_Y)) < Joystick_LowerDeadzone ? 0: master.get_analog(pros::E_CONTROLLER_ANALOG_LEFT_Y);
@@ -757,6 +756,8 @@ void opcontrol()
 
         /*int Ch1 = abbs(C1) < Joystick_LowerDeadzone ? 0 : C1;
         int Ch3 = abbs(C3) < Joystick_LowerDeadzone ? 0 : C3;
+
+
 
 
         moveLeft(Ch3 + 1 * Ch1);
@@ -784,8 +785,8 @@ void opcontrol()
         }
 
         if(master.get_digital_new_press(pros::E_CONTROLLER_DIGITAL_X)) {
-            jeminchoptoggle = !jeminchoptoggle;
-            jeminchop.set_value(jeminchoptoggle);
+            sort_on = true;
+
         }
 
         /*if(master.get_digital_new_press(pros::E_CONTROLLER_DIGITAL_LEFT)) {
@@ -794,12 +795,12 @@ void opcontrol()
         }*/
         
 
-        if (master.get_digital(pros::E_CONTROLLER_DIGITAL_R1))
+        if (master.get_digital(pros::E_CONTROLLER_DIGITAL_R1) && is_sorting == false)
         {
             setintakespd(-100);
             setintake2spd(-100);
         }
-        else if (master.get_digital(pros::E_CONTROLLER_DIGITAL_R2))
+        else if (master.get_digital(pros::E_CONTROLLER_DIGITAL_R2) && is_sorting == false)
         {
             if (jemintaketoggle == false){
                 setintakespd(55);
@@ -810,13 +811,13 @@ void opcontrol()
                 setintake2spd(100);
             }
         }
-        else if (master.get_digital(pros::E_CONTROLLER_DIGITAL_L1))
+        else if (master.get_digital(pros::E_CONTROLLER_DIGITAL_L1) && is_sorting == false)
         {
                 setintakespd(-100);
                 setintake2spd(50);
         }
 
-        else if (master.get_digital(pros::E_CONTROLLER_DIGITAL_L2))
+        else if (master.get_digital(pros::E_CONTROLLER_DIGITAL_L2) && is_sorting == false)
         {
             setintakespd(100);
             //setintake2spd(-100);

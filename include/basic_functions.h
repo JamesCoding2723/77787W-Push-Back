@@ -85,7 +85,11 @@ void setjeminparallel(float _time, bool _active);
 void jeminloaderd();
 
 extern bool side;
+
 extern bool sort_on;
+
+extern bool is_sorting;
+
 void color_sort();
 
 void motor_sort();
