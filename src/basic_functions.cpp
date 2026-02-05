@@ -359,11 +359,28 @@ void color_sort() {
     }
 }
 
-void motor_sort() {
-    pros::c::screen_print(pros::E_TEXT_MEDIUM, 3, "block out");
-    int currspeed = intakespd2;
-    int currspeed2 = intake2spd;
-    setintakespddiff(-85, -85);
-    setintake2spd(60);
-    pros::delay(500);
+bool storing = true;
+void store() {
+    while (true) {
+        if (storing) {
+            jeminmech.set_value(false);
+            setintakespd(-100);
+            setintake2spd(0);
+            if (mid_color_sensor.get_proximity() > 150) {
+                leftintakem.move_voltage(2000); // hold block
+            }
+        } else {
+            // leftintakem.move_voltage(0);
+            setintakespddiff(intakespd1, intakespd2);
+            setintake2spd(intake2spd);
+        }
+        pros::delay(20);
+    }
+}
+
+void score() {
+    storing = false;
+    jeminmech.set_value(true);
+    setintakespd(-100);
+    setintake2spd(-100);
 }

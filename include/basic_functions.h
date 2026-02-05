@@ -93,3 +93,8 @@ extern bool is_sorting;
 void color_sort();
 
 void motor_sort();
+
+extern bool storing;
+
+void store();
+void score();

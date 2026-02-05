@@ -43,6 +43,7 @@ void initialize()
     pros::Task Walltask(imu_display_task);
     pros::Task matchload(jeminloaderd);
     //pros::Task ColorSort(color_sort);
+    pros::Task Store(store);
     top_color_sensor.set_led_pwm(100);
     //pros::Task GPS(GPStracking);
 
@@ -797,8 +798,9 @@ void opcontrol()
 
         if (master.get_digital(pros::E_CONTROLLER_DIGITAL_R1) && is_sorting == false)
         {
-            setintakespd(-100);
-            setintake2spd(-100);
+            // setintakespd(-100);
+            // setintake2spd(-100);
+            score();
         }
         else if (master.get_digital(pros::E_CONTROLLER_DIGITAL_R2) && is_sorting == false)
         {
@@ -819,8 +821,9 @@ void opcontrol()
 
         else if (master.get_digital(pros::E_CONTROLLER_DIGITAL_L2) && is_sorting == false)
         {
-            setintakespd(100);
+            // setintakespd(100);
             //setintake2spd(-100);
+            storing = true;
         }
         else 
         {
