@@ -42,7 +42,7 @@ void initialize()
     pros::Task Intake2(intake2);
     pros::Task Walltask(imu_display_task);
     pros::Task matchload(jeminloaderd);
-    //pros::Task ColorSort(color_sort);
+    pros::Task ColorSort(color_sort);
     pros::Task Store(store);
     top_color_sensor.set_led_pwm(100);
     //pros::Task GPS(GPStracking);
@@ -743,6 +743,10 @@ void opcontrol()
 
     const float Joystick_LowerDeadzone = 7;
 
+    storing = false;
+    setintakespd(0);
+    setintake2spd(0);
+
     while (true)
     {
         
@@ -785,10 +789,10 @@ void opcontrol()
             jeminwing.set_value(jeminwingtoggle);
         }
 
-        if(master.get_digital_new_press(pros::E_CONTROLLER_DIGITAL_X)) {
-            sort_on = true;
+        // if(master.get_digital_new_press(pros::E_CONTROLLER_DIGITAL_X)) {
+        //     sort_on = true;
 
-        }
+        // }
 
         /*if(master.get_digital_new_press(pros::E_CONTROLLER_DIGITAL_LEFT)) {
             jeminparktoggle = !jeminparktoggle;
@@ -800,18 +804,21 @@ void opcontrol()
         {
             // setintakespd(-100);
             // setintake2spd(-100);
+            sort_on = true;
             score();
         }
         else if (master.get_digital(pros::E_CONTROLLER_DIGITAL_R2) && is_sorting == false)
         {
-            if (jemintaketoggle == false){
-                setintakespd(55);
-                setintake2spd(55);
-            }
-            else {
-                setintakespd(100);
-                setintake2spd(100);
-            }
+            // if (jemintaketoggle == false){
+            //     setintakespd(55);
+            //     setintake2spd(55);
+            // }
+            // else {
+            //     setintakespd(100);
+            //     setintake2spd(100);
+            // }
+            sort_on = false;
+            storing = true;
         }
         else if (master.get_digital(pros::E_CONTROLLER_DIGITAL_L1) && is_sorting == false)
         {
@@ -821,16 +828,19 @@ void opcontrol()
 
         else if (master.get_digital(pros::E_CONTROLLER_DIGITAL_L2) && is_sorting == false)
         {
-            // setintakespd(100);
+            setintakespd(100);
             //setintake2spd(-100);
-            storing = true;
+            // storing = true;
         }
         else 
         {
-            setintakespd(0);
-            setintake2spd(0);
+            if (!is_sorting) {
+                setintakespd(0);
+                setintake2spd(0);
+                jeminmech.set_value(false);
+            }
+            storing = false;
         }
-
 
         pros::c::delay(25);
     }

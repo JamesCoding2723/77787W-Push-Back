@@ -336,43 +336,47 @@ bool is_sorting = false;
 
 void color_sort() {
     while (true) {
-        pros::c::optical_rgb_s_t rgb = top_color_sensor.get_rgb();
-        if (!side && (rgb.red > 200 && rgb.red > rgb.green && rgb.red > rgb.blue)) {
-            is_sorting = true;
-            setintakespddiff(-85, -85);
-            setintake2spd(60);
-            pros::delay(1000);
-            setintakespddiff(intakespd1, intakespd2);
-            setintake2spd(intake2spd);
-            is_sorting = false;
-        } 
-        else if (side && (rgb.blue > 200 && rgb.blue > rgb.red && rgb.blue > rgb.green)) {
-            is_sorting = true;
-            setintakespddiff(-85, -85);
-            setintake2spd(60);
-            pros::delay(1000);
-            setintakespddiff(intakespd1, intakespd2);
-            setintake2spd(intake2spd);
-            is_sorting = false;
+        if (sort_on) {
+            pros::c::optical_rgb_s_t rgb = top_color_sensor.get_rgb();
+            if (!side && (rgb.red > 200 && rgb.red > rgb.green && rgb.red > rgb.blue)) {
+                jeminmech.set_value(true);
+                is_sorting = true;
+                setintakespddiff(-100, -100);
+                setintake2spd(100);
+                pros::delay(300);
+                setintakespddiff(intakespd1, intakespd2);
+                setintake2spd(intake2spd);
+                is_sorting = false;
+            } 
+            else if (side && (rgb.blue > 200 && rgb.blue > rgb.red && rgb.blue > rgb.green)) {
+                jeminmech.set_value(true);
+                is_sorting = true;
+                setintakespddiff(-100, -100);
+                setintake2spd(100);
+                pros::delay(300);
+                setintakespddiff(intakespd1, intakespd2);
+                setintake2spd(intake2spd);
+                is_sorting = false;
+            }
         }
-        pros::delay(20);
+        pros::delay(10);
     }
 }
 
 bool storing = true;
+bool prev = false;
 void store() {
     while (true) {
-        if (storing) {
+        if (storing && !prev) {
             jeminmech.set_value(false);
             setintakespd(-100);
-            setintake2spd(0);
-            if (mid_color_sensor.get_proximity() > 150) {
-                leftintakem.move_voltage(2000); // hold block
-            }
+            // if (mid_color_sensor.get_proximity() > 150) { 
+                setintake2spd(-10);// hold block
+            // }
+            prev = true;
         } else {
             // leftintakem.move_voltage(0);
-            setintakespddiff(intakespd1, intakespd2);
-            setintake2spd(intake2spd);
+            if (!storing) prev = false;
         }
         pros::delay(20);
     }
