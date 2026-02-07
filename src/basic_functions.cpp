@@ -4,7 +4,6 @@
 #include "pros/optical.h"
 #include "pros/rtos.hpp"
 #include <cmath>
-#include "pros/vision.h"
 #include "robot_config.h"
 #include "basic_functions.h"
 #include "pros/screen.h"
@@ -287,19 +286,19 @@ double getwallpos(float wall_heading)
         return wallpos = ((distance_sensor.get())/25.5 + d0) * cos(deg2rad(theta));
 }
 
-float ds0 = 5.5;
-double sidewallpos;
+float df0 = 3.5;
+double frontwallpos;
 
-double getsidewallpos(float wall_heading)
+double getfrontwallpos(float wall_heading)
 {
     while(true)
     {
         double theta = imu.get_heading();
         theta = fabs(theta-360);
 
-        theta += 90;
-
         theta -= wall_heading;
+
+        theta += 180;
 
         if (theta > 180) theta -= 360;
         if (theta < -180) theta += 360;
@@ -307,7 +306,7 @@ double getsidewallpos(float wall_heading)
         //if (fabs(theta) > 5) theta = fabs(theta) - 5;
         //else theta = 0;
 
-        return sidewallpos = ((sidedistance.get())/25.5 + ds0) * cos(deg2rad(theta));
+        return frontwallpos = ((frontdistance.get())/25.5 + df0) * cos(deg2rad(theta));
     }
 }
 
@@ -323,7 +322,7 @@ float rad2deg(float _input)
 
 void imu_display_task(void*) {
   while (true) {
-        pros::c::screen_print(pros::E_TEXT_MEDIUM, 1, "wallpos: %f, %f, %f", wallpos, sidewallpos, imu.get_heading());
+        pros::c::screen_print(pros::E_TEXT_MEDIUM, 1, "wallpos: %f, %f, %f", wallpos, frontwallpos, imu.get_heading());
         pros::c::screen_print(pros::E_TEXT_MEDIUM, 2, "color sort: %f, %f, %f", top_color_sensor.get_rgb().red, top_color_sensor.get_rgb().green, top_color_sensor.get_rgb().blue);
 
     pros::delay(100);   // update ~10 times per second

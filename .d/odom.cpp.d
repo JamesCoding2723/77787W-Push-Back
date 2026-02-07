@@ -7,9 +7,9 @@ bin/odom.cpp.o: src/odom.cpp include/pros/screen.h include/pros/colors.h \
  include/pros/rotation.h include/lemlib/pose.hpp include/lemlib/pid.hpp \
  include/lemlib/exitcondition.hpp include/lemlib/driveCurve.hpp \
  include/pros/adi.hpp include/pros/distance.hpp include/pros/distance.h \
- include/pros/misc.h include/pros/misc.hpp include/pros/misc.h \
- include/pros/motors.h include/pros/optical.hpp include/pros/optical.h \
- include/pros/error.h include/basic_functions.h include/PID.h
+ include/pros/misc.hpp include/pros/misc.h include/pros/optical.hpp \
+ include/pros/optical.h include/pros/error.h include/basic_functions.h \
+ include/PID.h
 include/pros/screen.h:
 include/pros/colors.h:
 include/robot_config.h:
@@ -33,10 +33,8 @@ include/lemlib/driveCurve.hpp:
 include/pros/adi.hpp:
 include/pros/distance.hpp:
 include/pros/distance.h:
-include/pros/misc.h:
 include/pros/misc.hpp:
 include/pros/misc.h:
-include/pros/motors.h:
 include/pros/optical.hpp:
 include/pros/optical.h:
 include/pros/error.h:

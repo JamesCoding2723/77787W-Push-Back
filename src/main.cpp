@@ -51,9 +51,7 @@ void initialize()
     // pros::lcd::print(5, "IUESHIUSEFIHUWER");
 
     //master.clear();
-    pros::delay(100);
-    master.print(5, 5, "RED_SAWP");
-
+  
    
 
 #if 0
@@ -94,16 +92,18 @@ void competition_initialize()
  */
 void autonomous()
 {   
-    sort_on = true;
+
+    setintake2spd(0);
+    setintakespd(0);
 
     //AUTO SKILLS
-    /*imu.set_heading(180);
+    imu.set_heading(180);
     
     jemintaket();
     jeminwingt(); //FIRST HALF
 
     setintakespd(-100);
-    setintake2spd(-100);
+    setintake2spd(-10);
     pros::delay(1200);
     moveForSec(60, true, 0.5);
     moveForSec(60, false, 0.1);
@@ -115,29 +115,29 @@ void autonomous()
     setintake2spd(0);
     moveForSec(40, false, 0.2);
     moveForSec(60, false, 0.8);
-    pros::delay(300);
-    moveForSec(25, true, 0.6);
-    imu.set_heading(180);
+    setintakespd(0);
+    setintake2spd(0);
 
-    //pros::delay(200); //
+    //pros::delay(2000); //
     //jemintaket();
 
-    pidMoveold(-26, 1, 1);
-    pros::delay(200);
-    pidTurnAbs(90, 1, 1);
-    //pros::delay(300);
+    pidFrontWallGyro(26, 180, 0, 0.7);
+    //pros::delay(2000);
+    pidTurnAbs(45, 10, 1);
+    //pros::delay(2000);
     setintakespddiff(-100, 0);
-    pidMoveold(30, 0.5, 3);
-    pros::delay(200);
+    pidGyro(27, 45, 2);
+    //pros::delay(2000);
     
     //setintakespd(00);
     //setintake2spd(00);
-    pidTurnAbs(315, 1, 1);
+    pidTurnAbs(330, 10, 1);
     //pros::delay(300);
 
 
-    pidMoveold(26, 0.5, 1.25);
-    //moveForSec(30, false, 0.1);
+    pidGyro(14, 320, 1.25, 70, 1, 25, 15, 10000);
+    //pros::delay(1000);
+    moveForSec(30, true, 0.3);
 
     jemintaket();
     setintakespd(90);
@@ -147,44 +147,46 @@ void autonomous()
     setintakespd(54);
     pros::delay(3500);
     //jeminwingt();
+
+    //pros::delay(1000);
     
     //pidMoveold(-30, 1, 3);
     //pidTurnRel(-10, 1, 1);
-    pidwallGyro(24, 310, 90, 3);
+    pidwallGyro(24.5, 310, 90, 3);
     //pros::delay(200);
 
     jeminloadert();
     jemintaket();
-    pidTurnAbs(180, 1, 1.2);
+    pidTurnAbs(182, 1, 2);
 
 
 
     //pros::delay(2000);
 
     setintakespd(-100);
-    setintake2spd(-100);
-    pidMoveold(9, 1, 1);
-    moveForSec(55, true, 0.8);
+    setintake2spd(-10);
+    pidGyro(19, 180, 1);
+    moveForSec(40, true, 0.5);
     moveForSec(10, true, 0.9);
 
     //DONE MATCHLOAD
 
-    pidMoveold(-3, 0.5, 2, 50);
+    pidMoveold(-5, 0.5, 2, 50);
 
     jeminloadert();
-    pidTurnRel(-122, 2, 3, 60);
+    pidTurnRel(-120, 2, 3, 60);
     //pros::delay(200);
     setintakespddiff(-100, 0);
     setintake2spd(0);
 
     //pidTurnRel(-42, 1, 2);
     //pros::delay(400);
-    pidMoveold(96, 1, 7, 80);
+    pidGyro(96, 0, 5, 75, 1, 25, 10, 70);
     //pros::delay(200);
     
-    pidTurnRel(-70, 2, 2, 70);
-    pidWallMove(22.5, 0.5, 90, 3);
-    pidTurnAbs(10, 1, 1);
+    pidTurnAbs(270, 1, 1);
+    pidWallMove(24.5, 0.5, 90, 3);
+    pidTurnAbs(5, 1, 1);
     //pros::delay(1000); //ALIGNED
 
     // pidTurnRel(-40, 1, 2);
@@ -193,19 +195,21 @@ void autonomous()
     // pros::delay(300);
 
     
-    moveForSec(60, false, 0.5);
+    moveForSec(60, false, 0.6);
     setintakespd(-100);
     setintake2spd(-100);
     jeminmecht();
     jeminloadert();
 
    //jeminmecht();
-    pros::delay(1700); //FIRST SCORE DONE
+    moveForSec(30, false, 1.7); //FIRST SCORE DONE
     imu.set_heading(0);
 
+    setintakespd(-100);
+    setintake2spd(-10);
     pidGyro(34, -4, 2);
     jeminmecht();
-    moveForSec(30, true, 1.4);
+    moveForSec(40, true, 1.7);
     setintake2spd(0);
     setintakespd(0);
     pidGyro(-40, 8, 2);
@@ -214,7 +218,7 @@ void autonomous()
     jeminmecht(); 
 
 
-    pros::delay(1700); //SECOND SCORE DONE
+    moveForSec(30, false, 1.7); //SECOND SCORE DONE
 
     jeminloadert();
     pidMoveold(7, 0.5, 2, 70); 
@@ -231,9 +235,9 @@ void autonomous()
     pros::delay(300);
     pidTurnAbs(0, 1, 1);
     setintakespd(-100);
-    setintake2spd(-100);
+    setintake2spd(-10);
     //pidTurnRel(3, 1, 1);
-    pidMoveold(16, 1, 1, 70);
+    pidMoveold(19, 1, 1, 70);
     //jeminmecht();
     moveForSec(60, true, 0.5);
     moveForSec(6.7, true, 0.5);
@@ -242,7 +246,7 @@ void autonomous()
 
 
 
-    pidMoveold(-3.5, 0.5, 2, 50);
+    pidMoveold(-5, 0.5, 2, 50);
     jeminloadert();
     pidTurnRel(-120, 2, 3, 60);
  
@@ -250,12 +254,12 @@ void autonomous()
     setintake2spd(0);
 
 
-    pidMoveold(97, 1, 4, 80);
+    pidGyro(96, 180, 5, 75, 1, 25, 10, 70);
     //pros::delay(200);
     
-    pidTurnRel(-70, 1, 2);
-    pidWallMove(23, 0.5, 270, 3);
-    pidTurnAbs(188, 1, 1);
+    pidTurnAbs(90, 1, 2);
+    pidWallMove(24, 0.5, 270, 3);
+    pidTurnAbs(185, 1, 1);
     //pros::delay(200); //ALIGNED
 
     setintakespd(-100);
@@ -268,7 +272,7 @@ void autonomous()
 
     jeminloadert();
     jeminmecht();
-    pros::delay(1700); //THIRD SCORE DONE
+    moveForSec(30, false, 1.7); //THIRD SCORE DONE
     imu.set_heading(180);
 
 
@@ -276,10 +280,11 @@ void autonomous()
    //pidswingRel(-4, 1, 1, false);
     //pros::delay(500);
 
-    //pidTurnRel(-3, 1, 1);
+    setintakespd(-100);
+    setintake2spd(-10);
     pidGyro(34, 172, 2);
     jeminmecht();
-    moveForSec(30, true, 1.4);
+    moveForSec(40, true, 1.7);
     setintake2spd(0);
     setintakespd(0);
     pidGyro(-40, 183, 2);
@@ -287,8 +292,7 @@ void autonomous()
     setintakespd(-100);
     setintake2spd(-100);
     jeminmecht(); 
-    pros::delay(1900);
-    //jeminmecht(); //FOURTH SCORE DONE
+    moveForSec(30, false, 1.8); //FOURTH SCORE DONE
     jeminloadert();
 
     setintakespd(100);
@@ -596,7 +600,7 @@ void autonomous()
 
 
     //RIGHT 3+4
-    imu.set_heading(270);
+    /*imu.set_heading(270);
     jemintaket();
     jeminwingt();
 
@@ -732,7 +736,10 @@ void autonomous()
  */
 void opcontrol()
 {
-    sort_on = true;
+    setintakespd(0);
+    setintake2spd(0);
+
+    sort_on = false;
     side = false; //false is red, true is blue
     
 
@@ -747,8 +754,7 @@ void opcontrol()
     const float Joystick_LowerDeadzone = 7;
 
     storing = false;
-    setintakespd(0);
-    setintake2spd(0);
+
 
     while (true)
     {
