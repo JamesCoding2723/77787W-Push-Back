@@ -333,9 +333,15 @@ void imu_display_task(void*) {
 bool side = false; //false = red out; true = blue out
 bool sort_on = false;
 bool is_sorting = false;
+bool lastsort = false;
 
 void color_sort() {
     while (true) {
+        if (lastsort) {
+            lastsort = false;
+            pros::delay(200);
+            continue;
+        }
         if (sort_on) {
             pros::c::optical_rgb_s_t rgb = top_color_sensor.get_rgb();
             if (!side && (rgb.red > 200 && rgb.red > rgb.green && rgb.red > rgb.blue)) {
@@ -343,20 +349,22 @@ void color_sort() {
                 is_sorting = true;
                 setintakespddiff(-100, -100);
                 setintake2spd(100);
-                pros::delay(300);
+                pros::delay(200);
                 setintakespddiff(intakespd1, intakespd2);
                 setintake2spd(intake2spd);
                 is_sorting = false;
+                lastsort = true;
             } 
             else if (side && (rgb.blue > 200 && rgb.blue > rgb.red && rgb.blue > rgb.green)) {
                 jeminmech.set_value(true);
                 is_sorting = true;
                 setintakespddiff(-100, -100);
-                setintake2spd(100);
-                pros::delay(300);
+                setintake2spd(100); 
+                pros::delay(200);
                 setintakespddiff(intakespd1, intakespd2);
                 setintake2spd(intake2spd);
                 is_sorting = false;
+                lastsort = true;
             }
         }
         pros::delay(10);

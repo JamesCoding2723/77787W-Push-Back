@@ -789,10 +789,10 @@ void opcontrol()
             jeminwing.set_value(jeminwingtoggle);
         }
 
-        // if(master.get_digital_new_press(pros::E_CONTROLLER_DIGITAL_X)) {
-        //     sort_on = true;
+        if(master.get_digital_new_press(pros::E_CONTROLLER_DIGITAL_X)) {
+            side = !side;
 
-        // }
+        }
 
         /*if(master.get_digital_new_press(pros::E_CONTROLLER_DIGITAL_LEFT)) {
             jeminparktoggle = !jeminparktoggle;
@@ -826,8 +826,9 @@ void opcontrol()
                 setintake2spd(50);
         }
 
-        else if (master.get_digital(pros::E_CONTROLLER_DIGITAL_L2) && is_sorting == false)
+        else if (master.get_digital(pros::E_CONTROLLER_DIGITAL_L2))
         {
+            sort_on = false;
             setintakespd(100);
             //setintake2spd(-100);
             // storing = true;
