@@ -339,7 +339,7 @@ void color_sort() {
     while (true) {
         if (lastsort) {
             lastsort = false;
-            pros::delay(200);
+            pros::delay(100);
             continue;
         }
         if (sort_on) {
