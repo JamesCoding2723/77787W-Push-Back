@@ -360,7 +360,7 @@ void pidGyro(double targetInches, double targetHeading, double timeout, double m
 
         //exit
         if (fabs(driveError) < D_TOL && fabs(turnError) < 1 && (leftPower + rightPower)/2 < E_TOL)
-            settleTime++;
+            settleTime += 1;
         else
             settleTime = 0;
 
@@ -647,10 +647,7 @@ void pidFrontWallGyro(double targetInches, double targetHeading, double _wall, d
         moveright(-rightPower);
 
         //exit
-        if (fabs(driveError) < 1 && fabs(turnError) < 1 && (leftPower + rightPower)/2 < 25)
-            settleTime++;
-        else
-            settleTime = 0;
+        if (fabs(driveError) < 1 && fabs(turnError) < 1 && (leftPower + rightPower)/2 < 25) settleTime += 1;
 
         drivePrevError = driveError;
         turnPrevError = turnError;

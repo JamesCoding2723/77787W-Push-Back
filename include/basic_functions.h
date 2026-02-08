@@ -97,4 +97,9 @@ void motor_sort();
 extern bool storing;
 
 void store();
+
+void midscore();
+
 void score();
+
+void skillscore();

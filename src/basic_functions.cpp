@@ -348,7 +348,7 @@ void color_sort() {
                 is_sorting = true;
                 setintakespddiff(-100, -100);
                 setintake2spd(100);
-                pros::delay(200);
+                pros::delay(100);
                 setintakespddiff(intakespd1, intakespd2);
                 setintake2spd(intake2spd);
                 is_sorting = false;
@@ -359,7 +359,7 @@ void color_sort() {
                 is_sorting = true;
                 setintakespddiff(-100, -100);
                 setintake2spd(100); 
-                pros::delay(200);
+                pros::delay(100);
                 setintakespddiff(intakespd1, intakespd2);
                 setintake2spd(intake2spd);
                 is_sorting = false;
@@ -378,7 +378,7 @@ void store() {
             jeminmech.set_value(false);
             setintakespd(-100);
             // if (mid_color_sensor.get_proximity() > 150) { 
-                setintake2spd(-10);// hold block
+            setintake2spd(0);// hold block
             // }
             prev = true;
         } else {
@@ -394,4 +394,20 @@ void score() {
     jeminmech.set_value(true);
     setintakespd(-100);
     setintake2spd(-100);
+}
+
+void midscore() {
+    storing = false;
+    jeminmech.set_value(true);
+    setintakespd(-100);
+    setintake2spd(50);
+}
+
+void skillscore() {
+    storing = false;
+    setintakespd(0);
+    setintake2spd(-100);
+    moveForSec(30, false, 0.5);
+    setintakespd(-100);
+    setintake2spd(-90);
 }

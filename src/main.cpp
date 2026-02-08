@@ -22,6 +22,8 @@ void initialize()
     front_right_motor.set_encoder_units(pros::E_MOTOR_ENCODER_DEGREES);
     middle_right_motor.set_encoder_units(pros::E_MOTOR_ENCODER_DEGREES);
     back_right_motor.set_encoder_units(pros::E_MOTOR_ENCODER_DEGREES);
+    
+    leftintakem.set_brake_mode(pros::E_MOTOR_BRAKE_HOLD);
 
     pros::lcd::initialize(); // initialize brain screen
     imu.tare();     // calibrate sensors
@@ -101,16 +103,18 @@ void autonomous()
     
     jemintaket();
     jeminwingt(); //FIRST HALF
+    jeminmecht();
+
 
     setintakespd(-100);
-    setintake2spd(-10);
+    setintake2spd(0);
     pros::delay(1200);
     moveForSec(60, true, 0.5);
     moveForSec(60, false, 0.1);
     pros::delay(300);
     moveForSec(60, true, 0.1);
     pros::delay(300);
-    moveForSec(10, true, 0.5);
+    moveForSec(10, true, 0.3);
     setintakespd(0);
     setintake2spd(0);
     moveForSec(40, false, 0.2);
@@ -118,161 +122,132 @@ void autonomous()
     setintakespd(0);
     setintake2spd(0);
 
-    //pros::delay(2000); //
-    //jemintaket();
 
-    pidFrontWallGyro(26, 180, 0, 0.7);
-    //pros::delay(2000);
-    pidTurnAbs(45, 10, 1);
-    //pros::delay(2000);
+    pidFrontWallGyro(24, 180, 0, 0.7);
+    pidTurnAbs(48, 10, 1);
     setintakespddiff(-100, 0);
-    pidGyro(27, 45, 2);
-    //pros::delay(2000);
+    pidGyro(28, 48, 2);
+  
     
     //setintakespd(00);
     //setintake2spd(00);
-    pidTurnAbs(330, 10, 1);
+    pidTurnAbs(345, 10, 1);
     //pros::delay(300);
 
 
-    pidGyro(14, 320, 1.25, 70, 1, 25, 15, 10000);
-    //pros::delay(1000);
-    moveForSec(30, true, 0.3);
+    pidGyro(15, 320, 2, 80, 1, 25, 1, 100000);
 
     jemintaket();
     setintakespd(90);
     setintake2spd(0);
-    pros::delay(400);
-    setintake2spd(54);
-    setintakespd(54);
-    pros::delay(3500);
-    //jeminwingt();
+    moveForSec(30, true, 0.4);
+    setintake2spd(-20);
+    setintakespd(70);
+    pros::delay(200);
+    setintakespd(60);
+    pros::delay(2600);
 
-    //pros::delay(1000);
-    
-    //pidMoveold(-30, 1, 3);
-    //pidTurnRel(-10, 1, 1);
+    //jeminmecht();
     pidwallGyro(24.5, 310, 90, 3);
-    //pros::delay(200);
 
     jeminloadert();
     jemintaket();
     pidTurnAbs(182, 1, 2);
 
 
-
-    //pros::delay(2000);
-
     setintakespd(-100);
-    setintake2spd(-10);
+    setintake2spd(0);
     pidGyro(19, 180, 1);
     moveForSec(40, true, 0.5);
-    moveForSec(10, true, 0.9);
-
+    moveForSec(10, true, 1.1);
     //DONE MATCHLOAD
 
-    pidMoveold(-5, 0.5, 2, 50);
-
+    moveForSec(60, false, 0.13);
     jeminloadert();
-    pidTurnRel(-120, 2, 3, 60);
-    //pros::delay(200);
+    pidTurnRel(50, 2, 3, 60);
     setintakespddiff(-100, 0);
     setintake2spd(0);
 
-    //pidTurnRel(-42, 1, 2);
-    //pros::delay(400);
-    pidGyro(96, 0, 5, 75, 1, 25, 10, 70);
-    //pros::delay(200);
-    
-    pidTurnAbs(270, 1, 1);
-    pidWallMove(24.5, 0.5, 90, 3);
-    pidTurnAbs(5, 1, 1);
-    //pros::delay(1000); //ALIGNED
-
-    // pidTurnRel(-40, 1, 2);
-    // pidMoveold(14.5, 0.5, 2);
-    // pidTurnRel(43, 1, 2);
-    // pros::delay(300);
+    pidGyro(-99, 180, 5.3, 90, 3, 25, 5, 200);
 
     
+    pidTurnAbs(270, 10, 1);
+    pidWallMove(25, 0.5, 90, 3);
+    pidTurnAbs(7, 2, 1);
+   
     moveForSec(60, false, 0.6);
-    setintakespd(-100);
-    setintake2spd(-100);
-    jeminmecht();
-    jeminloadert();
 
-   //jeminmecht();
-    moveForSec(30, false, 1.7); //FIRST SCORE DONE
+    skillscore();
+    moveForSec(30, false, 1.6); //FIRST SCORE DONE
     imu.set_heading(0);
+    jeminloadert();
 
     setintakespd(-100);
-    setintake2spd(-10);
-    pidGyro(34, -4, 2);
-    jeminmecht();
-    moveForSec(40, true, 1.7);
-    setintake2spd(0);
+    setintake2spd(-0);
+    pidGyro(33, -4, 2, 80, 3);
+    moveForSec(40, true, 1.8);
+    pidGyro(-40, 6, 2);
+
+
+    skillscore();
+    moveForSec(30, false, 1.6); //SECOND SCORE DONE
+    imu.set_heading(0);
+    jeminloadert();
     setintakespd(0);
-    pidGyro(-40, 8, 2);
+    setintake2spd(0);
+
+
+    
+    //TO CLEAR PARK
+    //pidMoveold(7, 0.5, 2, 70); 
+    //pidTurnAbs(270, 5, 0.6);
+    //pidGyro(96, 270, 5, 75); //91 PATH
+
+    pidmove(19, 1, 2, 100);
+    pidTurnAbs(-35, 5, 1);
+    pidGyro(40, 290, 2, 100, 11, 25, 2, 100);
     setintakespd(-100);
-    setintake2spd(-100);
-    jeminmecht(); 
+    setintake2spd(-0);
+    moveForSec(60, true, 2);
 
 
-    moveForSec(30, false, 1.7); //SECOND SCORE DONE
+    pidFrontWallGyro(20, 225, 270, 1.8, 80);
+    pidTurnAbs(2, 3, 1);
 
+    pidGyro(-27, 2, 1.4, 90);
+    skillscore();
+    imu.set_heading(0);
+    moveForSec(30, false, 0.8); //PARK SCORE DONE
     jeminloadert();
-    pidMoveold(7, 0.5, 2, 70); 
-    pidTurnAbs(270, 5, 0.6);
-    //moveForSec(70, false, 0.9);
-    jeminmecht();
+
+    setintake2spd(0);
+    pidGyro(34, 5, 2);
+    moveForSec(40, true, 1.7);
+    //3 MATCHLOAD DONE
 
 
 
-    pidGyro(96, 270, 5, 75);
-    //pros::delay(200);
-
+    moveForSec(60, false, 0.13);
     jeminloadert();
-    pros::delay(300);
-    pidTurnAbs(0, 1, 1);
-    setintakespd(-100);
-    setintake2spd(-10);
-    //pidTurnRel(3, 1, 1);
-    pidMoveold(19, 1, 1, 70);
-    //jeminmecht();
-    moveForSec(60, true, 0.5);
-    moveForSec(6.7, true, 0.5);
-
-    //pros::delay(1600); //3 MATCHLOAD DONE
-
-
-
-    pidMoveold(-5, 0.5, 2, 50);
-    jeminloadert();
-    pidTurnRel(-120, 2, 3, 60);
+    pidTurnRel(50, 2, 3, 60);
  
     setintakespddiff(-100, 0);
     setintake2spd(0);
 
 
-    pidGyro(96, 180, 5, 75, 1, 25, 10, 70);
-    //pros::delay(200);
+    pidGyro(-99, 5, 6, 90, 3, 25, 5, 1000);
     
-    pidTurnAbs(90, 1, 2);
-    pidWallMove(24, 0.5, 270, 3);
-    pidTurnAbs(185, 1, 1);
-    //pros::delay(200); //ALIGNED
+    pidTurnAbs(90, 10, 4);
+    pidWallMove(25, 0.5, 270, 3);
+    pidTurnAbs(180, 2, 2);
 
-    setintakespd(-100);
-    setintake2spd(-100);
+    
     moveForSec(50, false, 0.8);
-    //setintakespd(100);
-    //setintake2spd(100);
-    //pros::delay(200);
-
+    skillscore();
+    
 
     jeminloadert();
-    jeminmecht();
-    moveForSec(30, false, 1.7); //THIRD SCORE DONE
+    moveForSec(30, false, 1.6); //THIRD SCORE DONE
     imu.set_heading(180);
 
 
@@ -281,29 +256,20 @@ void autonomous()
     //pros::delay(500);
 
     setintakespd(-100);
-    setintake2spd(-10);
-    pidGyro(34, 172, 2);
-    jeminmecht();
-    moveForSec(40, true, 1.7);
     setintake2spd(0);
-    setintakespd(0);
+    pidGyro(34, 172, 2);
+    moveForSec(40, true, 1.7);
     pidGyro(-40, 183, 2);
 
-    setintakespd(-100);
-    setintake2spd(-100);
-    jeminmecht(); 
-    moveForSec(30, false, 1.8); //FOURTH SCORE DONE
+    skillscore();
+    moveForSec(30, false, 1.6); //FOURTH SCORE DONE
     jeminloadert();
 
-    setintakespd(100);
-    setintake2spd(100);
-    pidMoveold(19, 1, 2 ,70);
-    pros::delay(100);
-    jeminmecht();
+    setintakespd(-100);
+    setintake2spd(-10);
+    pidMoveold(19, 1, 2 ,100);
     pidTurnRel(-35, 1, 2);
-    pros::delay(100);
-    //setintakespd(100);
-    pidGyro(30, 110, 2, 70, 1, 25, 15, 10000);
+    pidGyro(40, 110, 2, 100, 10, 25, 5, 10000);
     moveForSec(80, true, 0.8);
     //*/
 
@@ -831,15 +797,15 @@ void opcontrol()
         }
         else if (master.get_digital(pros::E_CONTROLLER_DIGITAL_L1) && is_sorting == false)
         {
-                setintakespd(-100);
-                setintake2spd(50);
+            sort_on = false;
+            midscore();
         }
 
         else if (master.get_digital(pros::E_CONTROLLER_DIGITAL_L2))
         {
             sort_on = false;
             setintakespd(100);
-            //setintake2spd(-100);
+            setintake2spd(-30);
             // storing = true;
         }
         else 
@@ -849,6 +815,7 @@ void opcontrol()
                 setintake2spd(0);
                 jeminmech.set_value(false);
             }
+            sort_on = false;
             storing = false;
         }
 
