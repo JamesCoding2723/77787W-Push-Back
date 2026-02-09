@@ -403,11 +403,25 @@ void midscore() {
     setintake2spd(50);
 }
 
+void lowscore() {
+    storing = false;
+    jeminmech.set_value(true);
+
+    if (jemintaketoggle == false) {
+        setintakespd(60);
+        setintake2spd(-15);
+    }
+    else {
+        setintakespd(100);
+        setintake2spd(-15);
+    }
+}
+
 void skillscore() {
     storing = false;
-    setintakespd(0);
+    setintakespd(10);
     setintake2spd(-100);
-    moveForSec(30, false, 0.5);
+    moveForSec(50, false, 0.5);
     setintakespd(-100);
-    setintake2spd(-90);
+    setintake2spd(-100);
 }

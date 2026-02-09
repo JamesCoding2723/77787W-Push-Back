@@ -468,7 +468,7 @@ void pidwallGyro(double targetInches, double targetHeading, float _wall, double 
 
     //turn PID
     double kP_turn = 2;
-    double kI_turn = 0.0;
+    double kI_turn = 0.1;
     double kD_turn = 7.0;
     double turnS_error;
 
@@ -534,8 +534,8 @@ void pidwallGyro(double targetInches, double targetHeading, float _wall, double 
         moveright(rightPower);
 
         //exit
-        if (fabs(driveError) < 0.5 && fabs(turnError) < 1 && (leftPower + rightPower)/2 < 25)
-            settleTime++;
+        if (fabs(driveError) < 1 && fabs(turnError) < 1 && (leftPower + rightPower)/2 < 25)
+            settleTime += 1;
         else
             settleTime = 0;
 

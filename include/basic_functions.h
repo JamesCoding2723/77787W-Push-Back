@@ -103,3 +103,5 @@ void midscore();
 void score();
 
 void skillscore();
+
+void lowscore();
