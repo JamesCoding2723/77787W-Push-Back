@@ -348,7 +348,7 @@ void color_sort() {
                 is_sorting = true;
                 setintakespddiff(-100, -100);
                 setintake2spd(100);
-                pros::delay(100);
+                pros::delay(150);
                 setintakespddiff(intakespd1, intakespd2);
                 setintake2spd(intake2spd);
                 is_sorting = false;
@@ -359,7 +359,7 @@ void color_sort() {
                 is_sorting = true;
                 setintakespddiff(-100, -100);
                 setintake2spd(100); 
-                pros::delay(100);
+                pros::delay(150);
                 setintakespddiff(intakespd1, intakespd2);
                 setintake2spd(intake2spd);
                 is_sorting = false;
