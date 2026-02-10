@@ -5,6 +5,7 @@
 #include "pros/motors.h"
 #include "pros/rtos.h"
 #include <cmath>
+#include "pros/rtos.hpp"
 #include "robot_config.h"
 #include "basic_functions.h"
 #include "PID.h"
@@ -46,6 +47,7 @@ void initialize()
     pros::Task matchload(jeminloaderd);
     pros::Task ColorSort(color_sort);
     pros::Task Store(store);
+    pros::Task Score(score);
     top_color_sensor.set_led_pwm(100);
     //pros::Task GPS(GPStracking);
 
@@ -104,6 +106,7 @@ void autonomous()
     
     jemintaket();//FIRST HALF
     jeminmecht();
+    jeminwingt();
 
 
     setintakespd(-100);
@@ -125,7 +128,7 @@ void autonomous()
     pidFrontWallGyro(24, 180, 0, 0.8, 60);
     pidTurnAbs(47, 10, 1);
     setintakespddiff(-100, 0);
-    pidGyro(22, 47, 2);
+    pidGyro(22, 47, 2, 100);
   
     
     //setintake2spd(00);
@@ -138,9 +141,9 @@ void autonomous()
     moveForSec(40, true, 0.4);
     jemintaket();
     setintakespd(100);
-    setintake2spd(-15);
+    setintake2spd(-5);
     //moveForSec(40, true, 0.4);
-    setintake2spd(-18);
+    setintake2spd(-5);
     setintakespddiff(70, 70);
     pros::delay(200);
     setintakespddiff(60, 60);
@@ -158,7 +161,7 @@ void autonomous()
     setintake2spd(0);
     pidGyro(19, 180, 1);
     moveForSec(55, true, 0.5);
-    moveForSec(10, true, 1.1);
+    moveForSec(10, true, 1.3);
     //DONE MATCHLOAD
 
     moveForSec(60, false, 0.13);
@@ -168,16 +171,17 @@ void autonomous()
     setintake2spd(0);
 
     pidGyro(-99, 180, 5.3, 90, 20, 50, 5, 100);
-    pidwallGyro(30, 180, 180, 1.7, 100);
+    pidwallGyro(30, 180, 180, 1.5, 100);
     
-    pidTurnAbs(270, 10, 1);
-    pidWallMove(24.5, 0.5, 90, 3);
-    pidTurnAbs(0, 2, 1);
+    pidTurnAbs(270, 10, 0.8);
+    pidWallMove(24.5, 0.5, 90, 2);
+    pidTurnAbs(0, 2, 0.7);
    
     moveForSec(60, false, 0.6);
 
-    skillscore();
+    score_on = true;
     moveForSec(50, false, 1.6); //FIRST SCORE DONE
+    score_on = false;
     imu.set_heading(0);
     jeminloadert();
 
@@ -188,8 +192,9 @@ void autonomous()
     pidGyro(-40, 6, 2);
 
 
-    skillscore();
+    score_on = true;
     moveForSec(30, false, 1.6); //SECOND SCORE DONE
+    score_on = false;
     imu.set_heading(0);
     jeminloadert();
     setintakespd(0);
@@ -210,13 +215,14 @@ void autonomous()
     moveForSec(60, true, 2);
 
 
-    pidFrontWallGyro(20, 210, 270, 1.8, 80);
+    pidFrontWallGyro(20, 225, 270, 1.8, 80);
     pidTurnAbs(2, 3, 1);
 
     pidGyro(-27, 2, 1.4, 90);
-    skillscore();
+    score_on = true;
     imu.set_heading(0);
     moveForSec(30, false, 0.8); //PARK SCORE DONE
+    score_on = false;
     jeminloadert();
 
     setintake2spd(0);
@@ -235,19 +241,20 @@ void autonomous()
 
 
     pidGyro(-99, 5, 6, 90, 20, 50, 5, 100);
-    pidwallGyro(30, 0, 0, 1.6, 100);
+    pidwallGyro(30, 0, 0, 1.5, 100);
     
-    pidTurnAbs(90, 10, 4);
-    pidWallMove(25, 0.5, 270, 3);
-    pidTurnAbs(183, 2, 1);
+    pidTurnAbs(90, 10, 1);
+    pidWallMove(25, 0.5, 270, 2);
+    pidTurnAbs(178, 2, 0.7);
 
     
     moveForSec(50, false, 0.8);
-    skillscore();
     
 
     jeminloadert();
+    score_on = true;
     moveForSec(50, false, 1.5); //THIRD SCORE DONE
+    score_on = false;
     imu.set_heading(180);
 
 
@@ -261,8 +268,10 @@ void autonomous()
     moveForSec(55, true, 1.7);
     pidGyro(-40, 183, 2);
 
-    skillscore();
+
+    score_on = true;
     moveForSec(30, false, 1.5); //FOURTH SCORE DONE
+    score_on = false;
     jeminloadert();
 
     setintakespd(-100);
@@ -792,7 +801,7 @@ void opcontrol()
             // setintakespd(-100);
             // setintake2spd(-100);
             sort_on = true;
-            score();
+            score_on = true;
         }
         else if (master.get_digital(pros::E_CONTROLLER_DIGITAL_R2) && is_sorting == false)
         {
@@ -829,6 +838,7 @@ void opcontrol()
             }
             sort_on = false;
             storing = false;
+            score_on = false;
         }
 
         pros::c::delay(25);

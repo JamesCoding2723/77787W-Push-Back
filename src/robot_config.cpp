@@ -58,6 +58,7 @@ pros::Imu imu(20);
 
 pros::Distance distance_sensor(19);
 pros::Distance frontdistance(11); // 1 is temporary
+pros::Distance middistance(18);
 
 /*pros::Rotation horizontal_encoder(20);
 // vertical tracking wheel encoder

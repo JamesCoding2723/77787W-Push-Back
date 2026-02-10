@@ -324,6 +324,7 @@ void imu_display_task(void*) {
   while (true) {
         pros::c::screen_print(pros::E_TEXT_MEDIUM, 1, "wallpos: %f, %f, %f", wallpos, frontwallpos, imu.get_heading());
         pros::c::screen_print(pros::E_TEXT_MEDIUM, 2, "color sort: %f, %f, %f", top_color_sensor.get_rgb().red, top_color_sensor.get_rgb().green, top_color_sensor.get_rgb().blue);
+        pros::c::screen_print(pros::E_TEXT_MEDIUM, 3, "scoring val: %d, %d", middistance.get(), top_color_sensor.get_proximity());
 
     pros::delay(100);   // update ~10 times per second
   }
@@ -389,11 +390,32 @@ void store() {
     }
 }
 
+bool lastscore = false;
+bool score_on = false;
+
 void score() {
-    storing = false;
-    jeminmech.set_value(true);
-    setintakespd(-100);
-    setintake2spd(-100);
+    while(true) {
+        if (lastscore) {
+            lastscore = false;
+            pros::delay(200);
+            continue;
+        }
+        if (score_on) {
+            storing = false;
+            jeminmech.set_value(true);
+            if (middistance.get() < 125) {
+                setintakespd(-10);
+                setintake2spd(-100);
+                pros::delay(200);
+                lastscore = true;
+            }
+            else {
+                setintakespd(-100);
+                setintake2spd(-100);
+                lastscore = true;
+            }
+        }
+    }
 }
 
 void midscore() {
@@ -409,11 +431,11 @@ void lowscore() {
 
     if (jemintaketoggle == false) {
         setintakespd(60);
-        setintake2spd(-15);
+        setintake2spd(-5);
     }
     else {
         setintakespd(100);
-        setintake2spd(-15);
+        setintake2spd(-5);
     }
 }
 

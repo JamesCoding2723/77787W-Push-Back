@@ -29,7 +29,6 @@ extern pros::Motor back_right_motor;   // back right motor 16
 extern pros::Rotation vertical_encoder;
 
 extern pros::Optical top_color_sensor;
-extern pros::Optical mid_color_sensor;
 
 // left group
 extern pros::MotorGroup left_motor_group;
@@ -44,6 +43,7 @@ extern lemlib::Drivetrain drivetrain;
 extern pros::Imu imu;
 extern pros::Distance distance_sensor;
 extern pros::Distance frontdistance;
+extern pros::Distance middistance;
 
 /*pros::Rotation horizontal_encoder(20);
 // vertical tracking wheel encoder

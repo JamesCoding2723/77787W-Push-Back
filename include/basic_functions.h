@@ -100,6 +100,8 @@ void store();
 
 void midscore();
 
+extern bool score_on;
+
 void score();
 
 void skillscore();
