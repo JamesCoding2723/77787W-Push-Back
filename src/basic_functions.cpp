@@ -339,7 +339,7 @@ void color_sort() {
     while (true) {
         if (lastsort) {
             lastsort = false;
-            pros::delay(100);
+            pros::delay(150);
             continue;
         }
         if (sort_on) {
@@ -379,7 +379,7 @@ void store() {
             jeminmech.set_value(false);
             setintakespd(-100);
             // if (mid_color_sensor.get_proximity() > 150) { 
-            setintake2spd(0);// hold block
+            setintake2spd(10);// hold block
             // }
             prev = true;
         } else {
@@ -397,20 +397,20 @@ void score() {
     while(true) {
         if (lastscore) {
             lastscore = false;
-            pros::delay(200);
+            pros::delay(120);
             continue;
         }
-        if (score_on) {
+        if (score_on && !is_sorting) {
             storing = false;
             jeminmech.set_value(true);
             if (middistance.get() < 125) {
-                setintakespd(-10);
+                setintakespd(5);
                 setintake2spd(-100);
-                pros::delay(200);
+                pros::delay(120);
                 lastscore = true;
             }
             else {
-                setintakespd(-100);
+                setintakespd(-75);
                 setintake2spd(-100);
                 lastscore = true;
             }
@@ -431,11 +431,11 @@ void lowscore() {
 
     if (jemintaketoggle == false) {
         setintakespd(60);
-        setintake2spd(-5);
+        setintake2spd(-10);
     }
     else {
         setintakespd(100);
-        setintake2spd(-5);
+        setintake2spd(-10);
     }
 }
 

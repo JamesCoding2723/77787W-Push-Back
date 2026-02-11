@@ -627,7 +627,9 @@ void pidFrontWallGyro(double targetInches, double targetHeading, double _wall, d
         double turnOutput = turnP + turnI + turnD;
 
         //outputs-----------------------------------------
-        
+        double turnScale = 1.0 - std::min(fabs(turnError) / 20.0, 1.0);
+
+        driveOutput *= turnScale;
 
         double leftPower = driveOutput - turnOutput;
         double rightPower = driveOutput + turnOutput;
