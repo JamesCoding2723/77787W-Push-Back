@@ -379,12 +379,12 @@ void store() {
             jeminmech.set_value(false);
             setintakespd(-100);
             // if (mid_color_sensor.get_proximity() > 150) { 
-            setintake2spd(10);// hold block
+            setintake2spd(0);// hold block
             // }
             prev = true;
         } else {
             // leftintakem.move_voltage(0);
-            // if (!storing) prev = false;
+            if (!storing) prev = false;
         }
         pros::delay(20);
     }
@@ -404,7 +404,7 @@ void score() {
             storing = false;
             jeminmech.set_value(true);
             if (middistance.get() < 125) {
-                setintakespd(5);
+                setintakespd(10);
                 setintake2spd(-100);
                 pros::delay(120);
                 lastscore = true;
@@ -443,7 +443,7 @@ void skillscore() {
     storing = false;
     setintakespd(10);
     setintake2spd(-100);
-    moveForSec(50, false, 0.5);
+    moveForSec(50, false, 0.3);
     setintakespd(-100);
     setintake2spd(-100);
 }
