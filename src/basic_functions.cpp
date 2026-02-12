@@ -76,9 +76,10 @@ void intake2() {
         {
 
             if (jemintaketoggle == false) {
-                //pros::delay(500);
-                leftintakem.move((int)1.27 * intake2spd);
-               
+                pros::delay(400);
+                leftintakem.move((int)1.27 * 50);
+                pros::delay(100);
+               leftintakem.move((int)1.27 * intake2spd);
             }
 
             else{
@@ -404,13 +405,13 @@ void score() {
             storing = false;
             jeminmech.set_value(true);
             if (middistance.get() < 125) {
-                setintakespd(10);
+                setintakespd(-10);
                 setintake2spd(-100);
                 pros::delay(120);
                 lastscore = true;
             }
             else {
-                setintakespd(-10);
+                setintakespd(-100);
                 setintake2spd(-100);
                 lastscore = true;
             }
@@ -422,7 +423,7 @@ void midscore() {
     storing = false;
     jeminmech.set_value(true);
     setintakespd(-100);
-    setintake2spd(50);
+    setintake2spd(40);
 }
 
 void lowscore() {
