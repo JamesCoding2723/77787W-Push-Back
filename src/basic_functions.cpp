@@ -410,7 +410,7 @@ void score() {
                 lastscore = true;
             }
             else {
-                setintakespd(-90);
+                setintakespd(-10);
                 setintake2spd(-100);
                 lastscore = true;
             }
