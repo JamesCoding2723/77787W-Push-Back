@@ -384,7 +384,7 @@ void store() {
             prev = true;
         } else {
             // leftintakem.move_voltage(0);
-            if (!storing) prev = false;
+            // if (!storing) prev = false;
         }
         pros::delay(20);
     }
@@ -410,7 +410,7 @@ void score() {
                 lastscore = true;
             }
             else {
-                setintakespd(-75);
+                setintakespd(-90);
                 setintake2spd(-100);
                 lastscore = true;
             }
