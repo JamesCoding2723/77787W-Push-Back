@@ -102,7 +102,7 @@ void autonomous()
     sort_on = false;
 
     //AUTO SKILLS
-    imu.set_heading(180);
+    /*imu.set_heading(180);
     
     jemintaket();//FIRST HALF
     jeminmecht();
@@ -485,7 +485,7 @@ void autonomous()
 
 
     //BETTER SOLO AWP
-    /*imu.set_heading(270);
+    imu.set_heading(270);
     sort_on = false;
     storing = false;
     jemintaket();
@@ -496,14 +496,14 @@ void autonomous()
     // storing = true;
     storing = true;
     moveForSec(30, true, 0.2);
-    pidWallMove(29.3, 0.5, 90, 2);
+    pidWallMove(29, 0.5, 90, 2);
     jeminloadert();
     pidTurnAbs(180, 10, 0.8);
     //pros::delay(200);
 
     // setintakespd(-100);
     // setintake2spd(-100);
-    pidGyro(9, 180, 0.8, 100);
+    pidGyro(8.7, 180, 0.8, 100);
     moveForSec(70, true, 0.7);
     
     moveForSec(100, false, 0.4);
