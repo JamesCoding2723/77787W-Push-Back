@@ -405,7 +405,7 @@ void score() {
             storing = false;
             jeminmech.set_value(true);
             if (middistance.get() < 125) {
-                setintakespd(-10);
+                setintakespd(10);
                 setintake2spd(-100);
                 pros::delay(120);
                 lastscore = true;
