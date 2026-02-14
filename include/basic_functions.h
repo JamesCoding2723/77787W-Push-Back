@@ -106,4 +106,6 @@ void score();
 
 void skillscore();
 
+extern bool lowgoal_on;
+
 void lowscore();

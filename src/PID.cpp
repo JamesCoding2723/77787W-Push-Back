@@ -448,7 +448,7 @@ void pidWallMove(float target_inch, float tolerence_inch, float _wall, float tim
 
 
 
-void pidwallGyro(double targetInches, double targetHeading, float _wall, double timeout, double max) {
+void pidwallGyro(double targetInches, double targetHeading, float _wall, double timeout, double max, double E_TOL) {
 
     pros::c::screen_print(pros::E_TEXT_MEDIUM, 5, "pid: %f, %f, %f, %f", 1,2,3,4);        
 
@@ -534,7 +534,7 @@ void pidwallGyro(double targetInches, double targetHeading, float _wall, double 
         moveright(rightPower);
 
         //exit
-        if (fabs(driveError) < 1 && fabs(turnError) < 1 && (leftPower + rightPower)/2 < 25)
+        if (fabs(driveError) < E_TOL && fabs(turnError) < 1 && (leftPower + rightPower)/2 < 25)
             settleTime += 1;
         else
             settleTime = 0;

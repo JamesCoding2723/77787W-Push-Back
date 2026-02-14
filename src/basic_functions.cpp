@@ -76,10 +76,7 @@ void intake2() {
         {
 
             if (jemintaketoggle == false) {
-                pros::delay(400);
-                leftintakem.move((int)1.27 * 50);
-                pros::delay(100);
-               leftintakem.move((int)1.27 * intake2spd);
+                leftintakem.move((int)1.27 * intake2spd);
             }
 
             else{
@@ -404,8 +401,8 @@ void score() {
         if (score_on && !is_sorting) {
             storing = false;
             jeminmech.set_value(true);
-            if (middistance.get() < 125) {
-                setintakespd(10);
+            if (middistance.get() < 100) {
+                setintakespd(13);
                 setintake2spd(-100);
                 pros::delay(120);
                 lastscore = true;
@@ -423,28 +420,43 @@ void midscore() {
     storing = false;
     jeminmech.set_value(true);
     setintakespd(-100);
-    setintake2spd(40);
+    setintake2spd(30);
 }
 
-void lowscore() {
-    storing = false;
-    jeminmech.set_value(true);
+bool lastlowscore = false;
+bool lowgoal_on = false;
 
-    if (jemintaketoggle == false) {
-        setintakespd(60);
-        setintake2spd(-10);
-    }
-    else {
-        setintakespd(100);
-        setintake2spd(-10);
+void lowscore() {
+    while(true)
+    {
+        if(lastlowscore)
+        {
+            lastlowscore = false;
+            pros::delay(100);
+            continue;
+        }
+        if (lowgoal_on)
+        {
+            storing = false;
+            jeminmech.set_value(true);
+            if (jemintaketoggle == false)
+            {
+                setintake2spd(-15);
+                setintakespd(60);
+            }
+            else {
+                setintakespd(100);
+                setintake2spd(-15);
+            }
+        }
     }
 }
 
 void skillscore() {
     storing = false;
-    setintakespd(10);
+    setintakespd(15);
     setintake2spd(-100);
     moveForSec(50, false, 0.3);
-    setintakespd(-100);
+    setintakespd(-95);
     setintake2spd(-100);
 }
