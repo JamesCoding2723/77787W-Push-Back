@@ -472,46 +472,38 @@ void autonomous()
 
     //RIGHT 3+4
     /*imu.set_heading(270);
+    sort_on = false;
+    storing = false;
     jemintaket();
-    jeminwingt();
 
     setintakespd(-100);
-    setintake2spd(-100);
-    // storing = true;
-    pidWallMove(25.5, 0.5, 90, 2);
+    setintake2spd(0);
+    pidWallMove(27.8, 0.5, 90, 2.5);
     jeminloadert();
-    pidTurnAbs(180, 1, 0.8);
-    //pros::delay(200);
+    pidTurnAbs(180, 10, 0.8);
 
-    setintakespd(-100);
-    setintake2spd(-100);
-    pidMoveold(10, 1, 1, 70);
-    moveForSec(65, true, 0.9);
+    pidGyro(10, 182, 0.8, 100);
+    moveForSec(50, true, 0.9);
     
-    moveForSec(70, false, 0.5);
-    // pidTurnRel(2, 1, 0.2, 70);
-    // pidTurnAbs(190, 1, 0.5);
-    moveForSec(70, false, 0.4);
-    // jeminmecht();
-    //moveForSec(40, false, 0.1);
-    // setintakespd(-100);
-    // setintake2spd(-100);
-    sort_on = true;
-    score();
-    //moveForSec(10, false, 0.3);
+    moveForSec(100, false, 0.35);
+
+    pidGyro(-20, 185, 1.2, 100);
+    jeminmech.set_value(true);
+    skillscore();
+
+    moveForSec(50, false, 1.1);
     jeminloadert();
-    moveForSec(40, false, 0.3);
-    pros::delay(650);
-    jeminmecht();
+    setintakespd(-100);
+    setintake2spd(0);
 
     
     setintake2spd(-100);
     setintakespddiff(-100, 0);
 
-    pidMoveold(10, 1, 1, 100);
+    pidMoveold(11, 1, 1, 100);
     // pidTurnRel(96, 1, 1.2, 100);
-    pidGyro(30, 294, 3, 80, 1, 25, 10);
-    pidGyro(22, 319, 2, 80, 1, 25, 10);
+    pidGyro(30, 299, 3, 70, 1, 25, 5);
+    pidGyro(22, 315, 2, 80, 1, 25, 10);
     setintake2spd(0);
 
     jemintaket();
@@ -522,18 +514,18 @@ void autonomous()
 
     jeminwingt();
 
-    pidGyro(-27, 270, 3, 70, 1, 25, 5, 1000);
-    pidGyro(-4, 13, 1.5, 70, 1, 25, 2, 100);
+    pidGyro(-22, 270, 3, 70, 1, 25, 5, 1000);
+    pidGyro(-13, 10, 1.5, 70, 1, 25, 2, 500);
 
     jeminwingt();
     pros::delay(200);
-    moveForSec(70, true, 0.25);
+    moveForSec(70, true, 0.3);
     pidTurnRel(-40, 1, 1, 100);
     //*/
 
 
     //LEFT 3+4
-    /*imu.set_heading(90);
+   /*imu.set_heading(90);
     sort_on = false;
     storing = false;
     jemintaket();
@@ -542,44 +534,39 @@ void autonomous()
     setintakespd(-100);
     setintake2spd(-5);
 
-    storing = true;
-    pidWallMove(27.8, 0.5, 270, 2.5);
+    pidwallGyro(27, 90, 270, 2, 80);
     jeminloadert();
-    pidTurnAbs(180, 2, 0.8);
+    pidTurnAbs(180, 2, 0.7);
 
-    pidGyro(10, 182, 0.8, 100);
-    moveForSec(80, true, 0.9);
+    pidGyro(10, 178, 0.8, 100);
+    moveForSec(50, true, 0.8);
     
-    moveForSec(100, false, 0.6);
+    moveForSec(50, false, 0.6);
 
-    pidGyro(-19, 180, 1, 100);
+    pidGyro(-19, 175, 1, 100);
     jeminmech.set_value(true);
-    storing = false;
-    score_on = true;
 
-    moveForSec(30, false, 0.3);
+    skillscore();
     jeminloadert();
-    pros::delay(1500);
-    score_on = false;
-    pros::delay(530);
-
+    moveForSec(50, false, 1.5);
     
     setintake2spd(0);
     setintakespddiff(-100, -100);
 
-    pidmove(9, 0.5, 1, 100);
-    pidGyro(40, 57, 5, 70, 1, 25, 10);
-    pidTurnAbs(220, 1, 1, 80);
-    moveForSec(40, false, 0.6);
+    pidmove(13, 0.5, 1, 100);
+    pidGyro(40, 57, 2, 80, 1, 25, 15);
+    pros::delay(100);
+    pidTurnAbs(220, 1, 0.8, 80);
+    moveForSec(60, false, 0.6);
 
     setintakespd(-100);
     setintake2spd(40);
-    pros::delay(800);
+    pros::delay(1000);
     setintakespd(0);
 
 
-    pidGyro(28, 270, 2, 80, 1, 25, 5, 1000);
-    pidGyro(4, 167, 1.5, 70, 1, 25, 1, 100);
+    pidGyro(30, 270, 2, 80, 1, 25, 5, 1000);
+    pidGyro(6, 167, 1.5, 70, 1, 25, 1, 100);
 
     jeminwingt();
     pros::delay(200);

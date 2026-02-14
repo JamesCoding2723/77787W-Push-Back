@@ -420,7 +420,7 @@ void midscore() {
     storing = false;
     jeminmech.set_value(true);
     setintakespd(-100);
-    setintake2spd(30);
+    setintake2spd(40);
 }
 
 bool lastlowscore = false;
