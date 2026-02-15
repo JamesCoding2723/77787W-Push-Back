@@ -377,7 +377,7 @@ void store() {
             jeminmech.set_value(false);
             setintakespd(-100);
             // if (mid_color_sensor.get_proximity() > 150) { 
-            setintake2spd(0);// hold block
+            setintake2spd(-5);// hold block
             // }
             prev = true;
         } else {
@@ -388,10 +388,11 @@ void store() {
     }
 }
 
-bool lastscore = false;
+
 bool score_on = false;
 
 void score() {
+    static bool lastscore = false;
     while(true) {
         if (lastscore) {
             lastscore = false;
@@ -402,7 +403,7 @@ void score() {
             storing = false;
             jeminmech.set_value(true);
             if (middistance.get() < 100) {
-                setintakespd(13);
+                setintakespddiff(-100, 25);
                 setintake2spd(-100);
                 pros::delay(120);
                 lastscore = true;
@@ -419,8 +420,14 @@ void score() {
 void midscore() {
     storing = false;
     jeminmech.set_value(true);
-    setintakespd(-100);
-    setintake2spd(40);
+
+    //skills
+    setintakespddiff(-100, -20);
+    setintake2spd(30);
+
+    // normal match
+    // setintakespd(-100);
+    // setintake2spd(50);
 }
 
 bool lastlowscore = false;
@@ -442,7 +449,7 @@ void lowscore() {
             if (jemintaketoggle == false)
             {
                 setintake2spd(-15);
-                setintakespd(60);
+                setintakespddiff(60, 80);
             }
             else {
                 setintakespd(100);
@@ -456,7 +463,7 @@ void skillscore() {
     storing = false;
     setintakespd(15);
     setintake2spd(-100);
-    moveForSec(50, false, 0.3);
+    moveForSec(50, false, 0.4);
     setintakespd(-95);
     setintake2spd(-100);
 }
