@@ -98,6 +98,8 @@ extern bool storing;
 
 void store();
 
+extern bool midscore_delay;
+
 void midscore();
 
 extern bool score_on;

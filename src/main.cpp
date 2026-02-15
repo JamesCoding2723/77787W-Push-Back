@@ -694,6 +694,7 @@ void opcontrol()
             storing = false;
             score_on = false;
             lowgoal_on = false;
+            midscore_delay = false;
         }
 
         pros::c::delay(25);

@@ -52,7 +52,13 @@ void intake()
         } 
         else 
         {
-            rightintakem1.move((int)1.27 * intakespd1);
+            if (midscore_delay == true){
+                pros::delay(300);
+                rightintakem1.move((int)1.27 * intakespd1);
+            }
+            else{
+                rightintakem1.move((int)1.27 * intakespd1);
+            }
         }
         if (intakespd2 == 0 && is_sorting == false)
         {
@@ -60,7 +66,13 @@ void intake()
         }
         else
         {
-            rightintakem2.move((int)1.27 * intakespd2);
+            if (midscore_delay == true){
+                pros::delay(300);
+                rightintakem2.move((int)1.27 * intakespd1);
+            }
+            else{
+                rightintakem2.move((int)1.27 * intakespd1);
+            }
         }
     }
 }
@@ -417,12 +429,15 @@ void score() {
     }
 }
 
+bool midscore_delay = false;
+
 void midscore() {
     storing = false;
+    midscore_delay = true;
     jeminmech.set_value(true);
 
     //skills
-    setintakespddiff(-100, -20);
+    setintakespddiff(-100, -30);
     setintake2spd(30);
 
     // normal match
@@ -445,15 +460,15 @@ void lowscore() {
         if (lowgoal_on)
         {
             storing = false;
-            jeminmech.set_value(true);
+            //jeminmech.set_value(true);
             if (jemintaketoggle == false)
             {
-                setintake2spd(-15);
-                setintakespddiff(60, 80);
+                setintake2spd(0);
+                setintakespddiff(43, 55);
             }
             else {
                 setintakespd(100);
-                setintake2spd(-15);
+                setintake2spd(0);
             }
         }
     }
