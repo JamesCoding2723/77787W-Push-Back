@@ -52,13 +52,7 @@ void intake()
         } 
         else 
         {
-            if (midscore_delay == true){
-                pros::delay(300);
-                rightintakem1.move((int)1.27 * intakespd1);
-            }
-            else{
-                rightintakem1.move((int)1.27 * intakespd1);
-            }
+            rightintakem1.move((int)1.27 * intakespd1);
         }
         if (intakespd2 == 0 && is_sorting == false)
         {
@@ -66,13 +60,7 @@ void intake()
         }
         else
         {
-            if (midscore_delay == true){
-                pros::delay(300);
-                rightintakem2.move((int)1.27 * intakespd1);
-            }
-            else{
-                rightintakem2.move((int)1.27 * intakespd1);
-            }
+            rightintakem2.move((int)1.27 * intakespd2);
         }
     }
 }
@@ -334,7 +322,7 @@ void imu_display_task(void*) {
   while (true) {
         pros::c::screen_print(pros::E_TEXT_MEDIUM, 1, "wallpos: %f, %f, %f", wallpos, frontwallpos, imu.get_heading());
         pros::c::screen_print(pros::E_TEXT_MEDIUM, 2, "color sort: %f, %f, %f", top_color_sensor.get_rgb().red, top_color_sensor.get_rgb().green, top_color_sensor.get_rgb().blue);
-        pros::c::screen_print(pros::E_TEXT_MEDIUM, 3, "scoring val: %d, %d", middistance.get(), top_color_sensor.get_proximity());
+        pros::c::screen_print(pros::E_TEXT_MEDIUM, 3, "scoring val: %d, %i", middistance.get(), top_color_sensor.get_proximity());
 
     pros::delay(100);   // update ~10 times per second
   }
@@ -405,40 +393,40 @@ bool score_on = false;
 
 void score() {
     static bool lastscore = false;
-    while(true) {
-        if (lastscore) {
-            lastscore = false;
-            pros::delay(120);
-            continue;
+    if (!is_sorting) {
+        storing = false;
+        jeminmech.set_value(true);
+        if (middistance.get() < 100) {
+            setintakespddiff(-100, 25);
+            setintake2spd(-100);
+            lastscore = true;
         }
-        if (score_on && !is_sorting) {
-            storing = false;
-            jeminmech.set_value(true);
-            if (middistance.get() < 100) {
-                setintakespddiff(-100, 25);
-                setintake2spd(-100);
-                pros::delay(120);
-                lastscore = true;
-            }
-            else {
-                setintakespd(-100);
-                setintake2spd(-100);
-                lastscore = true;
-            }
+        else {
+            setintakespd(-100);
+            setintake2spd(-100);
+            lastscore = true;
         }
     }
 }
 
-bool midscore_delay = false;
+
 
 void midscore() {
+    int pocket;
     storing = false;
-    midscore_delay = true;
     jeminmech.set_value(true);
 
     //skills
-    setintakespddiff(-100, -30);
-    setintake2spd(30);
+    if (middistance.get() > 100) {
+        setintakespd(-50);
+        setintake2spd(-35);
+    }
+    else{
+        setintake2spd(35);
+        pros::delay(250);
+        setintakespd(-35);
+    }
+
 
     // normal match
     // setintakespd(-100);
@@ -449,36 +437,26 @@ bool lastlowscore = false;
 bool lowgoal_on = false;
 
 void lowscore() {
-    while(true)
+    storing = false;
+    jeminmech.set_value(true);
+    if (jemintaketoggle == false)
     {
-        if(lastlowscore)
-        {
-            lastlowscore = false;
-            pros::delay(100);
-            continue;
-        }
-        if (lowgoal_on)
-        {
-            storing = false;
-            //jeminmech.set_value(true);
-            if (jemintaketoggle == false)
-            {
-                setintake2spd(0);
-                setintakespddiff(43, 55);
-            }
-            else {
-                setintakespd(100);
-                setintake2spd(0);
-            }
-        }
+        setintakespddiff(50, 80);
+        //pros::delay(300);                
+        setintake2spd(25);
+
+    }
+    else {
+        setintakespd(100);
+        setintake2spd(0);
     }
 }
 
 void skillscore() {
     storing = false;
-    setintakespd(15);
+    setintakespd(20);
     setintake2spd(-100);
     moveForSec(50, false, 0.4);
-    setintakespd(-95);
+    setintakespd(-100);
     setintake2spd(-100);
 }

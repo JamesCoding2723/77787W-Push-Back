@@ -129,7 +129,7 @@ void autonomous()
     setintake2spd(-5);
 
 
-    pidFrontWallGyro(25, 180, 0, 0.8, 60);
+    pidFrontWallGyro(25, 180, 0, 0.7, 60);
     pidTurnAbs(47, 10, 1);
     setintakespddiff(-100, 0);
     pidGyro(22, 47, 2, 100);
@@ -137,15 +137,18 @@ void autonomous()
 
     pidGyro(22, 315, 1.5, 70, 1, 25, 1, 400);
 
-    moveForSec(30, true, 0.3);
+    moveForSec(30, true, 0.35);
     jemintaket();
     setintakespddiff(90, 80);
-    setintake2spd(0);
+    setintake2spd(25);
     pros::delay(500);
     setintakespddiff(70, 56);
-    setintake2spd(-20);
-    pros::delay(800);
-    setintakespddiff(43, 50);
+    pros::delay(500);
+    setintakespddiff(-65, -65);
+    pros::delay(100);
+    setintakespddiff(70, 56);
+    pros::delay(200);
+    setintakespddiff(50, 50);
     pros::delay(1800);
 
     //jeminmecht();
@@ -170,7 +173,7 @@ void autonomous()
     setintake2spd(0);
 
     pidGyro(-99, 180, 5.3, 90, 30, 100, 2, 300);
-    pidwallGyro(37, 180, 180, 0.8, 100, 3);
+    pidwallGyro(37, 180, 180, 0.5, 100, 3);
     
     pidTurnAbs(270, 10, 0.8);
     pidWallMove(24.5, 0.5, 90, 2);
@@ -194,7 +197,7 @@ void autonomous()
     imu.set_heading(0);
     jeminloadert();
     setintakespd(0);
-    setintake2spd(0);
+    setintake2spd(0);//*/
 
 
     
@@ -202,6 +205,8 @@ void autonomous()
     //pidMoveold(7, 0.5, 2, 70); 
     //pidTurnAbs(270, 5, 0.6);
     //pidGyro(96, 270, 5, 75); //91 PATH
+
+    //imu.set_heading(0);
 
     pidmove(19, 1, 2, 100);
     pidTurnAbs(-35, 5, 1);
@@ -223,7 +228,7 @@ void autonomous()
     setintake2spd(0);
     setintakespd(-100);
     pidGyro(34, 5, 2);
-    moveForSec(55, true, 1.7);
+    moveForSec(45, true, 2.2);
     //3 MATCHLOAD DONE
 
 
@@ -237,7 +242,7 @@ void autonomous()
 
 
     pidGyro(-99, 5, 6, 90, 30, 100, 5, 100);
-    pidwallGyro(36, 0, 0, 0.8, 100, 5);
+    pidwallGyro(37, 0, 0, 0.5, 100, 3);
     
     pidTurnAbs(90, 10, 1);
     pidWallMove(24.5, 0.5, 270, 2);
@@ -261,7 +266,7 @@ void autonomous()
 
     skillscore();
     jeminloadert();
-    moveForSec(30, false, 2); //FOURTH SCORE DONE
+    moveForSec(30, false, 1.8); //FOURTH SCORE DONE
 
     setintakespd(-100);
     setintake2spd(0);
@@ -656,7 +661,7 @@ void opcontrol()
             // setintakespd(-100);
             // setintake2spd(-100);
             sort_on = true;
-            score_on = true;
+            score();
         }
         else if (master.get_digital(pros::E_CONTROLLER_DIGITAL_R2) && is_sorting == false)
         {
@@ -680,7 +685,7 @@ void opcontrol()
         else if (master.get_digital(pros::E_CONTROLLER_DIGITAL_L2))
         {
             sort_on = false;
-            lowgoal_on = true;
+            lowscore();
         }
         else 
         {
@@ -694,7 +699,6 @@ void opcontrol()
             storing = false;
             score_on = false;
             lowgoal_on = false;
-            midscore_delay = false;
         }
 
         pros::c::delay(25);
