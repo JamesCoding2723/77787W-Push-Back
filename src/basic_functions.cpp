@@ -419,7 +419,7 @@ void midscore() {
     //skills
     if (middistance.get() > 100) {
         setintakespd(-50);
-        setintake2spd(-35);
+        setintake2spd(35);
     }
     else{
         setintake2spd(35);
