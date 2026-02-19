@@ -376,9 +376,7 @@ void store() {
         if (storing && !prev) {
             jeminmech.set_value(false);
             setintakespd(-100);
-            // if (mid_color_sensor.get_proximity() > 150) { 
             setintake2spd(0);// hold block
-            // }
             prev = true;
         } else {
             // leftintakem.move_voltage(0);

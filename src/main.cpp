@@ -650,12 +650,6 @@ void opcontrol()
 
         }
 
-        /*if(master.get_digital_new_press(pros::E_CONTROLLER_DIGITAL_LEFT)) {
-            jeminparktoggle = !jeminparktoggle;
-            jeminpark.set_value(jeminparktoggle);
-        }*/
-        
-
         if (master.get_digital(pros::E_CONTROLLER_DIGITAL_R1) && is_sorting == false)
         {
             // setintakespd(-100);
@@ -665,14 +659,6 @@ void opcontrol()
         }
         else if (master.get_digital(pros::E_CONTROLLER_DIGITAL_R2) && is_sorting == false)
         {
-            // if (jemintaketoggle == false){
-            //     setintakespd(55);
-            //     setintake2spd(55);
-            // }
-            // else {
-            //     setintakespd(100);
-            //     setintake2spd(100);
-            // }
             sort_on = false;
             storing = true;
         }
