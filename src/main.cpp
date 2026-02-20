@@ -655,7 +655,7 @@ void opcontrol()
             // setintakespd(-100);
             // setintake2spd(-100);
             sort_on = true;
-            score();
+            score_on = true;
         }
         else if (master.get_digital(pros::E_CONTROLLER_DIGITAL_R2) && is_sorting == false)
         {
