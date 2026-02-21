@@ -391,21 +391,20 @@ bool score_on = false;
 
 void score() {
     static bool lastscore = false;
-    while(score_on) {
-        if (!is_sorting) {
+    while(true) {
+        if (score_on && !is_sorting) {
             storing = false;
             jeminmech.set_value(true);
+
             if (middistance.get() < 100) {
                 setintakespddiff(-100, 25);
                 setintake2spd(-100);
-                lastscore = true;
-            }
-            else {
+            } else {
                 setintakespd(-100);
                 setintake2spd(-100);
-                lastscore = true;
             }
         }
+        pros::delay(10);
     }
 }
 
