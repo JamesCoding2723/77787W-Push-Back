@@ -71,7 +71,7 @@ bin/main.cpp.o: src/main.cpp include/pros/adi.hpp include/pros/adi.h \
  include/pros/adi.hpp include/pros/distance.hpp include/pros/distance.h \
  include/pros/misc.hpp include/pros/optical.hpp include/pros/optical.h \
  include/pros/error.h include/basic_functions.h include/PID.h \
- include/main.h include/odom.h
+ include/main.h include/odom.h include/auton.h
 include/pros/adi.hpp:
 include/pros/adi.h:
 include/pros/llemu.hpp:
@@ -210,3 +210,4 @@ include/basic_functions.h:
 include/PID.h:
 include/main.h:
 include/odom.h:
+include/auton.h:

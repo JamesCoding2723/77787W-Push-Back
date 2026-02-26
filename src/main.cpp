@@ -11,6 +11,7 @@
 #include "PID.h"
 #include "main.h"
 #include "odom.h"
+#include "auton.h"
 
 
 #pragma region
@@ -102,6 +103,20 @@ void autonomous()
     setintakespd(0);
     sort_on = false;
     jeminwing.set_value(true);
+
+    //auto_skills();
+
+    //Right_4ball();
+
+    Left_4ball();
+
+    //Right_3_4();
+
+    //LEFT_3_4();
+
+    //SAWP();
+
+    //mid_SAWP();
 
     //AUTO SKILLS
     /*imu.set_heading(180);
@@ -335,7 +350,6 @@ void autonomous()
     // pros::delay(100);
 
     pidGyro(35, -120, 3, 100);
-    std::cout << "gheigh" << std::endl;
 
     // pidTurnAbs(180, 1, 0.3);
     pidGyro(0, 180, 1, 100);
@@ -414,35 +428,36 @@ void autonomous()
 
 
     //LEFT 3+4
-    imu.set_heading(90);
+    /*imu.set_heading(90);
     sort_on = false;
     storing = false;
     jemintaket();
-    jeminwingt();
 
     setintakespd(-100);
-    setintake2spd(-5);
-
-    pidwallGyro(26.2, 90, 270, 2, 80);
-    jeminloadert();
-    pidTurnAbs(180, 2, 0.7);
-
-    pidGyro(10, 176, 0.8, 100);
-    moveForSec(60, true, 0.8);
-    
-    moveForSec(50, false, 0.6);
-
-    pidGyro(-19, 175, 1, 100);
-    jeminmech.set_value(true);
-
-    skillscore();
-    jeminloadert();
-    moveForSec(50, false, 1.2);
-    
     setintake2spd(0);
-    setintakespddiff(-100, -100);
+    pidWallMove(27.8, 0.5, 270, 2.5);
+    jeminloadert();
+    pidTurnAbs(180, 10, 0.8);
 
-    pidmove(15.5, 0.5, 1, 100);
+    pidGyro(10, 178, 0.8, 100);
+    moveForSec(50, true, 0.9);
+    
+    //moveForSec(100, false, 0.35);
+
+    pidGyro(-34, 175, 1.5, 100);
+    jeminmech.set_value(true);
+    skillscore();
+
+    moveForSec(50, false, 1.3);
+    jeminloadert();
+    setintakespd(-100);
+    setintake2spd(0);
+
+    
+    setintake2spd(-100);
+    setintakespddiff(-100, 0);
+
+    pidMoveold(15, 1, 1, 100);
     pidGyro(41, 52, 2, 80, 1, 25, 15);
     jeminloadert();
     moveForSec(30, true, 0.4);

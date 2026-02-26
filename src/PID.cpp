@@ -202,7 +202,7 @@ void pidTurnAbs(float target, float rotate_tolocal, float timeout, float max)
 
 
 
-void pidswingAbs(float target, float rotate_tolocal, float timeout, bool side)
+void pidswingAbs(float target, float rotate_tolocal, float timeout, bool side, float spdmod)
 { // ROTATE with tolerate variable
   float pTol = rotate_tolocal;
   float dTol = rotate_tolocal;
@@ -273,7 +273,7 @@ void pidswingAbs(float target, float rotate_tolocal, float timeout, bool side)
 }
 
 
-void pidGyro(double targetInches, double targetHeading, double timeout, double max, double E_TOL, double D_TOL, double _settle, float _turnscale) {
+void pidGyro(double targetInches, double targetHeading, double timeout, double max, double E_TOL, double D_TOL, double _settle, float _turnscale, float spdmod) {
 
     pros::c::screen_print(pros::E_TEXT_MEDIUM, 5, "pid: %f, %f, %f, %f", 1,2,3,4);        
 
@@ -315,7 +315,7 @@ void pidGyro(double targetInches, double targetHeading, double timeout, double m
           driveS_error = 0; // 3
         float driveI = kI_drive * driveS_error;
 
-        double driveOutput = driveP + driveI + driveD;
+        double driveOutput = (driveP + driveI + driveD) * spdmod;
 
         //Turn PID
         double currentHeading = imu.get_heading(); 
@@ -334,7 +334,7 @@ void pidGyro(double targetInches, double targetHeading, double timeout, double m
           turnS_error = 0; // 3
         float turnI = kI_turn * turnS_error;
 
-        double turnOutput = turnP + turnI + turnD;
+        double turnOutput = (turnP + turnI + turnD) * spdmod;
 
         //outputs-----------------------------------------
         double turnScale = 1.0 - std::min(fabs(turnError) / _turnscale, 1.0);
@@ -359,7 +359,7 @@ void pidGyro(double targetInches, double targetHeading, double timeout, double m
         moveright(rightPower);
 
         //exit
-        if (fabs(driveError) < D_TOL && fabs(turnError) < 1 && (leftPower + rightPower)/2 < E_TOL)
+        if (fabs(driveError) < D_TOL && fabs(turnError) < 2 && (leftPower + rightPower)/2 < E_TOL)
             settleTime += 1;
         else
             settleTime = 0;
@@ -383,7 +383,6 @@ void pidGyro(double targetInches, double targetHeading, double timeout, double m
 
         pros::delay(20);
     }
-    stop();
 }
 
 
