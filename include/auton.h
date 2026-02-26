@@ -6,7 +6,7 @@ void Left_4ball();
 
 void Right_3_4();
 
-void LEFT_3_4();
+void Left_3_4();
 
 void SAWP();
 

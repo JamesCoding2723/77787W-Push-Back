@@ -15,6 +15,7 @@ double GPStracking()  //do not use this
     int line_number = 1;
     vertical_encoder.set_position(0);
 
+
     double prevdisX = 0;
     double prevdisY = 0;
 

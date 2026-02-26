@@ -280,9 +280,10 @@ void Right_3_4()
 
     pidGyro(-34, 185, 1.5, 100);
     jeminmech.set_value(true);
-    skillscore();
+    score_on = true;
 
     moveForSec(50, false, 1.3);
+    score_on = false;
     jeminloadert();
     setintakespd(-100);
     setintake2spd(0);
@@ -316,7 +317,7 @@ void Right_3_4()
 }
 
 
-void LEFT_3_4()
+void Left_3_4()
 {
     imu.set_heading(90);
     sort_on = false;
