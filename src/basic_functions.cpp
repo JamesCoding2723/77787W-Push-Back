@@ -459,3 +459,69 @@ void skillscore() {
     setintakespd(-100);
     setintake2spd(-100);
 }
+
+int auton_selection = 0;
+const int max_autons = 8;
+bool auton_locked = false;
+
+
+void auton_selector_task(void*) {
+
+    while (!auton_locked) {
+
+        master.clear();
+        master.set_text(0, 0, "Select Auton:");
+
+        switch (auton_selection) {
+            case 0:
+                master.set_text(1, 0, "right 4");
+                break;
+            case 1:
+                master.set_text(1, 0, "left 4");
+                break;
+            case 2:
+                master.set_text(1, 0, "right 3+4");
+                break;
+            case 3:
+                master.set_text(1, 0, "left 3+4");
+                break;
+            case 4:
+                master.set_text(1, 0, "right 7");
+                break;
+            case 5:
+                master.set_text(1, 0, "left 7");
+                break;
+            case 6:
+                master.set_text(1, 0, "SAWP");
+                break;
+            case 7:
+                master.set_text(1, 0, "1 inch");
+                break;
+            case 8:
+                master.set_text(1, 0, "skillllls");
+                break;
+        }
+
+        // Scroll left
+        if (master.get_digital_new_press(pros::E_CONTROLLER_DIGITAL_LEFT)) {
+            auton_selection--;
+            if (auton_selection < 0)
+                auton_selection = max_autons - 1;
+        }
+
+        // Scroll right
+        if (master.get_digital_new_press(pros::E_CONTROLLER_DIGITAL_RIGHT)) {
+            auton_selection++;
+            if (auton_selection >= max_autons)
+                auton_selection = 0;
+        }
+
+        // Lock selection
+        /*if (master.get_digital_new_press(pros::E_CONTROLLER_DIGITAL_A)) {
+            auton_locked = true;
+            master.rumble(".");
+        }*/
+
+        pros::delay(150);
+    }
+}

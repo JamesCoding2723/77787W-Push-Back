@@ -18,6 +18,7 @@
 
 void initialize()
 {
+
     front_left_motor.set_encoder_units(pros::E_MOTOR_ENCODER_DEGREES);
     middle_left_motor.set_encoder_units(pros::E_MOTOR_ENCODER_DEGREES);
     back_left_motor.set_encoder_units(pros::E_MOTOR_ENCODER_DEGREES);
@@ -49,6 +50,8 @@ void initialize()
     pros::Task ColorSort(color_sort);
     pros::Task Store(store);
     pros::Task Score(score);
+    //pros::Task selector(auton_selector_task);
+
     //pros::Task Lowgoal(lowscore);
     top_color_sensor.set_led_pwm(100);
     //pros::Task GPS(GPStracking);
@@ -57,26 +60,7 @@ void initialize()
     // pros::lcd::print(5, "IUESHIUSEFIHUWER");
 
     //master.clear();
-  
-   
 
-#if 0
-    pros::Task screen_task([&]() {
-        while (true) {
-            // print robot location to the brain screen
-            pros::lcd::print(0, "X: %f", chassis.getPose().x); // x
-            pros::lcd::print(1, "Y: %f", chassis.getPose().y); // y
-            pros::lcd::print(2, "Theta: %f", chassis.getPose().theta); // heading
-            // delay to save resources
-            pros::delay(20);
-        }
-    });
-#endif
-
-    // master.clear();
-    master.print(5, 5, "ha;sdf;jiasdf");
-
-    // disabled();
 }
 
 /**
@@ -108,18 +92,21 @@ void autonomous()
 
     //Right_4ball();
 
-    Left_4ball();
+    //Left_4ball();
 
     //Right_3_4();
 
-    //Left_3_4();
+    Left_3_4();
 
     //SAWP();
 
     //mid_SAWP();
 
+    //right_7();
 
-    
+    //left_7();
+
+
     //AUTO SKILLS
     /*imu.set_heading(180);
     jemintaket();//FIRST HALF

@@ -109,3 +109,11 @@ void skillscore();
 extern bool lowgoal_on;
 
 void lowscore();
+
+void auton_selector_task(void*);
+
+extern int auton_selection;
+
+extern const int max_autons;
+
+extern bool auton_locked;

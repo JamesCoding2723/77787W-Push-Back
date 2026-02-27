@@ -11,3 +11,7 @@ void Left_3_4();
 void SAWP();
 
 void mid_SAWP();
+
+void right_7();
+
+void left_7();
