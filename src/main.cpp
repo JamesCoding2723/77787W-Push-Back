@@ -50,7 +50,7 @@ void initialize()
     pros::Task ColorSort(color_sort);
     pros::Task Store(store);
     pros::Task Score(score);
-    //pros::Task selector(auton_selector_task);
+    pros::Task mmidscore(midscore);
 
     //pros::Task Lowgoal(lowscore);
     top_color_sensor.set_led_pwm(100);
@@ -61,6 +61,7 @@ void initialize()
 
     //master.clear();
 
+    //jeminmech.set_value(true);
 }
 
 /**
@@ -96,9 +97,9 @@ void autonomous()
 
     //Right_3_4();
 
-    Left_3_4();
+    //Left_3_4();
 
-    //SAWP();
+    SAWP();
 
     //mid_SAWP();
 
@@ -661,7 +662,7 @@ void opcontrol()
     const float Joystick_LowerDeadzone = 7;
 
     storing = false;
-
+    bool mid_scoring = false;
 
     while (true)
     {
@@ -716,15 +717,32 @@ void opcontrol()
             // setintake2spd(-100);
             sort_on = true;
             score_on = true;
+            mid_scoring = false;
         }
         else if (master.get_digital(pros::E_CONTROLLER_DIGITAL_R2) && is_sorting == false)
         {
             sort_on = false;
             storing = true;
+            mid_scoring = false;
         }
         else if (master.get_digital(pros::E_CONTROLLER_DIGITAL_L1) && is_sorting == false)
         {
             sort_on = false;
+            //skills
+            /*mid_scoring = true;
+            jeminmech.set_value(true);
+            setintakespd(75);
+            setintake2spd(75);
+            pros::delay(75);
+            if (middistance.get() > 100) {
+                setintakespd(-50);
+                setintake2spd(35);
+            }
+            else{
+                setintake2spd(35);
+                pros::delay(250);
+                setintakespd(-35);
+            }//*/
             midscore();
         }
 
@@ -732,10 +750,11 @@ void opcontrol()
         {
             sort_on = false;
             lowscore();
+            mid_scoring = false;
         }
         else 
         {
-            if (!is_sorting) {
+            if (!is_sorting && !mid_scoring) {
                 setintakespd(0);
                 setintake2spd(0);
                 jeminmech.set_value(false);

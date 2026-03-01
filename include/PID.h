@@ -16,6 +16,6 @@ void pidWallMove(float, float, float _wall, float, float max = 70);
 
 void pidwallGyro(double, double, float _wall, double, double max = 70, double E_TOL = 1);
 
-void pidFrontWallGyro(double , double , double _wall, double , double max = 70);
+void pidFrontWallGyro(double , double , double _wall, double , double max = 70, int spdratio = 1);
 
 void pidmove(float, float, float, float max = 100, float E_TOL = 1, float D_TOL = 25);

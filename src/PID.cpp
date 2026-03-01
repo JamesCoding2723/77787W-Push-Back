@@ -533,7 +533,7 @@ void pidwallGyro(double targetInches, double targetHeading, float _wall, double 
         moveright(rightPower);
 
         //exit
-        if (fabs(driveError) < E_TOL && fabs(turnError) < 1 && (leftPower + rightPower)/2 < 25)
+        if (fabs(driveError) < E_TOL && fabs(turnError) < 2 && (leftPower + rightPower)/2 < 25)
             settleTime += 1;
         else
             settleTime = 0;
@@ -562,7 +562,7 @@ void pidwallGyro(double targetInches, double targetHeading, float _wall, double 
 
 
 
-void pidFrontWallGyro(double targetInches, double targetHeading, double _wall, double timeout, double max) {
+void pidFrontWallGyro(double targetInches, double targetHeading, double _wall, double timeout, double max, int spdratio) {
 
     pros::c::screen_print(pros::E_TEXT_MEDIUM, 5, "pid: %f, %f, %f, %f", 1,2,3,4);        
 
@@ -604,7 +604,7 @@ void pidFrontWallGyro(double targetInches, double targetHeading, double _wall, d
           driveS_error = 0; // 3
         float driveI = kI_drive * driveS_error;
 
-        double driveOutput = driveP + driveI + driveD;
+        double driveOutput = (driveP + driveI + driveD) * spdratio;
 
         //Turn PID
         double currentHeading = imu.get_heading(); 
@@ -648,7 +648,7 @@ void pidFrontWallGyro(double targetInches, double targetHeading, double _wall, d
         moveright(-rightPower);
 
         //exit
-        if (fabs(driveError) < 1 && fabs(turnError) < 1 && (leftPower + rightPower)/2 < 25) settleTime += 1;
+        if (fabs(driveError) < 1 && fabs(turnError) < 2 && (leftPower + rightPower)/2 < 25) settleTime += 1;
 
         drivePrevError = driveError;
         turnPrevError = turnError;

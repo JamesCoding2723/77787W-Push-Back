@@ -416,7 +416,10 @@ void midscore() {
     jeminmech.set_value(true);
 
     //skills
-    /*if (middistance.get() > 100) {
+    /*setintakespd(75);
+    setintake2spd(75);
+    pros::delay(200);
+    if (middistance.get() > 100) {
         setintakespd(-50);
         setintake2spd(35);
     }
@@ -430,6 +433,7 @@ void midscore() {
     // normal match
     setintakespd(-100);
     setintake2spd(50);
+    //*/
 }
 
 bool lastlowscore = false;
