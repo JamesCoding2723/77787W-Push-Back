@@ -50,7 +50,7 @@ void initialize()
     pros::Task ColorSort(color_sort);
     pros::Task Store(store);
     pros::Task Score(score);
-    pros::Task mmidscore(midscore);
+    //pros::Task mmidscore(midscore);
 
     //pros::Task Lowgoal(lowscore);
     top_color_sensor.set_led_pwm(100);
@@ -99,7 +99,7 @@ void autonomous()
 
     //Left_3_4();
 
-    SAWP();
+    //SAWP();
 
     //mid_SAWP();
 
