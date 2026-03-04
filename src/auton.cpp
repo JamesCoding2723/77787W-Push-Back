@@ -22,16 +22,20 @@ void auto_skills()
     moveForSec(60, false, 0.1);
     moveForSec(70, true, 0.1);
     moveForSec(60, false, 0.1);
-    pros::delay(700);
+    pros::delay(500);
+    moveForSec(70, true, 0.1);
+    moveForSec(60, false, 0.1);
+    moveForSec(70, true, 0.6);
     moveleft(77);
-    moveright(65);
-    pros::delay(600);
+    moveright(0);
+    pros::delay(200);
+    moveleft(30);
+    moveright(77);
+    pros::delay(200);
     //moveForSec(70, true, 0.6);
     moveForSec(60, false, 0.1);
-    moveForSec(70, true, 0.1);
-    moveForSec(60, false, 0.1);
-    moveForSec(70, true, 0.1);
-    pros::delay(800);
+    moveForSec(70, true, 0.9);
+    //pros::delay(800);
     moveForSec(30, true, 0.3);
     moveForSec(60, false, 0.8);
     setintakespd(0);
@@ -48,17 +52,18 @@ void auto_skills()
 
     moveForSec(35, true, 0.4);
     jemintaket();
+    moveForSec(25, false, 0.1);
     setintakespddiff(90, 80);
     setintake2spd(25);
-    pros::delay(600);
+    pros::delay(300);
     setintakespddiff(70, 60);
-    pros::delay(400);
+    pros::delay(500);
     setintakespddiff(-100, -100);
     moveForSec(25, false, 0.1);
     setintakespddiff(70, 56);
-    pros::delay(300);
+    pros::delay(600);
     setintakespddiff(45, 45);
-    pros::delay(1800);
+    pros::delay(1900);
 
     //jeminmecht();
     pidwallGyro(24.5, 310, 90, 3);
@@ -179,10 +184,10 @@ void auto_skills()
 
     skillscore();
     jeminloadert();
-    moveForSec(30, false, 1.3); //FOURTH SCORE DONE
+    moveForSec(30, false, 0.9); //FOURTH SCORE DONE
     setintakespd(-60);
     setintake2spd(-60);
-    moveForSec(30, false, 0.5);
+    moveForSec(30, false, 0.9);
 
     setintakespd(-100);
     setintake2spd(0);
