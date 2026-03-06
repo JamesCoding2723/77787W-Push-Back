@@ -93,7 +93,7 @@ void autonomous()
 
     //Right_4ball();
 
-    //Left_4ball();
+    // Left_4ball();
 
     //Right_3_4();
 
@@ -105,7 +105,7 @@ void autonomous()
 
     //right_7();
 
-    //left_7();
+    left_7();
 
 
     //AUTO SKILLS
