@@ -397,7 +397,7 @@ void score() {
             jeminmech.set_value(true);
 
             if (middistance.get() < 100) {
-                setintakespddiff(-100, 25);
+                setintakespddiff(-100, 29);
                 setintake2spd(-100);
             } else {
                 setintakespd(-100);
@@ -445,7 +445,7 @@ void lowscore() {
     if (jemintaketoggle == false)
     {
         setintakespddiff(50, 80);
-        //pros::delay(300);                
+        //pros::delay(300);              
         setintake2spd(25);
 
     }
