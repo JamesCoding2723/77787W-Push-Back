@@ -756,8 +756,8 @@ void opcontrol()
         int leftY = abs(master.get_analog(pros::E_CONTROLLER_ANALOG_LEFT_Y)) < Joystick_LowerDeadzone ? 0: master.get_analog(pros::E_CONTROLLER_ANALOG_LEFT_Y);
 
         // move the robot
-        moveleft(leftY + 1 * rightX);
-        moveright(leftY - 1 * rightX);
+        moveleft(leftY + 0.85 * rightX);
+        moveright(leftY - 0.85 * rightX);
 
         /*int Ch1 = abbs(C1) < Joystick_LowerDeadzone ? 0 : C1;
         int Ch3 = abbs(C3) < Joystick_LowerDeadzone ? 0 : C3;
@@ -800,19 +800,15 @@ void opcontrol()
 
         if (master.get_digital(pros::E_CONTROLLER_DIGITAL_R1))
         {
+            jeminmech.set_value(true);
             setintakespd(-100);
             setintake2spd(-100);
         }
         else if (master.get_digital(pros::E_CONTROLLER_DIGITAL_R2))
         {
-            if (jemintaketoggle == false){
-                setintakespd(55);
-                setintake2spd(55);
-            }
-            else {
-                setintakespd(100);
-                setintake2spd(100);
-            }
+            jeminmech.set_value(false);
+            setintakespd(-100);
+            setintake2spd(-100);
         }
         else if (master.get_digital(pros::E_CONTROLLER_DIGITAL_L1))
         {
@@ -822,8 +818,14 @@ void opcontrol()
 
         else if (master.get_digital(pros::E_CONTROLLER_DIGITAL_L2))
         {
-            setintakespd(100);
-            //setintake2spd(-100);
+            if (jemintaketoggle == false){
+                setintakespd(55);
+                setintake2spd(55);
+            }
+            else {
+                setintakespd(100);
+                setintake2spd(100);
+            }
         }
         else 
         {
