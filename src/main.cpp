@@ -756,8 +756,8 @@ void opcontrol()
         int leftY = abs(master.get_analog(pros::E_CONTROLLER_ANALOG_LEFT_Y)) < Joystick_LowerDeadzone ? 0: master.get_analog(pros::E_CONTROLLER_ANALOG_LEFT_Y);
 
         // move the robot
-        moveleft(leftY + 0.85 * rightX);
-        moveright(leftY - 0.85 * rightX);
+        moveleft(leftY + 0.7 * rightX);
+        moveright(leftY - 0.7 * rightX);
 
         /*int Ch1 = abbs(C1) < Joystick_LowerDeadzone ? 0 : C1;
         int Ch3 = abbs(C3) < Joystick_LowerDeadzone ? 0 : C3;
