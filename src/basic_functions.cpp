@@ -337,7 +337,7 @@ void color_sort() {
     while (true) {
         if (lastsort) {
             lastsort = false;
-            pros::delay(150);
+            pros::delay(300);
             continue;
         }
         if (sort_on) {
@@ -347,7 +347,7 @@ void color_sort() {
                 is_sorting = true;
                 setintakespddiff(-100, -100);
                 setintake2spd(100);
-                pros::delay(150);
+                pros::delay(300);
                 setintakespddiff(intakespd1, intakespd2);
                 setintake2spd(intake2spd);
                 is_sorting = false;
@@ -358,14 +358,14 @@ void color_sort() {
                 is_sorting = true;
                 setintakespddiff(-100, -100);
                 setintake2spd(100); 
-                pros::delay(150);
+                pros::delay(300);
                 setintakespddiff(intakespd1, intakespd2);
                 setintake2spd(intake2spd);
                 is_sorting = false;
                 lastsort = true;
             }
         }
-        pros::delay(10);
+        pros::delay(300);
     }
 }
 

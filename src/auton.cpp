@@ -523,30 +523,28 @@ void right_7()
 
 
 
-    //pidGyro(34, 125, 2, 100, 1, 25, 5, 20, 1);
     pidTurnAbs(125, 10, 2);
-    jeminloadert();
-    pidGyro(33.5, 125, 2, 100, 1, 25, 5);
+    pidGyro(43, 180, 2, 100, 1, 25, 2, 1000000, 1, 50);
 
-    pidTurnAbs(180, 5, 0.8);
 
-    jeminloadert();
-    pidGyro(20, 180, 1, 100, 1, 25, 1);
-    moveForSec(30, true, 0.75);
+    moveForSec(35, true, 0.83);
     
-    pidGyro(-35, 185, 2, 100, 1, 25, 1);
+    pidGyro(-40, 180, 2, 100, 1, 25, 1);
 
     score_on = true;
-    moveForSec(50, false, 1.5);
+    moveForSec(50, false, 1.4);
     jeminloadert();
-    pidGyro(12, 135, 2, 100, 1, 25, 1, 15, 1.5);
+    pidGyro(10.2, 135, 2, 100, 1, 25, 1, 15, 2.5);
     score_on = false;
     jeminwing.set_value(false);
     pros::delay(1);
-    pidGyro(0, 183, 0.9, 100, 1, 25, 1, 15, 1.5);
-    pidmove(-23, 1, 2);  //-20
+    pidGyro(0, 180, 0.9, 100, 1, 25, 1, 15, 2.5);
+    pidmove(-17, 1, 2);  //-20
     setintakespd(0);
     setintake2spd(0);
+    pros::delay(2000);
+    pidmove(-12, 1, 2);
+    pidTurnRel(20, 2, 1);
     moveright(-24);
     pros::delay(1000000);
 
