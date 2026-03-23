@@ -88,6 +88,8 @@ extern bool side;
 
 extern bool sort_on;
 
+extern bool Msort_on;
+
 extern bool is_sorting;
 
 void color_sort();

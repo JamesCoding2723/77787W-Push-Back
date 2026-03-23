@@ -99,11 +99,11 @@ void autonomous()
 
     //Left_3_4();
 
-    //SAWP();
+    SAWP();
 
     //mid_SAWP();
 
-    right_7();
+    //right_7();
 
     //left_7();
 
@@ -129,7 +129,7 @@ void opcontrol()
     setintakespd(0);
     setintake2spd(0);
 
-    sort_on = false;
+    sort_on = true;
     side = false; //false is red, true is blue
     
 
@@ -188,10 +188,13 @@ void opcontrol()
             jeminwing.set_value(jeminwingtoggle);
         }
 
-        if(master.get_digital_new_press(pros::E_CONTROLLER_DIGITAL_X)) {
+        if(master.get_digital(pros::E_CONTROLLER_DIGITAL_X) && master.get_digital(pros::E_CONTROLLER_DIGITAL_UP)) {
             side = !side;
-
         }
+
+        if(master.get_digital_new_press(pros::E_CONTROLLER_DIGITAL_A)){
+            Msort_on = !Msort_on;
+        } 
 
         if (master.get_digital(pros::E_CONTROLLER_DIGITAL_R1) && is_sorting == false)
         {

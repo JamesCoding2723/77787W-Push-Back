@@ -323,7 +323,10 @@ void imu_display_task(void*) {
         pros::c::screen_print(pros::E_TEXT_MEDIUM, 1, "wallpos: %f, %f, %f", wallpos, frontwallpos, imu.get_heading());
         pros::c::screen_print(pros::E_TEXT_MEDIUM, 2, "color sort: %f, %f, %f", top_color_sensor.get_rgb().red, top_color_sensor.get_rgb().green, top_color_sensor.get_rgb().blue);
         pros::c::screen_print(pros::E_TEXT_MEDIUM, 3, "scoring val: %d, %i", middistance.get(), top_color_sensor.get_proximity());
-
+        if(side) pros::c::screen_print(pros::E_TEXT_LARGE, 4, "COLOR SORT: BLUE OUT");
+        else if(!side) pros::c::screen_print(pros::E_TEXT_LARGE, 4, "COLOR SORT: RED OUT  ");
+        if(Msort_on) pros::c::screen_print(pros::E_TEXT_MEDIUM, 6, "COLOR SORT: ON  ");
+        else if(!Msort_on) pros::c::screen_print(pros::E_TEXT_MEDIUM, 6, "COLOR SORT: OFF");
     pros::delay(100);   // update ~10 times per second
   }
 }
@@ -332,40 +335,41 @@ bool side = false; //false = red out; true = blue out
 bool sort_on = false;
 bool is_sorting = false;
 bool lastsort = false;
+bool Msort_on = true;
 
 void color_sort() {
     while (true) {
-        if (lastsort) {
+        /*if (lastsort) {
             lastsort = false;
-            pros::delay(300);
+            pros::delay(5);
             continue;
-        }
-        if (sort_on) {
+        }*/
+        if (sort_on && Msort_on) {
             pros::c::optical_rgb_s_t rgb = top_color_sensor.get_rgb();
-            if (!side && (rgb.red > 200 && rgb.red > rgb.green && rgb.red > rgb.blue)) {
+            if (!side && (rgb.red > 120 && rgb.red > rgb.green && rgb.red > rgb.blue)) {
                 jeminmech.set_value(true);
                 is_sorting = true;
                 setintakespddiff(-100, -100);
                 setintake2spd(100);
-                pros::delay(300);
-                setintakespddiff(intakespd1, intakespd2);
-                setintake2spd(intake2spd);
+                pros::delay(135); //165
+                /*setintakespddiff(intakespd1, intakespd2);
+                setintake2spd(intake2spd);*/
                 is_sorting = false;
                 lastsort = true;
             } 
-            else if (side && (rgb.blue > 200 && rgb.blue > rgb.red && rgb.blue > rgb.green)) {
+            else if (side && (rgb.blue > 120 && rgb.blue > rgb.red && rgb.blue > rgb.green)) {
                 jeminmech.set_value(true);
                 is_sorting = true;
                 setintakespddiff(-100, -100);
                 setintake2spd(100); 
-                pros::delay(300);
-                setintakespddiff(intakespd1, intakespd2);
-                setintake2spd(intake2spd);
+                pros::delay(135); //165
+                /*setintakespddiff(intakespd1, intakespd2);
+                setintake2spd(intake2spd);*/
                 is_sorting = false;
                 lastsort = true;
             }
         }
-        pros::delay(300);
+        pros::delay(1);
     }
 }
 

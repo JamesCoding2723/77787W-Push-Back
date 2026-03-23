@@ -381,7 +381,7 @@ void SAWP()
 
     setintakespd(-100);
     setintake2spd(0);
-    pidWallMove(27.8, 0.5, 90, 2.5);
+    pidWallMove(28.3, 0.5, 90, 2.5);
     jeminloadert();
     pidTurnAbs(180, 10, 0.8);
 
@@ -390,7 +390,7 @@ void SAWP()
     
     //moveForSec(100, false, 0.35);
 
-    pidGyro(-34, 185, 1.5, 100, 1, 25, 15, 15, 1.5);
+    pidGyro(-34, 180, 1.5, 100, 1, 25, 15, 15, 1.5);
     jeminmech.set_value(true);
     score_on = true;
 
