@@ -91,7 +91,7 @@ void autonomous()
 
     //auto_skills();
 
-    //Right_4ball();
+    Right_4ball();
 
     //Left_4ball();
 
@@ -99,7 +99,7 @@ void autonomous()
 
     //Left_3_4();
 
-    SAWP();
+   // SAWP();
 
     //mid_SAWP();
 
