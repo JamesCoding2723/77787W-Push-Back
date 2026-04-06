@@ -86,12 +86,12 @@ void autonomous()
 
     setintake2spd(0);
     setintakespd(0);
-    sort_on = false;
+    sort_on = true;
     jeminwing.set_value(true);
 
     //auto_skills();
 
-    Right_4ball();
+    //Right_4ball();
 
     //Left_4ball();
 
@@ -103,7 +103,7 @@ void autonomous()
 
     //mid_SAWP();
 
-    //right_7();
+    right_7();
 
     //left_7();
 

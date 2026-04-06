@@ -460,9 +460,9 @@ void SAWP()
 
 void right_7()
 {
-    imu.set_heading(0);
+    imu.set_heading(180);
 
-    jemintaket();
+    /*jemintaket();
 
     setintakespddiff(-100, -100);
     setintake2spd(0);
@@ -476,19 +476,18 @@ void right_7()
     pidGyro(43, 180, 2, 100, 1, 25, 2, 1000000, 1, 50);
 
 
-    moveForSec(35, true, 0.83);
+    moveForSec(50, true, 0.75);
     
     pidGyro(-40, 180, 2, 100, 1, 25, 1);
 
     score_on = true;
     moveForSec(50, false, 1.5);
-    jeminloadert();
-    pidGyro(10.2, 135, 2, 100, 1, 25, 1, 15, 2.5);
+    jeminloadert();*/
+    pidGyro(9, 135, 2, 100, 1, 25, 5, 30, 4);
     score_on = false;
     jeminwing.set_value(false);
-    pros::delay(1);
-    pidGyro(0, 180, 0.9, 100, 1, 25, 1, 15, 2.5);
-    pidmove(-17, 1, 2);  //-20
+    //pros::delay(1000);
+    pidGyro(-17, 175, 4, 100, 1, 25, 15, 15, 1);
     setintakespd(0);
     setintake2spd(0);
     pros::delay(2000);
