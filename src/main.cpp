@@ -97,13 +97,13 @@ void autonomous()
 
     //Right_3_4();
 
-    //Left_3_4();
+    Left_3_4();
 
     //SAWP();
 
     //mid_SAWP();
 
-    right_7();
+    //right_7();
 
     //left_7();
 
@@ -144,7 +144,8 @@ void opcontrol()
     const float Joystick_LowerDeadzone = 7;
 
     storing = false;
-    bool mid_scoring = false;
+     bool mid_scoring = false;
+     static bool antijam = false;
 
     while (true)
     {
@@ -213,22 +214,15 @@ void opcontrol()
         else if (master.get_digital(pros::E_CONTROLLER_DIGITAL_L1) && is_sorting == false)
         {
             sort_on = false;
-            //skills
-            /*mid_scoring = true;
-            jeminmech.set_value(true);
-            setintakespd(75);
-            setintake2spd(75);
-            pros::delay(75);
-            if (middistance.get() > 100) {
-                setintakespd(-50);
-                setintake2spd(35);
+            if (!antijam){
+                setintakespd(90);
+                setintake2spd(100);
+                pros::delay(50);
+                midscore();
+                antijam = true;
             }
-            else{
-                setintake2spd(35);
-                pros::delay(250);
-                setintakespd(-35);
-            }//*/
             midscore();
+            //mid_scoring = false;
         }
 
         else if (master.get_digital(pros::E_CONTROLLER_DIGITAL_L2))
@@ -246,6 +240,7 @@ void opcontrol()
             }
             sort_on = false;
             storing = false;
+            antijam = false;
             score_on = false;
             lowgoal_on = false;
         }
