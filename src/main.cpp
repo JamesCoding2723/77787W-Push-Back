@@ -91,23 +91,23 @@ void autonomous()
 
     //auto_skills();
 
+    //Right_3_4();
+
+    //Left_3_4();
+
+    // right_7();
+
+    // left_7();
+
     //Right_4ball();
 
     //Left_4ball();
 
-    //Right_3_4();
-
-    Left_3_4();
-
-    //SAWP();
+    SAWP();
 
     //mid_SAWP();
 
-    //right_7();
-
-    //left_7();
-
-
+    
     
 }
 
@@ -130,6 +130,7 @@ void opcontrol()
     setintake2spd(0);
 
     sort_on = true;
+    Msort_on = false;
     side = false; //false is red, true is blue
     
 
