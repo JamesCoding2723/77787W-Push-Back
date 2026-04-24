@@ -277,7 +277,7 @@ void Right_3_4()
 
     setintakespd(-100);
     setintake2spd(0);
-    pidWallMove(28.3, 0.5, 90, 2.5, 100);
+    pidWallMove(27, 0.5, 90, 2.5, 100);
     jeminloadert();
     pidTurnAbs(180, 10, 0.8);
 
@@ -300,7 +300,7 @@ void Right_3_4()
     setintake2spd(0);
     setintakespddiff(-100, 0);
 
-    pidGyro(22, 290, 2, 100, 1, 25, 5, 70);
+    pidGyro(20, 295, 2, 100, 1, 25, 5, 60);
     jeminloadert();
     moveForSec(30, true, 0.2);
     pidTurnAbs(310, 10, 0.8, 100);
@@ -342,11 +342,11 @@ void Left_3_4()
     moveForSec(30, true, 0.2);
 
 
-    pidTurnAbs(70, 10, 1);
-    pidwallGyro(29, 60, 270, 2, 100, 1);
+    pidTurnAbs(75, 10, 1);
+    pidwallGyro(27, 60, 270, 2, 100, 1);
     //pros::delay(2000);
 
-    pidTurnAbs(180, 3, 1);
+    pidTurnAbs(178, 3, 1);
      moveForSec(70, false, 0.3);
     score_on = true;
     moveForSec(60, false, 1.3);
@@ -400,11 +400,11 @@ void SAWP()
 
     setintakespd(-100);
     setintake2spd(0);
-    pidWallMove(27.3, 0.5, 90, 2.5);
+    pidWallMove(27, 0.5, 90, 2.5);
     jeminloadert();
     pidTurnAbs(180, 10, 0.8);
 
-    pidGyro(10, 182, 0.8, 100);
+    pidGyro(10, 184, 0.8, 100);
     moveForSec(50, true, 0.75);
     
     //moveForSec(100, false, 0.35);
@@ -423,7 +423,7 @@ void SAWP()
     setintake2spd(0);
     setintakespddiff(-100, 0);
 
-    pidGyro(23, 290, 2, 100, 5, 50, 1, 70);
+    pidGyro(23, 297, 2, 100, 5, 50, 1, 70);
     jeminloadert();
     moveForSec(40, true, 0.2);
 
@@ -438,13 +438,13 @@ void SAWP()
 
     // pidmove(48, 0.5, 3, 100);
     pidTurnAbs(215, 10, 0.5, 100);
-    pidFrontWallGyro(23, 230, 270, 1.2, 100);
+    pidFrontWallGyro(21, 235, 270, 1.5, 100);
 
 
     pidTurnAbs(180, 10, 0.7, 100);
 
 
-    pidGyro(-27, 180, 1, 100, 1, 25, 1);
+    pidGyro(-27, 179, 1, 100, 1, 25, 1);
     jeminmech.set_value(true);
     setintake2spd(-100);
     setintakespd(-100);
@@ -487,8 +487,8 @@ void right_7()
 
 
 
-    pidTurnAbs(125, 10, 2);
-    pidGyro(44, 180, 2, 100, 1, 25, 2, 1000000, 1, 50);
+    pidTurnAbs(122, 10, 2);
+    pidGyro(44, 179, 2, 100, 1, 25, 2, 1000000, 1, 50);
 
 
     moveForSec(50, true, 0.75);
@@ -498,11 +498,11 @@ void right_7()
     score_on = true;
     moveForSec(50, false, 1.4);
     jeminloadert();
-    pidGyro(9.5, 135, 2, 100, 1, 25, 5, 30, 4);
+    pidGyro(9.5, 145, 2, 100, 1, 25, 5, 30, 4);
     score_on = false;
     jeminwing.set_value(false);
     //pros::delay(1000);
-    pidGyro(-17, 180, 4, 100, 1, 25, 15, 15, 1.1);
+    pidGyro(-17, 200, 4, 100, 1, 25, 15, 15, 1.1);
     setintakespd(0);
     setintake2spd(0);
     pros::delay(3000);

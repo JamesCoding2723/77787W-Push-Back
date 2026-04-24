@@ -91,9 +91,9 @@ void autonomous()
 
     //auto_skills();
 
-    //Right_3_4();
+    // Right_3_4();
 
-    //Left_3_4();
+    // Left_3_4();
 
     // right_7();
 
@@ -103,11 +103,14 @@ void autonomous()
 
     //Left_4ball();
 
-    SAWP();
+    // SAWP();
 
     //mid_SAWP();
 
-    
+    //one inch
+    /*jemintaket();
+    moveForSec(30, true, 0.5);*/
+
     
 }
 
